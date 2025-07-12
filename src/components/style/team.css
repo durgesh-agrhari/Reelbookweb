@@ -1,0 +1,112 @@
+.team__content{
+    text-align: center;
+    margin-bottom: 50px;
+    margin-top: -150px;
+}
+.team__item{
+    width: 25%;
+    background: var(--team-card-bg);
+    border-radius: 5px;
+    
+}
+
+.light-theme .team__item{
+background-color: whitesmoke;
+}
+
+.team__img{
+    width: 100%;
+    height: 250px;
+    border-radius: 5px;
+    background-image: url(../../images/teambc1.jpg);
+}
+
+.team__img-c img{
+    width: 25%;
+    height: 22px;
+    object-fit: contain;
+    transform: scale(1.3);
+    margin-left: 7px;
+}
+.cc{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: white;
+    padding-top: -40px;
+    border: solid 2px rgb(2, 2, 135);
+    border-radius: 3px;
+    padding: 1px 1px 1px 1px;
+}
+
+.light-theme .cc{
+    border: solid 2px rgb(180, 180, 192);   
+}
+.team__img img{
+    width: 100%;
+    height: 200px;
+    margin-top: 20px;
+    object-fit: contain;
+    transform: scale(1.3);
+}
+.team__details{
+    padding: 20px 15px;
+    text-align: center;
+}
+.team__details h4{
+    color: var(--primary-color);
+    font-weight: 500;
+    font-size: 1.2rem;
+    margin-bottom: .4rem;
+}
+.team__member-social{
+    display: flex;
+    align-items: center;
+    column-gap: 1rem;
+    margin-top: 5px;
+    justify-content: center;
+}
+.team__member-social span{
+    padding: 8px 4px 8px 4px;
+    background: var(--icon-bg);
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.light-theme .team__member-social span{
+    background-color: whitesmoke;
+    border-radius: 3px;
+}
+
+.team__wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 2rem;
+    
+}
+
+@media only screen and (max-width: 768px){
+    .team__item{
+        width: 50%;
+        margin-bottom: 30px;
+    }
+    .team__wrapper{
+        flex-wrap: wrap;
+    }
+    .team__content h2{
+        font-size: 1.5rem;
+    }
+    .team__details h4{
+        font-size: 1rem;
+    }
+    .team__details p {
+        font-size: .8rem;
+    }
+}
+
+@media only screen and (max-width: 576px){
+    .team__item{
+        width: 100%;
+    }
+}

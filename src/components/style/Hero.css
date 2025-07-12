@@ -1,0 +1,152 @@
+.hero__wrapper{
+    display: flex;
+    justify-content: space-around;
+
+}
+.left1{
+    margin-top: 25px;
+}
+
+.left1 h2{
+    font-size: 30px;
+}
+
+.hero__cintent{
+    padding-top: 10px;
+}
+
+
+.hero__cintent, .hero__img{
+    width: 50%;
+}
+
+.hero__cintent h2{
+    font-size: 3rem;
+    line-height: 65px;
+}
+
+.hero__cintent p{
+    margin-top: 40px;
+    font-size: 1.1rem;
+}
+
+.highlight{
+    color: var(--primary-color);
+    margin-top: 15px;
+    align-self: center;
+}
+
+.highlight1{
+    color: var(--primary-color);
+    margin-top: 15px;
+    text-align: center;
+}
+
+
+.hero__btns{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: row;
+    column-gap: 2rem;    
+}
+.primary__btn, .secondary__btn{
+    padding: 0.6rem 1.5rem;
+    border: none;
+    outline: none;
+    color: #fff;
+    border-radius: 0.2rem;
+    cursor: pointer;
+}
+
+.primary__btn{
+    /* background-color: var(--btn-secondery-bg); */
+    background-color: rgba(3, 19, 80, 0.793);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+}
+.secondary__btn{
+    background-color: var(--btn-primary-bg);
+}
+
+.hero__img img{
+    width: 200px;
+    height: 200px;
+    margin-left:100px;
+    justify-content: center;
+}
+.right12{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-left: 30px;
+}
+@media only screen and (max-width: 992px){
+    .hero__cintent h2{
+        font-size: 1.8rem;
+        line-height: 50px;
+    }
+    .hero__content{
+        margin-top: -50px;
+    }
+    .left1 h2{
+        font-size: 2rem;
+        line-height: 45px;
+    }
+}
+
+@media only screen and (max-width: 768px){
+    /* .hero__cintent h2{
+        font-size: 1px;
+    } */
+    .left1{
+        text-align: center;
+    }
+    .discription{
+        text-align: center;
+    }
+    
+    
+    .hero__content{
+        margin-top: -80px;
+    }
+    .left1 h2{
+        font-size: 1.5rem;
+        line-height: 45px;
+    }
+    .left1 p{
+        font-size: .9rem;
+    }
+    .primary__btn, .secondary__btn{
+        font-size: .8rem;
+    }
+}
+
+@media only screen and (max-width: 600px){
+    .left1{
+        text-align: center;
+    }
+    .discription{
+        text-align: center;
+    }
+    .hero__btns{
+        margin-left: 65px;
+    }
+    
+    .hero__content{
+        margin-top: -50px;
+    }
+    .hero__cintent, .hero__img{
+        width: 100%;
+    }
+    .hero__img{
+        margin-top: 50px;
+    }
+    .hero__wrapper{
+        flex-direction: column;
+        gap: 50;
+    }
+    .hero__btns{
+            margin-left: -20px;  
+    }
+}
