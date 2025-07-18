@@ -44,21 +44,21 @@ const Header = ({ theme, toggleTheme }) => {
                                 <NavLink to='/videoplayer' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>Play</NavLink>
                             </li> */}
                             <li className='menu__item'>
-                                <NavLink to='/download-app' className={({ isActive }) => isActive ? 'menu__link navactive download__link' : 'menu__link download__link'}>
+                                <NavLink to='/DownloadApp' className={({ isActive }) => isActive ? 'menu__link navactive download__link' : 'menu__link download__link'}>
                                     Download App
                                 </NavLink>
                             </li>
                             <li className='menu__item'>
-                                <NavLink to='/privacy' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>Category</NavLink>
+                                <NavLink to='/Category' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>Category</NavLink>
                             </li>
                             <li className='menu__item'>
-                                <NavLink to='/privacy-policy' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>Privacy & Policy</NavLink>
+                                <NavLink to='/PrivacyPolicy' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>Privacy & Policy</NavLink>
                             </li>
                             <li className='menu__item'>
-                                <NavLink to='/contact-us' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>Contact Us</NavLink>
+                                <NavLink to='/Contact' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>Contact Us</NavLink>
                             </li>
                             <li className='menu__item'>
-                                <NavLink to='/feedback' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>Feedback</NavLink>
+                                <NavLink to='/Feedback' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>Feedback</NavLink>
                             </li>
                         </ul>
 

@@ -1,0 +1,92 @@
+/* Full screen black background */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Main wrapper */
+.privacy-page {
+  padding: 40px 20px;
+  background-color: #000;
+}
+
+/* Title styles */
+.privacy-title {
+  font-size: 36px;
+  font-weight: bold;
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.privacy-updated {
+  text-align: center;
+  font-size: 14px;
+  color: #bbb;
+  margin-bottom: 32px;
+}
+
+/* Content */
+.privacy-content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Section styling */
+section {
+  margin-bottom: -80px;
+}
+
+section h2 {
+  font-size: 22px;
+  margin-bottom: 12px;
+  color: #1e90ff;
+}
+
+section p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #e0e0e0;
+}
+
+section ul {
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+section ul li {
+  margin-bottom: 6px;
+  color: #ccc;
+}
+
+/* Links */
+a {
+  color: #1e90ff;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive for mobile */
+@media (max-width: 600px) {
+  .privacy-title {
+    font-size: 26px;
+  }
+
+  .privacy-content {
+    padding: 0 10px;
+  }
+
+  section h2 {
+    font-size: 18px;
+  }
+
+  section p, section ul li {
+    font-size: 15px;
+  }
+}
