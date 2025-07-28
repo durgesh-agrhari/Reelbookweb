@@ -8,7 +8,7 @@ const storyData = [
         caption: 'My trip to the mountains!',
         views: 1234,
         media: [
-            { type: 'image', url: 'https://photoswala.net/wp-content/uploads/2025/04/girl-dp_9.jpg' },
+            { type: 'image', url: 'https://i.pinimg.com/736x/6a/42/a1/6a42a1776a9f25caeb27268548172c9f.jpg' },
             { type: 'video', url: 'https://www.w3schools.com/html/mov_bbb.mp4' },
         ],
     },
@@ -18,7 +18,7 @@ const storyData = [
         caption: 'Sunset at the beach',
         views: 2345,
         media: [
-            { type: 'image', url: 'https://photoswala.net/wp-content/uploads/2025/04/girl-dp_9.jpg' },
+            { type: 'image', url: 'https://i.pinimg.com/736x/23/9c/07/239c074db2eb6c7a5b810587ba0e1582.jpg' },
         ],
     },
     {
@@ -36,7 +36,7 @@ const storyData = [
         caption: 'My trip to the mountains!',
         views: 1234,
         media: [
-            { type: 'image', url: 'https://photoswala.net/wp-content/uploads/2025/04/girl-dp_9.jpg' },
+            { type: 'image', url: 'https://jooinn.com/images/cute-girl-19.jpg' },
             { type: 'video', url: 'https://www.w3schools.com/html/mov_bbb.mp4' },
         ],
     },
@@ -46,7 +46,7 @@ const storyData = [
         caption: 'Sunset at the beach',
         views: 2345,
         media: [
-            { type: 'image', url: 'https://photosly.in/wp-content/uploads/2024/08/cute-girl-pic15.jpg' },
+            { type: 'image', url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8AHGZirnz0xwBrvHeQyeY_9PEQGOawEvbEA&s' },
         ],
     },
     {
@@ -63,7 +63,7 @@ const storyData = [
         caption: 'My trip to the mountains!',
         views: 1234,
         media: [
-            { type: 'image', url: 'https://photoswala.net/wp-content/uploads/2025/04/girl-dp_9.jpg' },
+            { type: 'image', url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSjsYjb1JMNlvGakpNp6trNHWo3icXf2mTAw&s' },
             { type: 'video', url: 'https://www.w3schools.com/html/mov_bbb.mp4' },
         ],
     },
@@ -73,7 +73,7 @@ const storyData = [
         caption: 'Sunset at the beach',
         views: 2345,
         media: [
-            { type: 'image', url: 'https://photoswala.net/wp-content/uploads/2025/04/girl-dp_9.jpg' },
+            { type: 'image', url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpQHxsmSWWBuaNx_u83ekNDBmjKeQQJjf1swEX0m4OSJaOvopZC-gpjScaE7oeGx8zWWE&usqp=CAU' },
         ],
     },
     {
@@ -91,7 +91,7 @@ const storyData = [
         caption: 'My trip to the mountains!',
         views: 1234,
         media: [
-            { type: 'image', url: 'https://photoswala.net/wp-content/uploads/2025/04/girl-dp_9.jpg' },
+            { type: 'image', url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDa4OMixO3NCGR9BDL-1gCGwdMp0oGyKJQ3vCSPuzSgEPtY_f81-Dd7dYCbWxkAI1dIuY&usqp=CAU' },
             { type: 'video', url: 'https://www.w3schools.com/html/mov_bbb.mp4' },
         ],
     },
