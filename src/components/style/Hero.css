@@ -81,6 +81,9 @@
     gap: 30px;
     margin-left: 30px;
 }
+.hero__section{
+        margin-bottom: 5px;
+    }
 @media only screen and (max-width: 992px){
     .hero__cintent h2{
         font-size: 1.8rem;
@@ -106,15 +109,15 @@
         text-align: center;
     }
     .hero__section{
-        margin-bottom: 5px;
+        margin-bottom: 3px;
     }
     
     .hero__content{
         margin-top: -80px;
     }
     .left1 h2{
-        font-size: 1.5rem;
-        line-height: 45px;
+        font-size: 1rem;
+        line-height: 15px;
     }
     .left1 p{
         font-size: .9rem;

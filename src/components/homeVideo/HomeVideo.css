@@ -16,6 +16,7 @@
   border-radius: 10px;
   overflow: hidden;
   cursor: pointer;
+  background-color: #545252;
 }
 
 .video-element {
