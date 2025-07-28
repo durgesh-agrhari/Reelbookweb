@@ -5,17 +5,17 @@ const categories = [
   {
     title: 'Motivation',
     count: 14,
-    image: 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=400',
+    image: 'https://i.pinimg.com/originals/fa/46/fa/fa46fabeafa02cd231b6c75a0a3a2d11.jpg',
   },
   {
     title: 'Gym',
     count: 1,
-    image: 'https://images.pexels.com/photos/1552242/pexels-photo-1552242.jpeg?auto=compress&cs=tinysrgb&w=400',
+    image: 'https://w0.peakpx.com/wallpaper/105/816/HD-wallpaper-sports-fitness-brown-eyes-brunette-girl-gym-model-woman.jpg',
   },
   {
     title: 'Sports',
     count: 2,
-    image: 'https://images.unsplash.com/photo-1508780709619-79562169bc64?auto=format&fit=crop&w=400&q=80',
+    image: 'https://im.rediff.com/cricket/2023/jan/17kohli1.jpg?w=670&h=900',
   },
   {
     title: 'Girls',

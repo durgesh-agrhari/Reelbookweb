@@ -105,7 +105,9 @@
     .discription{
         text-align: center;
     }
-    
+    .hero__section{
+        margin-bottom: 5px;
+    }
     
     .hero__content{
         margin-top: -80px;
