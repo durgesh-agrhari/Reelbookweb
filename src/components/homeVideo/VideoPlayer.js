@@ -9,6 +9,7 @@ const VideoPlayer = () => {
   const [muted, setMuted] = useState(false);
   const [index, setIndex] = useState(state?.currentIndex || 0);
   const videoList = state?.videoList || [];
+  const [loading, setLoading] = useState(true);
 
   const video = videoList[index];
 
@@ -46,6 +47,7 @@ const VideoPlayer = () => {
         />
         Back
       </button>
+       {loading && <div className="loader"></div>}
 
       <video
         ref={videoRef}
@@ -55,6 +57,8 @@ const VideoPlayer = () => {
         playsInline
         className="video-fullscreen"
         onClick={handleVideoClick}
+         onLoadStart={() => setLoading(true)}
+        onCanPlay={() => setLoading(false)}
       />
 
       <div className="video-info">
