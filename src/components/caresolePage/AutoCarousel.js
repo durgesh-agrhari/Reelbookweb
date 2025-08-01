@@ -2,11 +2,11 @@ import React, { useEffect, useRef } from 'react';
 import './AutoCarousel.css';
 
 const items = [
-  { id: 1, image: 'https://picsum.photos/id/1015/300/200' },
-  { id: 2, image: 'https://picsum.photos/id/1016/300/200' },
-  { id: 3, image: 'https://picsum.photos/id/1018/300/200' },
-  { id: 4, image: 'https://picsum.photos/id/1020/300/200' },
-  { id: 5, image: 'https://picsum.photos/id/1021/300/200' },
+  { id: 1, image: require('../../assets/slider/1.png') },
+  { id: 2, image: require('../../assets/slider/2.png')  },
+  { id: 3, image: require('../../assets/slider/3.png')  },
+  { id: 4, image: require('../../assets/slider/1.png')  },
+  { id: 5, image: require('../../assets/slider/2.png')  },
 ];
 
 const AutoCarousel = () => {
