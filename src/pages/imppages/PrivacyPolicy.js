@@ -75,7 +75,7 @@ const PrivacyPolicy = () => {
         <section>
           <h2>9. Contact Us</h2>
           <p>
-            If you have questions about this policy, contact us at: <a href="reelbookapp@gmail.com">reelbookapp@gmail.com</a>
+            If you have questions about this policy, contact us at: <a href="mailto:reelbookapp@gmail.com">reelbookapp@gmail.com</a>
           </p>
         </section>
       </div>
