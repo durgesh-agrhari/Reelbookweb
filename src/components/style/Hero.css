@@ -83,6 +83,7 @@
 }
 .hero__section{
         margin-bottom: 5px;
+        margin-top: 25px;
     }
 @media only screen and (max-width: 992px){
     .hero__cintent h2{
@@ -98,6 +99,31 @@
     }
 }
 
+
+.social-icons {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.social-links {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.social-links a {
+    font-size: 28px;
+    color: #e9dfdf;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #007bff;
+}
+
+
 @media only screen and (max-width: 768px){
     /* .hero__cintent h2{
         font-size: 1px;
@@ -110,6 +136,7 @@
     }
     .hero__section{
         margin-bottom: 3px;
+        margin-top: 120px;
     }
     
     .hero__content{
@@ -125,6 +152,9 @@
     .primary__btn, .secondary__btn{
         font-size: .8rem;
     }
+    .social-links {
+    margin-left:38px;
+}
 }
 
 @media only screen and (max-width: 600px){

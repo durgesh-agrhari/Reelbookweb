@@ -2,6 +2,10 @@ import React, { useRef, useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './VideoPlayer.css';
 
+import like from '../../assets/likebtn.png'
+import comment from '../../assets/comment.png'
+import share from '../../assets/share.png'
+
 const VideoPlayer = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
@@ -75,11 +79,27 @@ const VideoPlayer = () => {
       </div>
 
       <div className="action-buttons">
-        <button title="Like">👍 {video.likes?.length || 0}</button>
-        <button title="Comment">💬 {video.comments?.length || 0}</button>
-        <button title="Share">🔗 {video.shareviews || 0}</button>
+        
+        <button title="Like" className='icons'>
+          <img src={like} alt="Like" className="likeicon"/> 
+          <h6>
 
-        <button className="next" onClick={handleVideoClick}>
+          {video.likes?.length || 0}M
+          </h6>
+        </button>
+        <button title="Comment"><img src={comment}
+        alt="Like"
+          className="likeicon"
+           /> <h6>
+             {video.comments?.length || 0}k
+            </h6></button>
+        <button title="Share"><img src={share}
+        alt="Like"
+          className="likeicon"
+           />
+           <h6>{video.shareviews || 0}k </h6>  </button>
+
+        <button className="next1" onClick={handleVideoClick}>
           {
             muted ?  <img
             src="https://cdn-icons-png.flaticon.com/512/5949/5949045.png"

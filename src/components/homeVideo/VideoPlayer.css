@@ -112,8 +112,8 @@
 }
 
 .arrow-icon-sound{
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   background-color: #b4b2b2;
   padding: 10px;
   border-radius: 30px;
@@ -139,7 +139,15 @@
   filter: invert(1); /* Makes icon white if it's black */
   margin-right: 10px;
 }
+.likeicon{
+  width: 25px;
+  height: 25px;
 
+}
+.icons{
+  justify-content: center;
+  align-items: center;
+}
 .loader {
   position: absolute;
   top: 50%;
@@ -208,6 +216,10 @@
 }
 .next{
   padding: 5px;
+  cursor: pointer;
+}
+.next1{
+  padding: 2px;
   cursor: pointer;
 }
 .video-info {

@@ -5,13 +5,13 @@ const PrivacyPolicy = () => {
   return (
     <div className="privacy-page">
       <h1 className="privacy-title">Privacy Policy</h1>
-      <p className="privacy-updated">Last updated: July 18, 2025</p>
+      <p className="privacy-updated">Last updated: Aug 1, 2025</p>
 
       <div className="privacy-content">
         <section>
           <h2>1. Introduction</h2>
           <p>
-            Welcome to our social media platform (“we,” “our,” or “us”). This Privacy Policy explains how we collect, use, and protect your personal data when you use our website and mobile app (“the Platform”), which functions similarly to Instagram.
+            Welcome to our social media platform Reelbook App. This Privacy Policy explains how we collect, use, and protect your personal data when you use our website and mobile app (“the Platform”), which functions similarly to Instagram.
           </p>
         </section>
 
@@ -75,7 +75,7 @@ const PrivacyPolicy = () => {
         <section>
           <h2>9. Contact Us</h2>
           <p>
-            If you have questions about this policy, contact us at: <a href="mailto:support@yourapp.com">support@yourapp.com</a>
+            If you have questions about this policy, contact us at: <a href="reelbookapp@gmail.com">reelbookapp@gmail.com</a>
           </p>
         </section>
       </div>

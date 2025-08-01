@@ -340,7 +340,7 @@ const Category = () => {
           </div>
         </div>
         <div className="category-card" onClick={() => handleCardClick('Bhojpuri')}>
-          <img src="https://www.businessinsider.in/thumb/msid-41691688,width-1200,height-900/five-indian-reality-tv-shows-copied-from-the-west.jpg" alt="RealityShow" className="category-image" />
+          <img src="https://thehartfordinformer.com/wp-content/uploads/2023/04/reality_tv_collage.jpeg" alt="RealityShow" className="category-image" />
           <div className="category-info">
             <div className="category-title">RealityShow</div>
             <div className="category-count">(8) ▶</div>
