@@ -1,7 +1,7 @@
 import React from 'react';
 import './DownloadApp.css';
-import androidImg from '../../assets/logo.jpeg';       // Android app logo
-import iosImg from '../../assets/logo.jpeg';               // iOS app logo
+// import androidImg from '../../assets/logo.jpeg';       // Android app logo
+// import iosImg from '../../assets/logo.jpeg';               // iOS app logo
 import screen1 from '../../assets/ScreenShots/1.png';          // App screen preview
 import screen2 from '../../assets/ScreenShots/2.png';          // App screen preview
 import screen3 from '../../assets/ScreenShots/1.png';          // App screen preview

@@ -18,6 +18,7 @@ import PrivacyPolicy from './pages/imppages/PrivacyPolicy';
 import Contact from './pages/imppages/Contact';
 import Feedback from './pages/imppages/Feedback';
 import DownloadApp from './pages/imppages/DownloadApp';
+import LoginGoogle from './pages/auth/LoginGoogle';
 // import VideoPlayer from './components/homeVideo/VideoPlayer';
 
 
@@ -58,6 +59,7 @@ function App() {
           <Route path="/Contact" element={<Contact />} />
           <Route path="/Feedback" element={<Feedback />} />
           <Route path="/DownloadApp" element={<DownloadApp />} />
+          <Route path="/LoginGoogle" element={<LoginGoogle />} />
           
         </Routes>
       </Router>

@@ -10,7 +10,7 @@ import Counter from '../UI/Counter'
 import {useState, useEffect} from 'react';
 import HomeVideo from '../homeVideo/HomeVideo'
 import AutoCarousel from '../caresolePage/AutoCarousel';
-import StoryViewer from '../storypage/StoryViewer';
+// import StoryViewer from '../storypage/StoryViewer';
 import Social from '../UI/Social';
 
 const Homepage = () => {
@@ -24,7 +24,7 @@ const Homepage = () => {
   return (
     <div>
       <AutoCarousel/>
-      <StoryViewer/>
+      {/* <StoryViewer/> */}
       {/* <Hero theme={theme} /> */}
       <HomeVideo/>
       <Counter/>
