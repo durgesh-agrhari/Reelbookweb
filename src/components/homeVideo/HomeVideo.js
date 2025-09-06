@@ -25,7 +25,7 @@ const HomeVideo = () => {
   // }, []);
 
   useEffect(() => {
-  fetch('https://reelbook-cgarbbexgdd5a5dn.canadacentral-01.azurewebsites.net/reel/getallReels')
+  fetch('http://localhost:3000/reel/getallReels')
     .then((res) => res.json())
     .then((result) => {
       if (result.status && Array.isArray(result.data)) {

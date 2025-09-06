@@ -14,7 +14,7 @@ const Social = ({ theme }) => {
                 <div className='hero__wrapper'>
 
                     {/* Left Side - Social Media Icons */}
-                    <div className='hero__content'>
+                    <div className='hero__content' style={{marginTop:'50px'}}>
                         <div className='social-icons'>
                             <h3 className='highlight'>Follow Us</h3>
                             <div className='social-links'>

@@ -63,6 +63,9 @@ const Header = ({ theme, toggleTheme }) => {
                               <li className='menu__item'>
                                 <NavLink to='/LoginGoogle' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>Login</NavLink>
                             </li>
+                              {/* <li className='menu__item'>
+                                <NavLink to='/UserProfile' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>Profile</NavLink>
+                            </li> */}
                         </ul>
 
                     </div>

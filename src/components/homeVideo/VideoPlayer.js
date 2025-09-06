@@ -4,7 +4,8 @@ import './VideoPlayer.css';
 
 import like from '../../assets/likebtn.png'
 import comment from '../../assets/comment.png'
-import share from '../../assets/share.png'
+import share from '../../assets/share.png' 
+import liked from "../../assets/liked.png"
 
 const VideoPlayer = () => {
   const { state } = useLocation();
@@ -16,6 +17,12 @@ const VideoPlayer = () => {
   const [loading, setLoading] = useState(true);
 
   const video = videoList[index];
+
+    const [isLiked, setIsLiked] = useState(false);
+
+  const toggleLike = () => {
+    setIsLiked(!isLiked);
+  }
 
   useEffect(() => {
     if (videoRef.current) {
@@ -81,7 +88,14 @@ const VideoPlayer = () => {
       <div className="action-buttons">
         
         <button title="Like" className='icons'>
-          <img src={like} alt="Like" className="likeicon"/> 
+          {/* <img src={like} alt="Like" className="likeicon"/>  */}
+          <button className="like-btn" onClick={toggleLike}>
+            <img 
+              src={isLiked ? liked : like} 
+              alt="Like" 
+              className="likeicon"
+            />
+          </button>
           <h6>
 
           {video.likes?.length || 0}M
