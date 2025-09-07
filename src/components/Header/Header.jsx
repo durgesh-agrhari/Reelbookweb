@@ -1,94 +1,222 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import './Style.css'
-
 import Logo1 from '../.././assets/logo123.png'
+import { AppContext } from '../../context/AppContext'   // ⬅️ import context
 
 const Header = ({ theme, toggleTheme }) => {
+  const headerRef = useRef(null)
+  const menuRef = useRef(null)
 
-    const headerRef = useRef(null)
+  const { user } = useContext(AppContext)   // ⬅️ get user from context
 
-    const menuRef = useRef(null)
-
-    const headerFunc = () => {
-        if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-            headerRef.current.classList.add('header__shrink')
-        } else {
-            headerRef.current.classList.remove('header__shrink')
-        }
+  const headerFunc = () => {
+    if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+      headerRef.current.classList.add('header__shrink')
+    } else {
+      headerRef.current.classList.remove('header__shrink')
     }
-    useEffect(() => {
-        window.scrollTo(0, 0)
-        window.addEventListener('scroll', headerFunc)
+  }
 
-        return () => window.removeEventListener('scroll', headerFunc)
-    }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0)
+    window.addEventListener('scroll', headerFunc)
+    return () => window.removeEventListener('scroll', headerFunc)
+  }, []);
 
-    const toggleMenu = () => menuRef.current.classList.toggle('menu__active')
+  const toggleMenu = () => menuRef.current.classList.toggle('menu__active')
 
-    return (
-        <header className='header' ref={headerRef} >
-            <div className='container'>
-                <div className='nav_wrappe'>
-                    <div className='logo'>
-                        <NavLink to='/' className='menu__link'><h2> <img src={Logo1} width='30' height='30' className='logo1' alt='logo' /> Reelbook</h2></NavLink>
-                    </div>
+  return (
+    <header className='header' ref={headerRef}>
+      <div className='container'>
+        <div className='nav_wrappe'>
+          <div className='logo'>
+            <NavLink to='/' className='menu__link'>
+              <h2>
+                <img src={Logo1} width='30' height='30' className='logo1' alt='logo' /> Reelbook
+              </h2>
+            </NavLink>
+          </div>
 
-                    {/* ======== navigation ====== */}
-                    <div className='navigation' ref={menuRef} onClick={toggleMenu}>
-                        <ul className='menu'>
-                            <li className='menu__item'>
-                                <NavLink to='/' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>Home</NavLink>
-                            </li>
-                             {/* <li className='menu__item'>
-                                <NavLink to='/videoplayer' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>Play</NavLink>
-                            </li> */}
-                            <li className='menu__item'>
-                                <NavLink to='/DownloadApp' className={({ isActive }) => isActive ? 'menu__link navactive download__link' : 'menu__link download__link'}>
-                                    Download App
-                                </NavLink>
-                            </li>
-                            <li className='menu__item'>
-                                <NavLink to='/Category' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>Category</NavLink>
-                            </li>
-                            <li className='menu__item'>
-                                <NavLink to='/PrivacyPolicy' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>Privacy & Policy</NavLink>
-                            </li>
-                            <li className='menu__item'>
-                                <NavLink to='/Contact' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>Contact Us</NavLink>
-                            </li>
-                            <li className='menu__item'>
-                                <NavLink to='/Feedback' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>Feedback</NavLink>
-                            </li>
-                              <li className='menu__item'>
-                                <NavLink to='/LoginGoogle' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>Login</NavLink>
-                            </li>
-                              {/* <li className='menu__item'>
-                                <NavLink to='/UserProfile' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>Profile</NavLink>
-                            </li> */}
-                        </ul>
+          {/* ======== navigation ====== */}
+          <div className='navigation' ref={menuRef} onClick={toggleMenu}>
+            <ul className='menu'>
+              <li className='menu__item'>
+                <NavLink to='/' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>Home</NavLink>
+              </li>
 
-                    </div>
+              <li className='menu__item'>
+                <NavLink to='/DownloadApp' className={({ isActive }) => isActive ? 'menu__link navactive download__link' : 'menu__link download__link'}>
+                  Download App
+                </NavLink>
+              </li>
 
-                    {/* ========== light mode ========= */}
-                    <div className='light__mode'>
-                        <span onClick={toggleTheme} >
-                            {
-                                theme === 'light-theme' ? (<span><i class="ri-moon-line"></i>Dark</span>) : (<span><i class="ri-sun-line"></i>Light</span>)
-                            }
-                        </span>
-                    </div>
+              <li className='menu__item'>
+                <NavLink to='/Category' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>Category</NavLink>
+              </li>
 
-                    <span className="mobile__menu" onClick={toggleMenu}>
-                        <i class="ri-menu-line">
-                        </i></span>
-                </div>
-            </div>
-        </header>
-    )
+              <li className='menu__item'>
+                <NavLink to='/PrivacyPolicy' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>Privacy & Policy</NavLink>
+              </li>
+
+              <li className='menu__item'>
+                <NavLink to='/Contact' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>Contact Us</NavLink>
+              </li>
+
+              <li className='menu__item'>
+                <NavLink to='/Feedback' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>Feedback</NavLink>
+              </li>
+
+              {/* 👇 Conditional Menu */}
+              {!user ? (
+                <li className='menu__item'>
+                  <NavLink to='/LoginGoogle' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>Login</NavLink>
+                </li>
+              ) : (
+                // <li className='menu__item'>
+                //   <NavLink to='/UserProfile' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>Profile</NavLink>
+                // </li>
+                <li className='menu__item'>
+                  <NavLink
+                    to='/UserProfile'
+                    className={({ isActive }) =>
+                      isActive ? 'menu__link navactive' : 'menu__link'
+                    }
+                    style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
+                  >
+                    {/* Profile Image */}
+                    <img
+                      src={user?.photoURL || '/default-profile.png'} // fallback if no image
+                      alt='Profile'
+                      style={{
+                        width: '30px',
+                        height: '30px',
+                        borderRadius: '50%',
+                        objectFit: 'cover',
+                      }}
+                    />
+                    {/* Profile Text */}
+                    <span>Profile</span>
+                  </NavLink>
+                </li>
+
+              )}
+            </ul>
+          </div>
+
+          {/* ========== light/dark mode ========= */}
+          <div className='light__mode'>
+            <span onClick={toggleTheme}>
+              {theme === 'light-theme'
+                ? (<span><i className="ri-moon-line"></i> Dark</span>)
+                : (<span><i className="ri-sun-line"></i> Light</span>)
+              }
+            </span>
+          </div>
+
+          <span className="mobile__menu" onClick={toggleMenu}>
+            <i className="ri-menu-line"></i>
+          </span>
+        </div>
+      </div>
+    </header>
+  )
 }
 
 export default Header
+
+
+// import React, { useEffect, useRef } from 'react'
+// import { NavLink } from 'react-router-dom'
+// import './Style.css'
+
+// import Logo1 from '../.././assets/logo123.png'
+
+// const Header = ({ theme, toggleTheme }) => {
+
+//     const headerRef = useRef(null)
+
+//     const menuRef = useRef(null)
+
+//     const headerFunc = () => {
+//         if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+//             headerRef.current.classList.add('header__shrink')
+//         } else {
+//             headerRef.current.classList.remove('header__shrink')
+//         }
+//     }
+//     useEffect(() => {
+//         window.scrollTo(0, 0)
+//         window.addEventListener('scroll', headerFunc)
+
+//         return () => window.removeEventListener('scroll', headerFunc)
+//     }, []);
+
+//     const toggleMenu = () => menuRef.current.classList.toggle('menu__active')
+
+//     return (
+//         <header className='header' ref={headerRef} >
+//             <div className='container'>
+//                 <div className='nav_wrappe'>
+//                     <div className='logo'>
+//                         <NavLink to='/' className='menu__link'><h2> <img src={Logo1} width='30' height='30' className='logo1' alt='logo' /> Reelbook</h2></NavLink>
+//                     </div>
+
+//                     {/* ======== navigation ====== */}
+//                     <div className='navigation' ref={menuRef} onClick={toggleMenu}>
+//                         <ul className='menu'>
+//                             <li className='menu__item'>
+//                                 <NavLink to='/' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>Home</NavLink>
+//                             </li>
+//                              {/* <li className='menu__item'>
+//                                 <NavLink to='/videoplayer' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>Play</NavLink>
+//                             </li> */}
+//                             <li className='menu__item'>
+//                                 <NavLink to='/DownloadApp' className={({ isActive }) => isActive ? 'menu__link navactive download__link' : 'menu__link download__link'}>
+//                                     Download App
+//                                 </NavLink>
+//                             </li>
+//                             <li className='menu__item'>
+//                                 <NavLink to='/Category' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>Category</NavLink>
+//                             </li>
+//                             <li className='menu__item'>
+//                                 <NavLink to='/PrivacyPolicy' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>Privacy & Policy</NavLink>
+//                             </li>
+//                             <li className='menu__item'>
+//                                 <NavLink to='/Contact' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>Contact Us</NavLink>
+//                             </li>
+//                             <li className='menu__item'>
+//                                 <NavLink to='/Feedback' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>Feedback</NavLink>
+//                             </li>
+//                               <li className='menu__item'>
+//                                 <NavLink to='/LoginGoogle' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>Login</NavLink>
+//                             </li>
+//                               <li className='menu__item'>
+//                                 <NavLink to='/UserProfile' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>Profile</NavLink>
+//                             </li>
+//                         </ul>
+
+//                     </div>
+
+//                     {/* ========== light mode ========= */}
+//                     <div className='light__mode'>
+//                         <span onClick={toggleTheme} >
+//                             {
+//                                 theme === 'light-theme' ? (<span><i class="ri-moon-line"></i>Dark</span>) : (<span><i class="ri-sun-line"></i>Light</span>)
+//                             }
+//                         </span>
+//                     </div>
+
+//                     <span className="mobile__menu" onClick={toggleMenu}>
+//                         <i class="ri-menu-line">
+//                         </i></span>
+//                 </div>
+//             </div>
+//         </header>
+//     )
+// }
+
+// export default Header
 
 
 

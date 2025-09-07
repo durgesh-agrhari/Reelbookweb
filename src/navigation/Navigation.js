@@ -13,6 +13,9 @@ import Feedback from "../pages/imppages/Feedback";
 import DownloadApp from "../pages/imppages/DownloadApp";
 import LoginGoogle from "../pages/auth/LoginGoogle";
 import UserProfile from "../pages/profile/UserProfile";
+import ReelPost from "../pages/newpost/ReelPost";
+import PhotoPost from "../pages/newpost/PhotoPost";
+import StoryPost from "../pages/newpost/StoryPost";
 
 const Navigation = () => {
   const [theme, setTheme] = useState("");
@@ -37,6 +40,9 @@ const Navigation = () => {
         <Route path="/DownloadApp" element={<DownloadApp />} />
         <Route path="/LoginGoogle" element={<LoginGoogle />} />
         <Route path="/UserProfile" element={<UserProfile />} />
+        <Route path="/ReelPost" element={<ReelPost />} />
+        <Route path="/PhotoPost" element={<PhotoPost />} />
+        <Route path="/StoryPost" element={<StoryPost />} />
       </Routes>
     </Router>
   );
