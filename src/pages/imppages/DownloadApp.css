@@ -1,5 +1,5 @@
 .download-container {
-  background-color: #000;
+  background-color: #000; 
   color: #fff;
   min-height: 100vh;
   padding: 50px 20px;
@@ -8,6 +8,13 @@
   align-items: center;
 }
 
+.light-theme .download-container {
+ 
+ background-color: whitesmoke;
+}
+.light-theme .hh{
+  color: #000;
+}
 .download-content {
   text-align: center;
   max-width: 1200px;

@@ -6,6 +6,9 @@
   box-sizing: border-box;
 }
 
+.light-theme .category-container {
+  background: #e9e8e8;
+}
 .category-heading {
   font-size: 28px;
   font-weight: bold;
@@ -13,6 +16,9 @@
   margin-bottom: 10px;
 }
 
+.light-theme .category-heading  {
+  color: #1e1d1d;
+}
 .category-subheading {
   background-color: #d9eaff;
   color: #1a73e8;

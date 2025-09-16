@@ -42,7 +42,7 @@ const UserProfile = () => {
           alt="Profile"
           className="profile-i"
         />
-        <h2 style={{ color: "black", marginTop: "30px" }}>
+        <h2 style={{ marginTop: "30px" }}>
           {user?.displayName || "User Name"}
         </h2>
         <p>{user?.email}</p>
@@ -50,15 +50,15 @@ const UserProfile = () => {
         {/* Stats */}
         <div className="profile-stats">
           <div>
-            <h4 style={{ color: "black" }}>120</h4>
+            <h4 className="post" >120</h4>
             <p>Posts</p>
           </div>
           <div>
-            <h4 style={{ color: "black" }}>5.2k</h4>
+            <h4   className="post" >5.2k</h4>
             <p>Followers</p>
           </div>
           <div>
-            <h4 style={{ color: "black" }}>280</h4>
+            <h4   className="post" >280</h4>
             <p>Following</p>
           </div>
         </div>

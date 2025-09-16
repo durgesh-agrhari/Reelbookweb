@@ -17,7 +17,7 @@ const DownloadApp = () => {
     <div className="download-container">
       <div className="download-content">
         <h1>📱 Get the App Now</h1>
-        <p>Experience our app on Android and iOS with a sleek and fast interface.</p>
+        <p className='hh'>Experience our app on Android and iOS with a sleek and fast interface.</p>
 
         {/* <div className="download-buttons">
           <a

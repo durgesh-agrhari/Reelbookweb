@@ -1,0 +1,26 @@
+
+.hight{
+    height: '10px';
+}
+
+.light-theme .hight{
+  background: #e9e8e8;
+}
+
+.hight1{
+    height: '20px';
+}
+
+.light-theme .hight1{
+  background: #e9e8e8;
+}
+.heading{
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    margin-top: "20px";
+}
+
+.light-theme .heading{
+  background: #e9e8e8;
+}

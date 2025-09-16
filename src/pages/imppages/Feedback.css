@@ -5,6 +5,12 @@
   padding: 40px 20px;
 }
 
+.light-theme .feedback-container{
+  background-color: rgb(219, 215, 215);
+}  
+.light-theme .textarea12{
+  background-color: rgb(168, 169, 170);
+}
 .feedback-content {
   display: flex;
   justify-content: center;

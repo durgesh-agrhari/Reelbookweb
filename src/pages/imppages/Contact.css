@@ -5,7 +5,16 @@
   min-height: 100vh;
   font-family: 'Segoe UI', sans-serif;
 }
+.light-theme .contact-container{
+  background-color: #d2cdcd;
+}
+.light-theme .pp{
+  color: #000;
+}
 
+.light-theme .inputab{
+  background-color: #e5eef0;
+}
 .contact-content {
   display: flex;
   flex-wrap: wrap;

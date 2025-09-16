@@ -1,0 +1,77 @@
+.photo-container {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 20px;
+  border-radius: 12px;
+  background-color: #1f1d1dff;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+
+.photo-heading {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #c9c8c8ff;
+  font-size: 24px;
+}
+
+.photo-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.upload-label {
+  padding: 12px;
+  text-align: center;
+  background-color: #28a745;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.upload-label:hover {
+  background-color: #218838;
+}
+
+.preview-box {
+  display: flex;
+  justify-content: center;
+}
+
+.preview-img {
+  max-width: 60%;
+  height: auto;
+  border-radius: 10px;
+  border: 2px solid #ddd;
+}
+
+.caption-textarea {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  resize: none;
+  min-height: 80px;
+  background-color: #1b2b34ff;
+  color: #fff;
+}
+
+.upload-button {
+  padding: 14px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.upload-button:hover {
+  background-color: #0056b3;
+}

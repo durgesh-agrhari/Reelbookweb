@@ -4,6 +4,11 @@
     align-items: center;
 
 }
+
+.light-theme .hero__section{
+  background-color: #4d5a5b;
+}
+
 .left1{
     margin-top: 25px;
 }

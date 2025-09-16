@@ -7,12 +7,24 @@ body {
   font-family: 'Segoe UI', sans-serif;
 }
 
+
 /* Main wrapper */
 .privacy-page {
   padding: 40px 20px;
   background-color: #000;
+  
+}
+.light-theme .privacy-page{
+  background-color: #dcd2d2;
 }
 
+.light-theme p{
+  color: #000;
+}
+
+.light-theme li{
+  color: #000;
+}
 /* Title styles */
 .privacy-title {
   font-size: 36px;

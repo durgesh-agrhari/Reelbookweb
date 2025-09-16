@@ -8,6 +8,9 @@
   background: #000;
 }
 
+.light-theme .home-video-container {
+  background: #e9e8e8;
+}
 .video-wrapper {
   position: relative;
   flex: 1 1 calc(16.66% - 12px);

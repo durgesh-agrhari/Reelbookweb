@@ -51,6 +51,7 @@ const HomeVideo = () => {
 
   return (
     <div className="home-video-container">
+     
       {loading
         ? Array(6).fill(0).map((_, index) => (
             <div key={index} className="video-wrapper shimmer-wrapper">

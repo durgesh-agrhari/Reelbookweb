@@ -77,13 +77,13 @@ const styles = {
     margin: "30px auto",
     padding: "20px",
     borderRadius: "12px",
-    backgroundColor: "#fff",
+    backgroundColor: "#2a2828ff",
     boxShadow: "0 6px 16px rgba(0,0,0,0.1)",
   },
   heading: {
     textAlign: "center",
     marginBottom: "20px",
-    color: "#333",
+    color: "#ced2d1ff",
     fontSize: "24px",
   },
   form: {
@@ -119,6 +119,7 @@ const styles = {
     fontSize: "14px",
     resize: "none",
     minHeight: "80px",
+    backgroundColor:'#2c414bff'
   },
   button: {
     padding: "14px",

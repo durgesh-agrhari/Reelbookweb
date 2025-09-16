@@ -41,9 +41,9 @@ const Header = ({ theme, toggleTheme }) => {
           {/* ======== navigation ====== */}
           <div className='navigation' ref={menuRef} onClick={toggleMenu}>
             <ul className='menu'>
-              <li className='menu__item'>
+              {/* <li className='menu__item'>
                 <NavLink to='/' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>Home</NavLink>
-              </li>
+              </li> */}
 
               <li className='menu__item'>
                 <NavLink to='/DownloadApp' className={({ isActive }) => isActive ? 'menu__link navactive download__link' : 'menu__link download__link'}>
