@@ -6,7 +6,7 @@
 }
 
 .light-theme .hero__section{
-  background-color: #4d5a5b;
+  background-color: #fefefe;
 }
 
 .left1{
@@ -205,4 +205,8 @@
     .hero__btns{
             margin-left: -20px;  
     }
+}
+
+i{
+    color: #187777;
 }

@@ -47,10 +47,8 @@ async function handleLogin() {
 
 
            {/* 👇 Conditional Menu */}
-                        {!user ? (
+          {!user ? (
                          
-                       
-
           <div className="right12">
             <div style={{ backgroundColor: "#1a1e24", padding: 80, borderRadius: 20 }}>
               <h3 className="highlight1">Login with Google</h3>
@@ -70,6 +68,27 @@ async function handleLogin() {
                       alt="Google"
                       style={{ width: "300px", height: "60px" }}
                     />
+                  </div>
+                </button>
+              </div>
+              <div className="hero__btns">
+                <button style={{ borderRadius: "10px" }} onClick={() => navigate("/LoginEmail")} >
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "8px",
+                      textDecoration: "none",
+                      color: "inherit",
+                      width: "300px",
+                    }}
+                  >
+                    <img
+                      src="https://static.vecteezy.com/system/resources/thumbnails/002/205/854/small/email-icon-free-vector.jpg"
+                      alt="Google"
+                      style={{ width: "60px", height: "50px", borderRadius:10 }}
+                    />
+                    <h2 style={{padding:5, marginTop:10}}>Login withe Email</h2>
                   </div>
                 </button>
               </div>
@@ -102,7 +121,7 @@ async function handleLogin() {
             </div>
           </div>
                           
-                        )}
+        )}
         </div>
       </div>
     </section>

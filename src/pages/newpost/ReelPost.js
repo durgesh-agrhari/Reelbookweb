@@ -1,6 +1,10 @@
 // ReelPost.js
-import React, { useState, useRef } from "react";
-
+import React, { useState, useRef, useEffect } from "react";
+import axios from "axios";
+import backendURL, { UPLOAD_REEL, ADD_REEL } from "../../utils/String"; // same constants as mobile
+import { useSelector } from "react-redux"; // if you store token in redux
+// import categoriesData from "../data/categories"; // your category list
+import "./ReelPost.css";
 const categoriesData = [
     { id: '1', name: 'Motivation', image: 'https://i.pinimg.com/originals/fa/46/fa/fa46fabeafa02cd231b6c75a0a3a2d11.jpg' },
     { id: '2', name: 'Gym Video', image: 'https://w0.peakpx.com/wallpaper/105/816/HD-wallpaper-sports-fitness-brown-eyes-brunette-girl-gym-model-woman.jpg' },
@@ -47,6 +51,9 @@ const categoriesData = [
     // Add more categories as needed
 ];
 
+
+
+
 const bgColors = [
     "#FFDEE9", "#B5FFD9", "#E3DFFD", "#FFF5BA", "#DFF6FF",
     "#FFD6A5", "#E2F0CB", "#FFD9EC", "#CDE7FF"
@@ -60,14 +67,27 @@ const ReelPost = () => {
     const [selectedCategories, setSelectedCategories] = useState([]);
     const [showPopup, setShowPopup] = useState(false);
     const [search, setSearch] = useState("");
+    const [userData, setUserData] = useState({});
+    const [loading, setLoading] = useState(false);
 
     const videoRef = useRef();
 
-    // Handle video upload & generate thumbnail
+    // ✅ if you use Redux for token
+    const token = useSelector((state) => state.auth.userReduxToken);
+
+    // ✅ Fetch user data on mount
+    useEffect(() => {
+        if (!token) return;
+        axios.post(`${backendURL}/userdata`, { token })
+            .then(res => setUserData(res.data.data))
+            .catch(err => console.error("Error fetching user:", err));
+    }, [token]);
+
+    // ✅ Handle video upload & generate thumbnail
     const handleVideoUpload = (e) => {
         const file = e.target.files[0];
         if (file) {
-            setVideoFile(URL.createObjectURL(file));
+            setVideoFile(file);
 
             const videoEl = document.createElement("video");
             videoEl.src = URL.createObjectURL(file);
@@ -92,17 +112,74 @@ const ReelPost = () => {
         }
     };
 
-    const handleSubmit = (e) => {
+    // ✅ Upload video + thumbnail + payload (same as mobile)
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        const reelData = {
-            caption,
-            credit,
-            thumbnail,
-            videoFile,
-            categories: selectedCategories,
-        };
-        console.log("📤 Reel Uploaded:", reelData);
-        alert("Reel uploaded successfully!");
+        if (!videoFile) {
+            alert("Please select a video first");
+            return;
+        }
+        setLoading(true);
+
+        try {
+            // --- Upload video ---
+            const formDataVideo = new FormData();
+            formDataVideo.append("file", videoFile);
+
+            const uploadResponse = await fetch(backendURL + UPLOAD_REEL, {
+                method: "POST",
+                body: formDataVideo,
+            });
+
+            if (!uploadResponse.ok) throw new Error("Video upload failed");
+            const videoRes = await uploadResponse.json();
+
+            // --- Upload thumbnail ---
+            let thumbUrl = null;
+            if (thumbnail) {
+                const blob = await (await fetch(thumbnail)).blob();
+                const thumbFile = new File([blob], "thumb.png", { type: "image/png" });
+
+                const formDataThumb = new FormData();
+                formDataThumb.append("file", thumbFile);
+
+                const uploadThumbRes = await fetch(backendURL + UPLOAD_REEL, {
+                    method: "POST",
+                    body: formDataThumb,
+                });
+
+                if (!uploadThumbRes.ok) throw new Error("Thumbnail upload failed");
+                const thumbRes = await uploadThumbRes.json();
+                thumbUrl = thumbRes.fileUrl;
+            }
+
+            // --- Post payload ---
+            const postPayload = {
+                userId: userData._id,
+                caption,
+                creadit: credit,
+                username: userData.username,
+                videourl: videoRes.fileUrl,
+                videoKey: videoRes.fileName,
+                thumbnillurl: thumbUrl,
+                category: selectedCategories,
+            };
+
+            await axios.post(backendURL + ADD_REEL, postPayload);
+
+            alert("✅ Reel uploaded successfully!");
+            setCaption("");
+            setCredit("");
+            setVideoFile(null);
+            setThumbnail(null);
+            setSelectedCategories([]);
+
+        } catch (err) {
+            console.error("Upload error:", err);
+            alert("❌ Failed to upload reel");
+        } finally {
+            setLoading(false);
+        }
     };
 
     const filteredCategories = categoriesData.filter((cat) =>
@@ -110,244 +187,277 @@ const ReelPost = () => {
     );
 
     return (
-        <div style={styles.container}>
-            <h2 style={styles.heading}>Upload Reel</h2>
+        <div className="reel">
+            <div
+                className="container12"
+            >
+                <h2 className="heading" >Upload Reel</h2>
+                <form onSubmit={handleSubmit} className="form" >
+                    {/* Video Upload */}
+                    <label className="label">Upload Video</label>
+                    <input type="file" accept="video/*" onChange={handleVideoUpload} className="input"/>
+                    <div style={{ justifyContent: 'center', alignItems: 'center', alignSelf: 'center' }}>
+                        {/* Preview */}
+                        {(videoFile || thumbnail) && (
+                            <div style={{ display: "flex", gap: "20px", marginTop: 10 }}>
+                                {videoFile && (
+                                    <video ref={videoRef} src={URL.createObjectURL(videoFile)} controls className="videoPreview"/>
+                                )}
+                                {thumbnail && (
+                                    <div className="thumbnailBox">
+                                        <img src={thumbnail} alt="Thumbnail" className="thumbnailPreview"/>
+                                        <p className="thumbText" >Auto Thumbnail</p>
+                                    </div>
+                                )}
+                            </div>
+                        )}
+                    </div>
 
-            <form onSubmit={handleSubmit} style={styles.form}>
-                {/* Video Upload */}
-                <label style={styles.label}>Upload Video</label>
-                <input type="file" accept="video/*" onChange={handleVideoUpload} style={styles.input} />
+                    {/* Caption */}
+                    <label className="label">Caption</label>
+                    <textarea
+                        value={caption}
+                        onChange={(e) => setCaption(e.target.value)}
+                        placeholder="Write a caption..."
+                        className="textarea"
+                    />
 
-                <div style={{ justifyContent: 'center', alignItems: 'center', alignSelf:'center' }}>
-                    {/* Video + Thumbnail side by side */}
-                    {(videoFile || thumbnail) && (
-                        <div style={styles.rowPreview}>
-                            {videoFile && (
-                                <video ref={videoRef} src={videoFile} controls style={styles.videoPreview} />
-                            )}
-                            {thumbnail && (
-                                <div style={styles.thumbnailBox}>
-                                    <img src={thumbnail} alt="Thumbnail" style={styles.thumbnailPreview} />
-                                    <p style={styles.thumbText}>Auto Thumbnail</p>
-                                </div>
-                            )}
-                        </div>
-                    )}
-                </div>
+                    {/* Credit */}
+                    <label className="label">Credit (Optional)</label>
+                    <input
+                        type="text"
+                        value={credit}
+                        onChange={(e) => setCredit(e.target.value)}
+                        placeholder="Enter username for credit"
+                      className="input"
+                    />
 
-                {/* Caption */}
-                <label style={styles.label}>Caption</label>
-                <textarea
-                    value={caption}
-                    onChange={(e) => setCaption(e.target.value)}
-                    placeholder="Write a caption..."
-                    style={styles.textarea}
-                />
-
-                {/* Category */}
-                <label style={styles.label}>Category (max 3)</label>
-                <div style={styles.selectedRow}>
-                    {selectedCategories.map((cat, i) => (
+                    {/* Category */}
+                    <label className="label">Category (max 3)</label>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
+                        {/* {selectedCategories.map((cat, i) => (
                         <div
                             key={cat.id}
-                            style={{
-                                ...styles.categoryChip,
-                                backgroundColor: bgColors[i % bgColors.length],
-                                display: "flex",
-                                alignItems: "center",
-                                gap: "6px",
-                            }}
                             onClick={() => toggleCategory(cat)}
+                            style={{
+                                padding: "6px 10px",
+                                backgroundColor: bgColors[i % bgColors.length],
+                                borderRadius: "6px",
+                                cursor: "pointer",
+                            }}
                         >
-                            <img
-                                src={cat.image}
-                                alt={cat.name}
-                                style={{ width: "50px", height: "50px", borderRadius: "6px", objectFit: "cover" }}
-                            />
-                            <span style={{ color: 'black' }}>{cat.name}</span>
-                            <span style={{ marginLeft: "4px", cursor: "pointer", fontWeight: "bold", color: 'black' }}>✕</span>
+                            {cat.name} ✕
                         </div>
-                    ))}
-                    <button
-                        type="button"
-                        style={styles.categoryBtn}
-                        onClick={() => setShowPopup(true)}
-                    >
-                        + Choose Category
-                    </button>
-                </div>
+                    ))} */}
 
-
-                {/* Credit */}
-                <label style={styles.label}>Give Credit (Optional)</label>
-                <input
-                    type="text"
-                    value={credit}
-                    onChange={(e) => setCredit(e.target.value)}
-                    placeholder="Enter username for credit"
-                    style={styles.input}
-                />
-
-                <button type="submit" style={styles.button}>
-                    ✅ Upload Reel
-                </button>
-            </form>
-
-            {/* Popup for categories */}
-            {showPopup && (
-                <div style={styles.popupOverlay}>
-                    <div style={styles.popup}>
-                        <h3 style={styles.popupTitle}>Choose Categories ( Max - 3 ) </h3>
-                        <div style={styles.popupActions}>
-                            <button onClick={() => setShowPopup(false)} style={styles.cancelBtn}>
-                                ❌ Cancel
-                            </button>
-                            <button onClick={() => setShowPopup(false)} style={styles.doneBtn}>
-                                ✅ Done
-                            </button>
-                        </div>
-                        <input
-                            type="text"
-                            placeholder="Search category..."
-                            value={search}
-                            onChange={(e) => setSearch(e.target.value)}
-                            style={styles.searchInput}
-                        />
-                        <div style={styles.categoryGrid}>
-                            {filteredCategories.map((cat, i) => (
+                        <div className="selectedRow">
+                            {selectedCategories.map((cat, i) => (
                                 <div
                                     key={cat.id}
+                                    // style={{
+                                    //     ...styles.categoryChip,
+                                    //     backgroundColor: bgColors[i % bgColors.length],
+                                    //     display: "flex",
+                                    //     alignItems: "center",
+                                    //     gap: "6px",
+                                    // }}
                                     style={{
-                                        ...styles.categoryCard,
-                                        backgroundColor: bgColors[i % bgColors.length],
-                                        border: selectedCategories.find((c) => c.id === cat.id)
-                                            ? "2px solid #007BFF"
-                                            : "2px solid transparent",
-                                    }}
+                                padding: "6px 10px",
+                                backgroundColor: bgColors[i % bgColors.length],
+                                borderRadius: "6px",
+                                cursor: "pointer",
+                            }}
                                     onClick={() => toggleCategory(cat)}
                                 >
-                                    <img src={cat.image} alt={cat.name} style={styles.catImg} />
-                                    <p style={{ color: 'black', fontSize: '12px' }}>{cat.name}</p>
+                                    <img
+                                        src={cat.image}
+                                        alt={cat.name}
+                                        style={{ width: "50px", height: "50px", borderRadius: "6px", objectFit: "cover" }}
+                                    />
+                                    <span style={{ color: 'black' }}>{cat.name}</span>
+                                    <span style={{ marginLeft: "4px", cursor: "pointer", fontWeight: "bold", color: 'black' }}>✕</span>
                                 </div>
                             ))}
                         </div>
 
-                        <div style={styles.popupActions}>
-                            <button onClick={() => setShowPopup(false)} style={styles.cancelBtn}>
-                                ❌ Cancel
-                            </button>
-                            <button onClick={() => setShowPopup(false)} style={styles.doneBtn}>
-                                ✅ Done
-                            </button>
+
+                        <button type="button" onClick={() => setShowPopup(true)} className="categoryBtn" > + Choose Category </button>
+                    </div>
+
+                    <button type="submit" disabled={loading} className="button">
+                        {loading ? "Uploading..." : "✅ Upload Reel"}
+                    </button>
+
+                </form>
+
+
+
+                {/* Category Popup */}
+                {showPopup && (
+                    <div className="popupOverlay">
+                        <div className="popup">
+                            <h3 className="popupTitle">Choose Categories ( Max - 3 ) </h3>
+
+                            <div className="popupActions">
+                                <button onClick={() => setShowPopup(false)} className="cancelBtn">
+                                    ❌ Cancel
+                                </button>
+                                <button onClick={() => setShowPopup(false)} className="doneBtn">
+                                    ✅ Done
+                                </button>
+                            </div>
+                            <input
+                                type="text"
+                                placeholder="Search..."
+                                value={search}
+                                onChange={(e) => setSearch(e.target.value)}
+                                className="searchInput"
+                            />
+                            <div className="categoryGrid">
+                                {filteredCategories.map((cat, i) => (
+                                    <div
+                                        key={cat.id}
+                                        onClick={() => toggleCategory(cat)}
+                                        style={{
+                                            background: bgColors[i % bgColors.length],
+                                            padding: "10px",
+                                            borderRadius: "6px",
+                                            textAlign: "center",
+                                            border: selectedCategories.find((c) => c.id === cat.id) ? "2px solid blue" : "2px solid transparent",
+                                            cursor: "pointer"
+                                        }}
+                                        // style={{
+                                        //     ...styles.categoryCard,
+                                        //     backgroundColor: bgColors[i % bgColors.length],
+                                        //     border: selectedCategories.find((c) => c.id === cat.id)
+                                        //         ? "2px solid #007BFF"
+                                        //         : "2px solid transparent",
+                                        // }}
+                                    >
+                                        <img src={cat.image} alt={cat.name} className="catImg"/>
+                                        <p style={{ color: 'black', fontSize: '12px' }}>{cat.name}</p>
+                                    </div>
+                                ))}
+                            </div>
+                            {/* <button onClick={() => setShowPopup(false)}>Done</button> */}
+                            <div className="popupActions">
+                                <button onClick={() => setShowPopup(false)} className="cancelBtn">
+                                    ❌ Cancel
+                                </button>
+                                <button onClick={() => setShowPopup(false)} className="doneBtn">
+                                    ✅ Done
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            )}
+                )}
+            </div>
         </div>
     );
 };
 
-const styles = {
-    container: { maxWidth: "700px", margin: "20px auto", padding: "20px" },
-    heading: { textAlign: "center", marginBottom: "20px", color: "#333" },
-    form: { display: "flex", flexDirection: "column", gap: "15px" },
-    label: { fontWeight: "600", fontSize: "14px", color: "#ebdcdcff" },
-    input: { padding: "10px", borderRadius: "8px", border: "1px solid #ccc" },
-    textarea: { padding: "10px", borderRadius: "8px", border: "1px solid #ccc", minHeight: "60px" },
-    button: {
-        padding: "12px",
-        backgroundColor: "green",
-        color: "#fff",
-        border: "none",
-        borderRadius: "8px",
-        fontSize: "16px",
-        cursor: "pointer",
-    },
-    rowPreview: { display: "flex", gap: "20px", marginTop: "10px" },
-    videoPreview: { width: "30%", borderRadius: "10px", aspectRatio: "9/16", objectFit: "cover" },
-    thumbnailBox: { width: "30%", textAlign: "center" },
-    thumbnailPreview: {
-        width: "100%",
-        borderRadius: "10px",
-        aspectRatio: "9/16",
-        objectFit: "cover",
-    },
-    thumbText: { fontSize: "12px", color: "#666", marginTop: "5px" },
-    selectedRow: { display: "flex", gap: "10px", flexWrap: "wrap" },
-    categoryChip: {
-        padding: "8px 12px",
-        borderRadius: "8px",
-        fontSize: "13px",
-        cursor: "pointer",
-    },
-    categoryBtn: {
-        padding: "8px 12px",
-        borderRadius: "8px",
-        border: "1px solid #007BFF",
-        background: "green",
-        cursor: "pointer",
-        color:'white',
-    },
-    popupOverlay: {
-        position: "fixed",
-        inset: 0,
-        backgroundColor: "rgba(0,0,0,0.5)",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-    },
-    popup: {
-        background: "#fff",
-        borderRadius: "12px",
-        padding: "20px",
-        width: "90%",
-        maxWidth: "500px",
-        maxHeight: "80vh",
-        overflowY: "auto",
-    },
-    popupTitle: { textAlign: "center", marginBottom: "10px", color: "#0b0b0bff" },
-    searchInput: {
-        width: "100%",
-        padding: "10px",
-        marginBottom: "15px",
-        borderRadius: "8px",
-        border: "1px solid #ccc",
-    },
-    categoryGrid: {
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fill,minmax(120px,1fr))",
-        gap: "15px",
-    },
-    categoryCard: {
-        borderRadius: "10px",
-        padding: "5px",
-        textAlign: "center",
-        cursor: "pointer",
-        transition: "0.3s",
-    },
-    catImg: { width: "100px", height: "100px", marginBottom: "5px", borderRadius: "5px" },
-    popupActions: { display: "flex", justifyContent: "space-between", marginTop: "15px" },
-    cancelBtn: {
-        flex: 1,
-        marginRight: "10px",
-        padding: "10px",
-        border: "none",
-        borderRadius: "8px",
-        background: "#ccc",
-        cursor: "pointer",
-        marginBottom: "10px"
-    },
-    doneBtn: {
-        flex: 1,
-        padding: "10px",
-        border: "none",
-        borderRadius: "8px",
-        background: "green",
-        color: "#fff",
-        cursor: "pointer",
-        marginBottom: "10px"
-    },
-};
+
+// const styles = {
+//     container: { maxWidth: "700px", margin: "20px auto", padding: "20px" },
+//     heading: { textAlign: "center", marginBottom: "20px", color: "#333" },
+//     form: { display: "flex", flexDirection: "column", gap: "15px" },
+//     label: { fontWeight: "600", fontSize: "14px", color: "#ebdcdcff" },
+//     input: { padding: "10px", borderRadius: "8px", border: "1px solid #ccc" },
+//     textarea: { padding: "10px", borderRadius: "8px", border: "1px solid #ccc", minHeight: "60px" },
+//     button: {
+//         padding: "12px",
+//         backgroundColor: "green",
+//         color: "#fff",
+//         border: "none",
+//         borderRadius: "8px",
+//         fontSize: "16px",
+//         cursor: "pointer",
+//     },
+//     rowPreview: { display: "flex", gap: "20px", marginTop: "10px" },
+//     videoPreview: { width: "30%", borderRadius: "10px", aspectRatio: "9/16", objectFit: "cover" },
+//     thumbnailBox: { width: "30%", textAlign: "center" },
+//     thumbnailPreview: {
+//         width: "100%",
+//         borderRadius: "10px",
+//         aspectRatio: "9/16",
+//         objectFit: "cover",
+//     },
+//     thumbText: { fontSize: "12px", color: "#666", marginTop: "5px" },
+//     selectedRow: { display: "flex", gap: "10px", flexWrap: "wrap" },
+//     categoryChip: {
+//         padding: "8px 12px",
+//         borderRadius: "8px",
+//         fontSize: "13px",
+//         cursor: "pointer",
+//     },
+//     categoryBtn: {
+//         padding: "8px 12px",
+//         borderRadius: "8px",
+//         border: "1px solid #007BFF",
+//         background: "green",
+//         cursor: "pointer",
+//         color: 'white',
+//     },
+//     popupOverlay: {
+//         position: "fixed",
+//         inset: 0,
+//         backgroundColor: "rgba(0,0,0,0.5)",
+//         display: "flex",
+//         justifyContent: "center",
+//         alignItems: "center",
+//     },
+//     popup: {
+//         background: "#fff",
+//         borderRadius: "12px",
+//         padding: "20px",
+//         width: "90%",
+//         maxWidth: "500px",
+//         maxHeight: "80vh",
+//         overflowY: "auto",
+//     },
+//     popupTitle: { textAlign: "center", marginBottom: "10px", color: "#0b0b0bff" },
+//     searchInput: {
+//         width: "100%",
+//         padding: "10px",
+//         marginBottom: "15px",
+//         borderRadius: "8px",
+//         border: "1px solid #ccc",
+//     },
+//     categoryGrid: {
+//         display: "grid",
+//         gridTemplateColumns: "repeat(auto-fill,minmax(120px,1fr))",
+//         gap: "15px",
+//     },
+//     categoryCard: {
+//         borderRadius: "10px",
+//         padding: "5px",
+//         textAlign: "center",
+//         cursor: "pointer",
+//         transition: "0.3s",
+//     },
+//     catImg: { width: "100px", height: "100px", marginBottom: "5px", borderRadius: "5px" },
+//     popupActions: { display: "flex", justifyContent: "space-between", marginTop: "15px" },
+//     cancelBtn: {
+//         flex: 1,
+//         marginRight: "10px",
+//         padding: "10px",
+//         border: "none",
+//         borderRadius: "8px",
+//         background: "#ccc",
+//         cursor: "pointer",
+//         marginBottom: "10px"
+//     },
+//     doneBtn: {
+//         flex: 1,
+//         padding: "10px",
+//         border: "none",
+//         borderRadius: "8px",
+//         background: "green",
+//         color: "#fff",
+//         cursor: "pointer",
+//         marginBottom: "10px"
+//     },
+// };
 
 export default ReelPost;
 

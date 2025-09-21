@@ -3,12 +3,28 @@ import { NavLink } from 'react-router-dom'
 import './Style.css'
 import Logo1 from '../.././assets/logo123.png'
 import { AppContext } from '../../context/AppContext'   // ⬅️ import context
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchUserData, setAuthData } from '../../redux/AuthSlice'
 
 const Header = ({ theme, toggleTheme }) => {
   const headerRef = useRef(null)
   const menuRef = useRef(null)
+  const { user ,token} = useContext(AppContext)   // ⬅️ get user from context
 
-  const { user } = useContext(AppContext)   // ⬅️ get user from context
+    const dispatch = useDispatch();
+
+  // ✅ Load token & user data into Redux
+  useEffect(() => {
+    if (token) {
+      dispatch(setAuthData(token));
+      dispatch(fetchUserData(token));
+    }
+  }, [token, dispatch]);
+
+
+  // ✅ Get user data from Redux
+  const { userData } = useSelector((state) => state.auth);
+
 
   const headerFunc = () => {
     if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
@@ -86,8 +102,13 @@ const Header = ({ theme, toggleTheme }) => {
                   >
                     {/* Profile Image */}
                     <img
-                      src={user?.photoURL || '/default-profile.png'} // fallback if no image
-                      alt='Profile'
+                      src={userData?.profilePic || 'https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png'}
+                      alt="Profile"
+                      onError={(e) => {
+                        e.target.onerror = null; // prevent infinite loop
+                        e.target.src =
+                          'https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png';
+                      }}
                       style={{
                         width: '30px',
                         height: '30px',
@@ -95,6 +116,7 @@ const Header = ({ theme, toggleTheme }) => {
                         objectFit: 'cover',
                       }}
                     />
+
                     {/* Profile Text */}
                     <span>Profile</span>
                   </NavLink>

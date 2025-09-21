@@ -1,0 +1,134 @@
+/* Container */
+.signup-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #3f7177, #1a2734);
+  padding: 20px;
+  margin-top: 0px;
+}
+
+/* Card */
+.signup-card {
+  background: #ffffff;
+  padding: 30px 25px;
+  border-radius: 16px;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 0px 6px 20px rgba(0,0,0,0.15);
+  text-align: center;
+  animation: fadeIn 0.8s ease-in-out;
+   margin-top: -65px;
+}
+
+/* Logo */
+.signup-logo {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 15px;
+}
+
+/* Headings */
+.signup-heading {
+  font-size: 22px;
+  font-weight: bold;
+  color: #222;
+}
+
+.signup-subheading {
+  font-size: 15px;
+  margin: 8px 0 20px;
+  color: #777;
+}
+
+/* Input fields */
+.form-group {
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 15px;
+  outline: none;
+  transition: border 0.2s ease-in-out;
+}
+
+.form-group input:focus {
+  border-color: #415BE8;
+}
+
+.password-group {
+  display: flex;
+  align-items: center;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Error */
+.error-text {
+  color: red;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+/* Button */
+.signup-btn {
+  background: #415BE8;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.signup-btn:hover {
+  background: #2f46b3;
+}
+
+/* Redirect text */
+.login-link {
+  margin-top: 16px;
+  font-size: 14px;
+  color: #444;
+}
+
+.login-link span {
+  color: #25BEE7;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Terms */
+.terms {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #666;
+}
+
+.terms-link {
+  color: #415BE8;
+  cursor: pointer;
+  border-bottom: 1px solid #415BE8;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}

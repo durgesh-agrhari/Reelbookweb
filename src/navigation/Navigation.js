@@ -16,6 +16,8 @@ import UserProfile from "../pages/profile/UserProfile";
 import ReelPost from "../pages/newpost/ReelPost";
 import PhotoPost from "../pages/newpost/PhotoPost";
 import StoryPost from "../pages/newpost/StoryPost";
+import LoginEmail from "../pages/auth/LoginEmail";
+import SignupForm from "../pages/auth/SignupForm";
 
 const Navigation = () => {
   const [theme, setTheme] = useState("");
@@ -43,6 +45,8 @@ const Navigation = () => {
         <Route path="/ReelPost" element={<ReelPost />} />
         <Route path="/PhotoPost" element={<PhotoPost />} />
         <Route path="/StoryPost" element={<StoryPost />} />
+        <Route path="/LoginEmail" element={<LoginEmail />} />
+        <Route path="/SignupForm" element={<SignupForm />} />
       </Routes>
     </Router>
   );

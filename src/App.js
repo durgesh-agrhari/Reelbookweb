@@ -3,15 +3,20 @@ import React from "react";
 import ReactGA from "react-ga4";
 import Navigation from "./navigation/Navigation";
 import { AppProvider } from "./context/AppContext";
+import { Provider } from "react-redux";
+// import MyStore from './src/redux/MyStore';
+import MyStore from '../src/redux/MyStore';
 
 const TRACKING_ID = "G-PE3WVLWX2S";
 ReactGA.initialize(TRACKING_ID);
 
 function App() {
   return (
+     <Provider store={MyStore} >
     <AppProvider>
       <Navigation />
     </AppProvider>
+    </Provider>
   );
 }
 

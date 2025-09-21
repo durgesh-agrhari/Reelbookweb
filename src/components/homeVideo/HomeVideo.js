@@ -1,31 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './HomeVideo.css';
+import backendURL from '../../utils/String';
 
 const HomeVideo = () => {
   const [videoList, setVideoList] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   fetch('https://reelbook-cgarbbexgdd5a5dn.canadacentral-01.azurewebsites.net/reel/getallReels')
-  //     .then((res) => res.json())
-  //     .then((result) => {
-  //       if (result.status && Array.isArray(result.data)) {
-  //         setVideoList(result.data);
-  //       } else {
-  //         console.error('Unexpected response structure:', result);
-  //       }
-  //       setLoading(false);
-  //     })
-  //     .catch((err) => {
-  //       console.error('Failed to fetch videos:', err);
-  //       setLoading(false);
-  //     });
-  // }, []);
-
   useEffect(() => {
-  fetch('http://localhost:3000/reel/getallReels')
+  fetch(`${backendURL}/reel/getallReels`)
     .then((res) => res.json())
     .then((result) => {
       if (result.status && Array.isArray(result.data)) {
@@ -102,7 +86,7 @@ export default HomeVideo;
 //   const navigate = useNavigate();
 
 //   useEffect(() => {
-//     fetch('http://localhost:3000/reel/getallReels')
+//     fetch('/reel/getallReels')
 //       .then((res) => res.json())
 //       .then((result) => {
 //         if (result.status && Array.isArray(result.data)) {
