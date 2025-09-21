@@ -72,7 +72,9 @@ const VideoPlayer = () => {
         onCanPlay={() => setLoading(false)}
       />
 
-      <div className="video-info">
+      <div 
+      className="video-info"
+      >
         <img
           src="https://cdn-icons-png.flaticon.com/512/6858/6858504.png"
           alt="profile"
@@ -98,20 +100,20 @@ const VideoPlayer = () => {
           </button>
           <h6>
 
-          {video.likes?.length || 0}M
+          {video.likes?.length || 0}
           </h6>
         </button>
         <button title="Comment"><img src={comment}
         alt="Like"
           className="likeicon"
            /> <h6>
-             {video.comments?.length || 0}k
+             {video.comments?.length || 0}
             </h6></button>
         <button title="Share"><img src={share}
         alt="Like"
           className="likeicon"
            />
-           <h6>{video.shareviews || 0}k </h6>  </button>
+           <h6>{video.shareviews || 0} </h6>  </button>
 
         <button className="next1" onClick={handleVideoClick}>
           {

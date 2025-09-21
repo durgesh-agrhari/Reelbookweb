@@ -4,6 +4,8 @@ import axios from "axios";
 import "./SignupForm.css";
 import backendURL from "../../utils/String";
 
+// const logo = '../../assets/logo.jpeg'
+
 const SignupForm = () => {
   const navigate = useNavigate();
   const [loader, setLoader] = useState(false);
@@ -56,11 +58,11 @@ const SignupForm = () => {
   return (
     <div className="signup-container">
       <div className="signup-card">
-        <img
-          src="/logo192.png"
+        {/* <img
+          src={logo}
           alt="Logo"
           className="signup-logo"
-        />
+        /> */}
 
         <h2 className="signup-heading">Signup with Email</h2>
         <p className="signup-subheading">Enter your details to create an account</p>

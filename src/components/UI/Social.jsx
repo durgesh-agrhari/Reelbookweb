@@ -46,7 +46,7 @@ const Social = ({ theme }) => {
                     {/* Right Side - App Download Buttons */}
                     <div className='right12'>
                         <div>
-                            <h3 className='highlight1'>Download from Play Store and App Store</h3>
+                            <h3 className='highlight1' style={{marginTop:'50px'}} >Download from Play Store and App Store</h3>
                             <div className='hero__btns'>
                                 <button style={{ borderRadius: '10px' }}>
                                     <Link to='/' style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', color: 'inherit' }}>
