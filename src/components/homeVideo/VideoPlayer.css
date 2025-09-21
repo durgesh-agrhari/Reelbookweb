@@ -53,7 +53,7 @@
 
 .text-info .name {
   font-weight: bold;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .text-info .username,
@@ -65,7 +65,7 @@
 /* Right side vertical buttons */
 .action-buttons {
   position: absolute;
-  right: 1px;
+  right: -6px;
   bottom: 50px;
   margin-right: 500px;
   z-index: 2;
@@ -77,7 +77,7 @@
 
 .action-buttons-upanddown{
   position: absolute;
-  right: 20px;
+  right: 8px;
   bottom: 50px;
   margin-right: 400px;
   z-index: 2;
@@ -162,6 +162,11 @@
   z-index: 10;
 }
 
+.caption{
+  font-size: 11px;
+  color: #fff;
+}
+
 @keyframes spin {
   to {
     transform: rotate(360deg);
@@ -175,7 +180,7 @@
   }
 
   .text-info .name {
-    font-size: 14px;
+    font-size: 12px;
   }
 
   .text-info .username,
