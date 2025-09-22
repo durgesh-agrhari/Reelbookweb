@@ -18,6 +18,8 @@ import PhotoPost from "../pages/newpost/PhotoPost";
 import StoryPost from "../pages/newpost/StoryPost";
 import LoginEmail from "../pages/auth/LoginEmail";
 import SignupForm from "../pages/auth/SignupForm";
+import AllUsers from "../pages/allUsers/AllUsers";
+import FriendUserProfile from "../pages/allUsers/FriendUserProfile";
 
 const Navigation = () => {
   const [theme, setTheme] = useState("");
@@ -47,6 +49,9 @@ const Navigation = () => {
         <Route path="/StoryPost" element={<StoryPost />} />
         <Route path="/LoginEmail" element={<LoginEmail />} />
         <Route path="/SignupForm" element={<SignupForm />} />
+        <Route path="/AllUsers" element={<AllUsers/>} />
+        <Route path="/user/:id" element={<FriendUserProfile />} />
+
       </Routes>
     </Router>
   );

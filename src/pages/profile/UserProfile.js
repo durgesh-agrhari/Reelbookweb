@@ -7,7 +7,7 @@ import { fetchUserData, setAuthData } from "../../redux/AuthSlice";
 import backendURL from "../../utils/String";
 
 const UserProfile = () => {
-  const { user, logout, token } = useContext(AppContext);
+  const { logout, token } = useContext(AppContext);
   const [activeTab, setActiveTab] = useState("reels");
   const [previewItem, setPreviewItem] = useState(null);
   const [reels, setReels] = useState([]);
@@ -24,7 +24,6 @@ const UserProfile = () => {
   }, [token, dispatch]);
 
   console.log("reels", reels, "post", posts)
-
   // ✅ Get user data from Redux
   const { userData, loading } = useSelector((state) => state.auth);
 
@@ -117,9 +116,9 @@ const UserProfile = () => {
           className="profile-i"
         />
         <h2 style={{ marginTop: "30px" }}>
-          {userData?.username || "Loading..."}
+          {userData?.name || "Loading..."}
         </h2>
-        <p>{user?.email}</p>
+        <p>@{userData?.username}</p>
 
         {/* Stats */}
         <div className="profile-stats">

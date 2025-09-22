@@ -9,9 +9,9 @@ import { fetchUserData, setAuthData } from '../../redux/AuthSlice'
 const Header = ({ theme, toggleTheme }) => {
   const headerRef = useRef(null)
   const menuRef = useRef(null)
-  const { user ,token} = useContext(AppContext)   // ⬅️ get user from context
+  const { user, token } = useContext(AppContext)   // ⬅️ get user from context
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   // ✅ Load token & user data into Redux
   useEffect(() => {
@@ -72,16 +72,32 @@ const Header = ({ theme, toggleTheme }) => {
               </li>
 
               <li className='menu__item'>
-                <NavLink to='/PrivacyPolicy' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>Privacy & Policy</NavLink>
+                <NavLink to='/AllUsers' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>All Users</NavLink>
               </li>
 
-              <li className='menu__item'>
+              {/* <li className='menu__item'>
                 <NavLink to='/Contact' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>Contact Us</NavLink>
               </li>
 
               <li className='menu__item'>
                 <NavLink to='/Feedback' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>Feedback</NavLink>
+              </li> */}
+
+              <li className="menu__item dropdown">
+                <span className="menu__link">More ▾</span>
+                <ul className="dropdown__menu">
+                  <li>
+                    <NavLink to="/PrivacyPolicy" className="dropdown__link">Privacy & Policy</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/Contact" className="dropdown__link">Contact Us</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/Feedback" className="dropdown__link">Feedback</NavLink>
+                  </li>
+                </ul>
               </li>
+
 
               {/* 👇 Conditional Menu */}
               {!user ? (
