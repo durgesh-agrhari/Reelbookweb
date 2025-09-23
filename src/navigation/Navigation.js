@@ -20,6 +20,7 @@ import LoginEmail from "../pages/auth/LoginEmail";
 import SignupForm from "../pages/auth/SignupForm";
 import AllUsers from "../pages/allUsers/AllUsers";
 import FriendUserProfile from "../pages/allUsers/FriendUserProfile";
+import ShowPosts from "../pages/postPage/ShowPosts";
 
 const Navigation = () => {
   const [theme, setTheme] = useState("");
@@ -50,6 +51,7 @@ const Navigation = () => {
         <Route path="/LoginEmail" element={<LoginEmail />} />
         <Route path="/SignupForm" element={<SignupForm />} />
         <Route path="/AllUsers" element={<AllUsers/>} />
+        <Route path="/ShowPosts" element={<ShowPosts/>} />
         <Route path="/user/:id" element={<FriendUserProfile />} />
 
       </Routes>

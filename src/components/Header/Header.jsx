@@ -75,11 +75,11 @@ const Header = ({ theme, toggleTheme }) => {
                 <NavLink to='/AllUsers' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>All Users</NavLink>
               </li>
 
-              {/* <li className='menu__item'>
-                <NavLink to='/Contact' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>Contact Us</NavLink>
+              <li className='menu__item'>
+                <NavLink to='/ShowPosts' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>Posts</NavLink>
               </li>
 
-              <li className='menu__item'>
+              {/* <li className='menu__item'>
                 <NavLink to='/Feedback' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>Feedback</NavLink>
               </li> */}
 
