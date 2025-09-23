@@ -165,7 +165,7 @@ const UserProfile = () => {
 
         <div>
           <h3 style={{alignSelf:'center', marginTop:'10px'}}>For Access all features download app now</h3>
-          <p>(like update profile, change dp, change profile pick , change name , change password) </p>
+          <p>(like update profile, change dp, change profile pick , change name , change password, like share comment ) </p>
         </div>
       </div>
 
