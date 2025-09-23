@@ -162,6 +162,11 @@ const UserProfile = () => {
         <button className="btn logout" onClick={handleLogout}>
           Logout
         </button>
+
+        <div>
+          <h3 style={{alignSelf:'center', marginTop:'10px'}}>For Access all features download app now</h3>
+          <p>(like update profile, change dp, change profile pick , change name , change password) </p>
+        </div>
       </div>
 
       {/* Sub Navbar */}
