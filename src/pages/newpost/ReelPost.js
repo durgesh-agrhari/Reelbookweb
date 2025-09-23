@@ -5,6 +5,7 @@ import backendURL, { UPLOAD_REEL, ADD_REEL } from "../../utils/String"; // same 
 import { useSelector } from "react-redux"; // if you store token in redux
 // import categoriesData from "../data/categories"; // your category list
 import "./ReelPost.css";
+import DummyUploader from "./DummyUploader";
 const categoriesData = [
     { id: '1', name: 'Motivation', image: 'https://i.pinimg.com/originals/fa/46/fa/fa46fabeafa02cd231b6c75a0a3a2d11.jpg' },
     { id: '2', name: 'Gym Video', image: 'https://w0.peakpx.com/wallpaper/105/816/HD-wallpaper-sports-fitness-brown-eyes-brunette-girl-gym-model-woman.jpg' },
@@ -287,6 +288,7 @@ const ReelPost = () => {
                     <button type="submit" disabled={loading} className="button">
                         {loading ? "Uploading..." : "✅ Upload Reel"}
                     </button>
+                    {/* <DummyUploader /> */}
 
                 </form>
 

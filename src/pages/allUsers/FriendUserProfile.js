@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./UserProfile.css";
-import { useNavigate, useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import backendURL from "../../utils/String";
 
 const FriendUserProfile = () => {
@@ -15,7 +15,6 @@ const FriendUserProfile = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (!id) return;
