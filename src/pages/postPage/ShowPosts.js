@@ -9,47 +9,35 @@ const ShowPosts = () => {
     // Optional: error handling
     const [error, setError] = useState(null);
 
-    useEffect(() => {
-        let isMounted = true;
-        const controller = new AbortController();
+useEffect(() => {
+    let isMounted = true;
 
-        const fetchPosts = async () => {
-            try {
-                setLoading(true);
-                const res = await fetch(
-                    "https://reelbookapi.site/post/getallPosts",
-                    { signal: controller.signal }
-                );
-                if (!res.ok) {
-                    throw new Error("Failed to fetch posts: " + res.status);
-                }
-                const data = await res.json();
-                // Assuming API returns something like { data: [ ... ] } OR direct array
-                const postsArray = Array.isArray(data)
-                    ? data
-                    : (data.data ?? []);
-                if (isMounted) {
-                    setPosts(postsArray.reverse());  // newest first
-                }
-            } catch (err) {
-                if (err.name === "AbortError") {
-                    console.log("Fetch aborted");
-                } else {
-                    console.error("Error fetching posts:", err);
-                    if (isMounted) setError(err.message);
-                }
-            } finally {
-                if (isMounted) setLoading(false);
+    const fetchPosts = async () => {
+        try {
+            setLoading(true);
+            const res = await fetch("https://reelbookapi.site/post/getallPosts");
+            if (!res.ok) throw new Error("Failed to fetch posts: " + res.status);
+            const data = await res.json();
+            if (isMounted) {
+                setPosts((Array.isArray(data) ? data : data.data ?? []).reverse());
             }
-        };
+        } catch (err) {
+            if (err.name !== "AbortError") {
+                console.error("Error fetching posts:", err);
+                if (isMounted) setError(err.message);
+            }
+        } finally {
+            if (isMounted) setLoading(false);
+        }
+    };
 
-        fetchPosts();
+    fetchPosts();
 
-        return () => {
-            isMounted = false;
-            controller.abort();
-        };
-    }, []);
+    return () => {
+        isMounted = false; // cleanup only
+    };
+}, []);
+
     //   console.log("posts", posts)
     if (loading) {
         return <div className="loading">Loading posts...</div>;

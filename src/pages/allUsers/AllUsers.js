@@ -62,7 +62,7 @@ const AllUsers = () => {
 
       {/* Loader */}
       {loading ? (
-        <div className="loader">Loading users...</div>
+        <div className="loader">.</div>
       ) : (
         <div className="user-list">
           {filteredUsers.length === 0 ? (

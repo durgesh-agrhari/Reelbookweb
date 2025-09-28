@@ -21,6 +21,7 @@ import SignupForm from "../pages/auth/SignupForm";
 import AllUsers from "../pages/allUsers/AllUsers";
 import FriendUserProfile from "../pages/allUsers/FriendUserProfile";
 import ShowPosts from "../pages/postPage/ShowPosts";
+import DeleteUser from "../pages/profile/DeleteUser";
 
 const Navigation = () => {
   const [theme, setTheme] = useState("");
@@ -52,6 +53,7 @@ const Navigation = () => {
         <Route path="/SignupForm" element={<SignupForm />} />
         <Route path="/AllUsers" element={<AllUsers/>} />
         <Route path="/ShowPosts" element={<ShowPosts/>} />
+        <Route path="/DeleteUser/:id" element={<DeleteUser/>} />
         <Route path="/user/:id" element={<FriendUserProfile />} />
 
       </Routes>

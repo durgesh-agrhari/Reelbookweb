@@ -15,33 +15,30 @@ const FriendUserProfile = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
+useEffect(() => {
+  if (!id) return;
 
-  useEffect(() => {
-    if (!id) return;
+  let isMounted = true;
 
-    const controller = new AbortController();
-    const signal = controller.signal;
-    async function loadFriendProfile() {
-      try {
-        setLoading(true);
+  async function loadFriendProfile() {
+    try {
+      setLoading(true);
 
-        // Fetch profile info
-        const profileRes = await fetch(`${backendURL}/getuser/${id}`, {
-          signal,
-        });
-        if (!profileRes.ok) throw new Error("Failed to load profile");
-        const profileJson = await profileRes.json();
-        setFriendData(profileJson?.data || profileJson);
+      const profileRes = await fetch(`${backendURL}/getuser/${id}`);
+      if (!profileRes.ok) throw new Error("Failed to load profile");
+      const profileJson = await profileRes.json();
+      if (isMounted) setFriendData(profileJson?.data || profileJson);
 
-        // Fetch reels & posts in parallel
-        const [reelsRes, postsRes] = await Promise.all([
-          fetch(`${backendURL}/reel/getFrienddata/${id}`, { signal }),
-          fetch(`${backendURL}/post/getFrienddata/${id}`, { signal }),
-        ]);
+      // Fetch reels & posts in parallel
+      const [reelsRes, postsRes] = await Promise.all([
+        fetch(`${backendURL}/reel/getFrienddata/${id}`),
+        fetch(`${backendURL}/post/getFrienddata/${id}`),
+      ]);
 
-        const reelsJson = await reelsRes.json();
-        const postsJson = await postsRes.json();
+      const reelsJson = await reelsRes.json();
+      const postsJson = await postsRes.json();
 
+      if (isMounted) {
         const reelsArray = Array.isArray(reelsJson)
           ? reelsJson
           : reelsJson.data ?? [];
@@ -51,18 +48,20 @@ const FriendUserProfile = () => {
 
         setReels([...reelsArray].reverse());
         setPosts([...postsArray].reverse());
-      } catch (err) {
-        if (err.name === "AbortError") return;
-        console.error("Error loading friend profile:", err);
-      } finally {
-        setLoading(false);
       }
+    } catch (err) {
+      console.error("Error loading friend profile:", err);
+    } finally {
+      if (isMounted) setLoading(false);
     }
+  }
 
-    loadFriendProfile();
+  loadFriendProfile();
 
-    return () => controller.abort();
-  }, [id]);
+  return () => {
+    isMounted = false; // cleanup only, no abort
+  };
+}, [id]);
 
   if (loading) {
     return <h2 style={{ textAlign: "center" }}>Loading profile...</h2>;

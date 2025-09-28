@@ -14,6 +14,28 @@ const UserProfile = () => {
   const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [stories, setStories] = useState([]);
+  const [showDeletePopup, setShowDeletePopup] = useState(false);
+  const [deleteItem, setDeleteItem] = useState(null); // to know which item to delete
+
+  useEffect(() => {
+    async function loadStories() {
+      try {
+        const res = await fetch(`${backendURL}/story/getallStorys`);
+        console.log("story", res)
+        if (!res.ok) throw new Error("Story fetch failed");
+        const data = await res.json();
+        // console.log("data story", data.data)
+        setStories(data.data.reverse());
+      } catch (err) {
+        console.error("Error fetching stories:", err);
+      }
+    }
+    loadStories();
+  }, []);
+
+  console.log("storyes ", stories)
+
 
   // ✅ Load token & user data into Redux
   useEffect(() => {
@@ -26,63 +48,44 @@ const UserProfile = () => {
   console.log("reels", reels, "post", posts)
   // ✅ Get user data from Redux
   const { userData, loading } = useSelector((state) => state.auth);
-
   useEffect(() => {
-    // if there's no id yet, nothing to do
     if (!userData?._id) return;
 
-    const controller = new AbortController();
-    const signal = controller.signal;
+    let isMounted = true;
 
     async function loadReelsAndPosts() {
       try {
         console.log("Fetching reels & posts for userId:", userData._id);
 
-        // run both requests in parallel
         const [reelsRes, postsRes] = await Promise.all([
-          fetch(`${backendURL}/reel/getFrienddata/${userData._id}`, { signal }),
-          fetch(`${backendURL}/post/getFrienddata/${userData._id}`, { signal }),
+          fetch(`${backendURL}/reel/getFrienddata/${userData._id}`),
+          fetch(`${backendURL}/post/getFrienddata/${userData._id}`),
         ]);
 
-        // basic status checks
         if (!reelsRes.ok) throw new Error(`Reels fetch failed: ${reelsRes.status}`);
         if (!postsRes.ok) throw new Error(`Posts fetch failed: ${postsRes.status}`);
 
         const reelsJson = await reelsRes.json();
         const postsJson = await postsRes.json();
 
-        console.log("reels response:", reelsJson);
-        console.log("posts response:", postsJson);
+        if (isMounted) {
+          const reelsArray = Array.isArray(reelsJson) ? reelsJson : (reelsJson.data ?? []);
+          const postsArray = Array.isArray(postsJson) ? postsJson : (postsJson.data ?? []);
 
-        // adapt to API shape:
-        // if API returns an array directly -> use it
-        // if API returns { data: [...] } -> use data
-        // const reelsArray = Array.isArray(reelsJson) ? reelsJson : (reelsJson.data ?? []);
-        // const postsArray = Array.isArray(postsJson) ? postsJson : (postsJson.data ?? []);
-
-        // setReels(reelsArray);
-        // setPosts(postsArray);
-        const reelsArray = Array.isArray(reelsJson) ? reelsJson : (reelsJson.data ?? []);
-        const postsArray = Array.isArray(postsJson) ? postsJson : (postsJson.data ?? []);
-
-        // reverse them so newest appears first
-        setReels([...reelsArray].reverse());
-        setPosts([...postsArray].reverse());
-
-      } catch (err) {
-        if (err.name === "AbortError") {
-          console.log("Fetch aborted");
-          return;
+          setReels([...reelsArray].reverse());
+          setPosts([...postsArray].reverse());
         }
+      } catch (err) {
         console.error("Error fetching reels/posts:", err);
       }
     }
 
     loadReelsAndPosts();
 
-    // cleanup: cancel fetch if component unmounts or userId changes
-    return () => controller.abort();
-  }, [userData?._id]); // only re-run when user id changes
+    return () => {
+      isMounted = false;
+    };
+  }, [userData?._id]);
 
 
   // ✅ Logout handler
@@ -94,6 +97,13 @@ const UserProfile = () => {
   if (loading) {
     return <h2 style={{ textAlign: "center" }}>Loading profile...</h2>;
   }
+
+  const handleSetting = () => {
+    // redirect to DeleteUser with id
+    navigate(`/DeleteUser/${userData?._id}`);
+  };
+
+
 
   return (
     <div className="profile-container">
@@ -123,7 +133,11 @@ const UserProfile = () => {
         {/* Stats */}
         <div className="profile-stats">
           <div>
-            <h4 className="post">{posts?.length + reels?.length || 0}</h4>
+            <h4 className="post">{reels?.length || 0}</h4>
+            <p>Reels</p>
+          </div>
+          <div>
+            <h4 className="post">{posts?.length || 0}</h4>
             <p>Posts</p>
           </div>
           <div>
@@ -151,22 +165,27 @@ const UserProfile = () => {
           >
             Upload Post
           </button>
-          {/* <button
+          <button
             onClick={() => navigate("/StoryPost")}
-            className="btn secondary"
+            className="btn ternary"
           >
             Upload Story
-          </button> */}
+          </button>
         </div>
 
         <button className="btn logout" onClick={handleLogout}>
           Logout
         </button>
 
+
+
         <div>
-          <h3 style={{alignSelf:'center', marginTop:'10px'}}>For Access all features download app now</h3>
+          <h3 style={{ alignSelf: 'center', marginTop: '10px' }}>For Access all features download app now</h3>
           <p>(like update profile, change dp, change profile pick , change name , change password, like share comment ) </p>
         </div>
+        <button className="btn logout" onClick={handleSetting}>
+          Delete account
+        </button>
       </div>
 
       {/* Sub Navbar */}
@@ -183,39 +202,64 @@ const UserProfile = () => {
         >
           Posts
         </button>
+
+        <button
+          className={activeTab === "stories" ? "sub-tab active" : "sub-tab"}
+          onClick={() => setActiveTab("stories")}
+        >Stories</button>
       </div>
 
       {/* Reels & Posts Grid */}
       <div className="posts-grid">
+
         {activeTab === "reels" &&
           reels.map((reel) => (
-            <div
-              key={reel._id}
-              className="post-item"
-              onClick={() => setPreviewItem({ ...reel, type: "reel" })}
-            >
+            <div key={reel._id} className="post-item">
               <video
-                src={reel.videourl} // backend field (adjust if different)
+                src={reel.videourl}
                 style={{ width: "160px", height: "100%", objectFit: "cover", backgroundColor: 'gray', borderRadius: '10px' }}
                 muted
+                onClick={() => setPreviewItem({ ...reel, type: "reel" })}
               />
+              <div className="item-overlay">
+                <span style={{ marginLeft: '10px' }} >{reel.views || 0} views</span>
+                <button style={{ marginLeft: '25px', backgroundColor: 'red', borderRadius: '5px', padding: '5px' }} onClick={() => { setDeleteItem({ id: reel._id, type: 'reel' }); setShowDeletePopup(true); }}>Delete</button>
+              </div>
             </div>
-          ))}
+          ))
+        }
 
         {activeTab === "posts" &&
           posts.map((post) => (
-            <div
-              key={post._id}
-              className="post-item"
-              onClick={() => setPreviewItem({ ...post, type: "post" })}
-            >
+            <div key={post._id} className="post-item">
               <img
-                src={post.imageurl} // backend field (adjust if different)
+                src={post.imageurl}
                 alt="Post"
-                style={{ width: "160px", height: "100%", objectFit: "cover", backgroundColor: 'gray', borderRadius: '10px'}}
+                style={{ width: "160px", height: "100%", objectFit: "cover", backgroundColor: 'gray', borderRadius: '10px' }}
+                onClick={() => setPreviewItem({ ...post, type: "post" })}
               />
+              <div className="item-overlay">
+                <span style={{ marginLeft: '10px' }}>{post.likes.length || 0} likes</span>
+                <button style={{ marginLeft: '25px', backgroundColor: 'red', borderRadius: '5px', padding: '5px' }} onClick={() => { setDeleteItem({ id: post._id, type: 'post' }); setShowDeletePopup(true); }}>Delete</button>
+              </div>
             </div>
-          ))}
+          ))
+        }
+
+        {activeTab === "stories" &&
+          stories.map((story) => (
+            <div key={story._id} className="post-item">
+              <img
+                src={story.imageurl}
+                alt="Story"
+                style={{ width: "160px", height: "100%", objectFit: "cover", backgroundColor: 'gray', borderRadius: '10px' }}
+              />
+              <div className="item-overlay">
+                <button style={{ marginLeft: '25px', backgroundColor: 'red', borderRadius: '5px', padding: '5px' }} onClick={() => { setDeleteItem({ id: story._id, type: 'story' }); setShowDeletePopup(true); }}>Delete</button>
+              </div>
+            </div>
+          ))
+        }
       </div>
 
       {/* Preview Modal */}
@@ -248,12 +292,44 @@ const UserProfile = () => {
           </div>
         </div>
       )}
+
+      {showDeletePopup && (
+        <div className="delete-popup-overlay" onClick={() => setShowDeletePopup(false)}>
+          <div className="delete-popup" onClick={(e) => e.stopPropagation()}>
+            <p>Are you sure you want to delete this {deleteItem?.type}?</p>
+            <button onClick={async () => {
+              let url = '';
+              if (deleteItem.type === 'post') url = `http://localhost:3000/post/deletePost/${deleteItem.id}`;
+              else if (deleteItem.type === 'reel') url = `http://localhost:3000/reel/deleteReel/${deleteItem.id}`;
+              else if (deleteItem.type === 'story') url = `http://localhost:3000/story/deleteStory/${deleteItem.id}`;
+
+              try {
+                const res = await fetch(url, { method: 'DELETE' });
+                if (!res.ok) throw new Error('Delete failed');
+
+                // remove deleted item from UI
+                if (deleteItem.type === 'post') setPosts(posts.filter(p => p._id !== deleteItem.id));
+                else if (deleteItem.type === 'reel') setReels(reels.filter(r => r._id !== deleteItem.id));
+                else if (deleteItem.type === 'story') setStories(stories.filter(s => s._id !== deleteItem.id));
+
+                setShowDeletePopup(false);
+                setDeleteItem(null);
+              } catch (err) {
+                console.error(err);
+                alert('Delete failed!');
+              }
+            }}>Yes, Delete</button>
+
+            <button onClick={() => setShowDeletePopup(false)}>Cancel</button>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 };
 
 export default UserProfile;
-
 
 
 // import React, { useState, useContext, useEffect } from "react";
