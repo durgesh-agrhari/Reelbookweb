@@ -112,121 +112,122 @@ const UserProfile = () => {
 
       {/* Profile Info */}
       {userData?._id ? (
-      <div className="profile-info">
-        <img
-          src={
-            userData?.profilePic ||
-            "https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png"
-          }
-          alt="Profile"
-          onError={(e) => {
-            e.target.onerror = null;
-            e.target.src =
-              "https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png";
-          }}
-          className="profile-i"
-        />
-        <h2 style={{ marginTop: "30px" }}>
-          {userData?.name || "Loading..."}
-        </h2>
-        <p>@{userData?.username}</p>
+        <div className="profile-info">
+          <img
+            src={
+              userData?.profilePic ||
+              "https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png"
+            }
+            alt="Profile"
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src =
+                "https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png";
+            }}
+            className="profile-i"
+          />
+          <h2 style={{ marginTop: "30px" }}>
+            {userData?.name || "Loading..."}
+          </h2>
+          <p>@{userData?.username}</p>
 
-        {/* Stats */}
-        <div className="profile-stats">
-          <div>
-            <h4 className="post">{reels?.length || 0}</h4>
-            <p>Reels</p>
+          {/* Stats */}
+          <div className="profile-stats">
+            <div>
+              <h4 className="post">{reels?.length || 0}</h4>
+              <p>Reels</p>
+            </div>
+            <div>
+              <h4 className="post">{posts?.length || 0}</h4>
+              <p>Posts</p>
+            </div>
+            <div>
+              <h4 className="post">{userData?.followers?.length || 0}</h4>
+              <p>Followers</p>
+            </div>
+            <div>
+              <h4 className="post">{userData?.following?.length || 0}</h4>
+              <p>Following</p>
+            </div>
           </div>
-          <div>
-            <h4 className="post">{posts?.length || 0}</h4>
-            <p>Posts</p>
-          </div>
-          <div>
-            <h4 className="post">{userData?.followers?.length || 0}</h4>
-            <p>Followers</p>
-          </div>
-          <div>
-            <h4 className="post">{userData?.following?.length || 0}</h4>
-            <p>Following</p>
-          </div>
-        </div>
 
-        {/* Action Buttons */}
-        <div className="profile-actions">
-          <button
-            onClick={() => navigate("/ReelPost")}
-            className="btn primary"
-            style={{ backgroundColor: 'green' }}
-          >
-            Upload Reel
+          {/* Action Buttons */}
+          <div className="profile-actions">
+            <button
+              onClick={() => navigate("/ReelPost")}
+              className="btn primary"
+              style={{ backgroundColor: 'green' }}
+            >
+              Upload Reel
+            </button>
+            <button
+              onClick={() => navigate("/PhotoPost")}
+              className="btn secondary"
+            >
+              Upload Post
+            </button>
+            <button
+              onClick={() => navigate("/StoryPost")}
+              className="btn ternary"
+            >
+              Upload Story
+            </button>
+          </div>
+
+          <button className="btn logout" onClick={handleLogout}>
+            Logout
           </button>
-          <button
-            onClick={() => navigate("/PhotoPost")}
-            className="btn secondary"
-          >
-            Upload Post
-          </button>
-          <button
-            onClick={() => navigate("/StoryPost")}
-            className="btn ternary"
-          >
-            Upload Story
+
+
+
+          <div>
+            <h3 style={{ alignSelf: 'center', marginTop: '10px' }}>For Access all features download app now</h3>
+            <p>(like update profile, change dp, change profile pick , change name , change password, like share comment ) </p>
+          </div>
+          <button className="btn logout" onClick={handleSetting}>
+            Delete account
           </button>
         </div>
-
-        <button className="btn logout" onClick={handleLogout}>
-          Logout
-        </button>
-
-
-
-        <div>
-          <h3 style={{ alignSelf: 'center', marginTop: '10px' }}>For Access all features download app now</h3>
-          <p>(like update profile, change dp, change profile pick , change name , change password, like share comment ) </p>
-        </div>
-        <button className="btn logout" onClick={handleSetting}>
-          Delete account
-        </button>
-      </div>
 
       ) : (
-  <div className="login-prompt" style={{ textAlign: "center", marginTop: "50px" }}>
-    <h2>Please log in to upload Reels, Posts, Stories and manage your profile.</h2>
-    <h3 style={{marginTop:"10px"}}>After login you can delete your content data and account as well</h3>
-    <button
-      className="btn primary"
-      onClick={() => navigate("/LoginGoogle")}
-      style={{ marginTop: "20px" }}
-    >
-      Login
-    </button>
-  </div>
-)}
+        <div className="login-prompt" style={{ textAlign: "center", marginTop: "50px" }}>
+          <h2>Please log in to upload Reels, Posts, Stories and manage your profile.</h2>
+          <h3 style={{ marginTop: "10px" }}>After login you can delete your content data and account as well</h3>
+          <button
+            className="btn primary"
+            // onClick={() => navigate("/LoginGoogle")}
+            onClick={handleLogout}
+            style={{ marginTop: "20px" }}
+          >
+            Login
+          </button>
+        </div>
+      )}
 
 
       {/* Sub Navbar */}
 
       {userData?._id &&
-      <div className="sub-navbar">
-        <button
-          className={activeTab === "reels" ? "sub-tab active" : "sub-tab"}
-          onClick={() => setActiveTab("reels")}
-        >
-          Reels
-        </button>
-        <button
-          className={activeTab === "posts" ? "sub-tab active" : "sub-tab"}
-          onClick={() => setActiveTab("posts")}
-        >
-          Posts
-        </button>
+        <div className="sub-navbar">
+          <button
+            className={activeTab === "reels" ? "sub-tab active" : "sub-tab"}
+            onClick={() => setActiveTab("reels")}
+          >
+            Reels
+          </button>
+          <button
+            className={activeTab === "posts" ? "sub-tab active" : "sub-tab"}
+            onClick={() => setActiveTab("posts")}
+          >
+            Posts
+          </button>
 
-        <button
-          className={activeTab === "stories" ? "sub-tab active" : "sub-tab"}
-          onClick={() => setActiveTab("stories")}
-        >Stories</button>
-      </div>
-}
+          <button
+            className={activeTab === "stories" ? "sub-tab active" : "sub-tab"}
+            onClick={() => setActiveTab("stories")}
+          >Stories</button>
+        </div>
+      }
 
       {/* Reels & Posts Grid */}
       <div className="posts-grid">

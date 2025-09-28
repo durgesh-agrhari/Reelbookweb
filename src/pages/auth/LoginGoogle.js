@@ -51,8 +51,8 @@ async function handleLogin() {
                          
           <div className="right12">
             <div style={{ backgroundColor: "#1a1e24", padding: 80, borderRadius: 20 }}>
-              <h3 className="highlight1">Login with Google</h3>
-              <div className="hero__btns">
+              <h3 className="highlight1">Login with Email</h3>
+              {/* <div className="hero__btns">
                 <button style={{ borderRadius: "10px" }} onClick={handleLogin}>
                   <div
                     style={{
@@ -70,7 +70,7 @@ async function handleLogin() {
                     />
                   </div>
                 </button>
-              </div>
+              </div> */}
               <div className="hero__btns">
                 <button style={{ borderRadius: "10px" }} onClick={() => navigate("/LoginEmail")} >
                   <div
