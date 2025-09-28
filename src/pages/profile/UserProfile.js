@@ -111,6 +111,7 @@ const UserProfile = () => {
       <div className="cover-photo"></div>
 
       {/* Profile Info */}
+      {userData?._id ? (
       <div className="profile-info">
         <img
           src={
@@ -188,7 +189,24 @@ const UserProfile = () => {
         </button>
       </div>
 
+      ) : (
+  <div className="login-prompt" style={{ textAlign: "center", marginTop: "50px" }}>
+    <h2>Please log in to upload Reels, Posts, Stories and manage your profile.</h2>
+    <h3 style={{marginTop:"10px"}}>After login you can delete your content data and account as well</h3>
+    <button
+      className="btn primary"
+      onClick={() => navigate("/LoginGoogle")}
+      style={{ marginTop: "20px" }}
+    >
+      Login
+    </button>
+  </div>
+)}
+
+
       {/* Sub Navbar */}
+
+      {userData?._id &&
       <div className="sub-navbar">
         <button
           className={activeTab === "reels" ? "sub-tab active" : "sub-tab"}
@@ -208,6 +226,7 @@ const UserProfile = () => {
           onClick={() => setActiveTab("stories")}
         >Stories</button>
       </div>
+}
 
       {/* Reels & Posts Grid */}
       <div className="posts-grid">
