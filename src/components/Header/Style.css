@@ -237,3 +237,24 @@
 .menu__link {
   cursor: pointer;
 }
+
+
+/* hide on desktop */
+.mobile-only {
+  display: none;
+}
+
+/* hide on mobile */
+.desktop-only {
+  display: block;
+}
+
+/* when <= 992px, swap */
+@media only screen and (max-width: 992px) {
+  .desktop-only {
+    display: none;
+  }
+  .mobile-only {
+    display: block;
+  }
+}

@@ -85,7 +85,7 @@ const Header = ({ theme, toggleTheme }) => {
                 <NavLink to='/Feedback' className={({ isActive }) => isActive ? 'menu__link navactive' : 'menu__link'}>Feedback</NavLink>
               </li> */}
 
-              <li className="menu__item dropdown">
+              {/* <li className="menu__item dropdown">
                 <span className="menu__link">More ▾</span>
                 <ul className="dropdown__menu">
                   <li>
@@ -98,7 +98,34 @@ const Header = ({ theme, toggleTheme }) => {
                     <NavLink to="/Feedback" className="dropdown__link">Feedback</NavLink>
                   </li>
                 </ul>
-              </li>
+              </li> */}
+
+              <li className="menu__item dropdown desktop-only">
+  <span className="menu__link">More ▾</span>
+  <ul className="dropdown__menu">
+    <li>
+      <NavLink to="/PrivacyPolicy" className="dropdown__link">Privacy & Policy</NavLink>
+    </li>
+    <li>
+      <NavLink to="/Contact" className="dropdown__link">Contact Us</NavLink>
+    </li>
+    <li>
+      <NavLink to="/Feedback" className="dropdown__link">Feedback</NavLink>
+    </li>
+  </ul>
+</li>
+
+{/* Mobile-only version (no dropdown, just normal items) */}
+<li className="menu__item mobile-only">
+  <NavLink to="/PrivacyPolicy" className="menu__link">Privacy & Policy</NavLink>
+</li>
+<li className="menu__item mobile-only">
+  <NavLink to="/Contact" className="menu__link">Contact Us</NavLink>
+</li>
+<li className="menu__item mobile-only">
+  <NavLink to="/Feedback" className="menu__link">Feedback</NavLink>
+</li>
+
 
 
               {/* 👇 Conditional Menu */}
