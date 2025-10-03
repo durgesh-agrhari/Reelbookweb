@@ -243,7 +243,7 @@ const UserProfile = () => {
               />
               <div className="item-overlay">
                 <span style={{ marginLeft: '10px' }} >{reel.views || 0} views</span>
-                <button style={{ marginLeft: '25px', backgroundColor: 'red', borderRadius: '5px', padding: '5px' }} onClick={() => { setDeleteItem({ id: reel._id, type: 'reel' }); setShowDeletePopup(true); }}>Delete</button>
+                <button style={{ marginLeft: '25px', backgroundColor: 'gray', borderRadius: '15px', padding: '5px', color:'white' }} onClick={() => { setDeleteItem({ id: reel._id, type: 'reel' }); setShowDeletePopup(true); }}>Delete</button>
               </div>
             </div>
           ))
@@ -260,7 +260,7 @@ const UserProfile = () => {
               />
               <div className="item-overlay">
                 <span style={{ marginLeft: '10px' }}>{post.likes.length || 0} likes</span>
-                <button style={{ marginLeft: '25px', backgroundColor: 'red', borderRadius: '5px', padding: '5px' }} onClick={() => { setDeleteItem({ id: post._id, type: 'post' }); setShowDeletePopup(true); }}>Delete</button>
+                <button style={{ marginLeft: '25px', backgroundColor: 'gray', borderRadius: '15px', padding: '5px',color:'white'  }} onClick={() => { setDeleteItem({ id: post._id, type: 'post' }); setShowDeletePopup(true); }}>Delete</button>
               </div>
             </div>
           ))
@@ -316,7 +316,7 @@ const UserProfile = () => {
       {showDeletePopup && (
         <div className="delete-popup-overlay" onClick={() => setShowDeletePopup(false)}>
           <div className="delete-popup" onClick={(e) => e.stopPropagation()}>
-            <p>Are you sure you want to delete this {deleteItem?.type}?</p>
+            <p style={{color:'red', margin:'15px'}}>Are you sure you want to delete this {deleteItem?.type}?</p>
             <button onClick={async () => {
               let url = '';
               if (deleteItem.type === 'post') url = `http://localhost:3000/post/deletePost/${deleteItem.id}`;
@@ -338,9 +338,9 @@ const UserProfile = () => {
                 console.error(err);
                 alert('Delete failed!');
               }
-            }}>Yes, Delete</button>
+            }} style={{backgroundColor:'orange', padding:'5px', borderRadius:'10px', paddingLeft:'20px', paddingRight:'20px'}}>Yes, Delete</button>
 
-            <button onClick={() => setShowDeletePopup(false)}>Cancel</button>
+            <button onClick={() => setShowDeletePopup(false)} style={{backgroundColor:'green', color:'white' ,padding:'5px', borderRadius:'10px', paddingLeft:'20px', paddingRight:'20px'}}>Cancel</button>
           </div>
         </div>
       )}

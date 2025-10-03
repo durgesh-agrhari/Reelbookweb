@@ -4,12 +4,12 @@ import './DownloadApp.css';
 // import iosImg from '../../assets/logo.jpeg';               // iOS app logo
 import screen1 from '../../assets/ScreenShots/1.png';          // App screen preview
 import screen2 from '../../assets/ScreenShots/2.png';          // App screen preview
-import screen3 from '../../assets/ScreenShots/1.png';          // App screen preview
-import screen4 from '../../assets/ScreenShots/3.png';          // App screen preview
-import screen5 from '../../assets/ScreenShots/4.png';          // App screen preview
-import screen6 from '../../assets/ScreenShots/5.png';          // App screen preview
-import screen7 from '../../assets/ScreenShots/6.png';          // App screen preview
-import screen8 from '../../assets/ScreenShots/7.png';          // App screen preview
+import screen3 from '../../assets/ScreenShots/3.png';          // App screen preview
+import screen4 from '../../assets/ScreenShots/4.png';          // App screen preview
+import screen5 from '../../assets/ScreenShots/5.png';          // App screen preview
+import screen6 from '../../assets/ScreenShots/6.png';          // App screen preview
+import screen7 from '../../assets/ScreenShots/7.png';          // App screen preview
+import screen8 from '../../assets/ScreenShots/8.png';          // App screen preview
 import { Link } from 'react-router-dom';
 
 const DownloadApp = () => {

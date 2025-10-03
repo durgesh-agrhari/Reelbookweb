@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./ShowPosts.css";
+import backendURL from "../../utils/String";
 
 const ShowPosts = () => {
     const [posts, setPosts] = useState([]);
@@ -15,7 +16,7 @@ useEffect(() => {
     const fetchPosts = async () => {
         try {
             setLoading(true);
-            const res = await fetch("https://reelbookapi.site/post/getallPosts");
+            const res = await fetch(`${backendURL}/post/getallPosts`);
             if (!res.ok) throw new Error("Failed to fetch posts: " + res.status);
             const data = await res.json();
             if (isMounted) {

@@ -216,6 +216,7 @@
 }
 .post-item {
   position: relative;
+  height: 300px;
 }
 
 .overlay {
@@ -278,7 +279,7 @@
 /* here */
 
 .item-overlay {
-  /* position: absolute; */
+  position: absolute;
   /* bottom: 5px; */
   /* left: 5px; */
   /* display: flex; */
@@ -286,6 +287,7 @@
   /* width: 160px; */
   /* color: white; */
   /* font-weight: bold; */
+  margin-top: -40px;
 }
 
 .delete-popup-overlay {
