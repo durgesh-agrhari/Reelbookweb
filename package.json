@@ -25,6 +25,7 @@
     "react-scripts": "^5.0.1",
     "react-slick": "^0.29.0",
     "react-syntax-highlighter": "^15.5.0",
+    "react-toastify": "^11.0.5",
     "reactstrap": "^9.1.6",
     "remixicon": "^2.5.0",
     "route": "^0.2.5",

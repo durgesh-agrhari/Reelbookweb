@@ -8,8 +8,12 @@
 .light-theme .feedback-container{
   background-color: rgb(219, 215, 215);
 }  
+.textarea12{
+  color: white;
+}
 .light-theme .textarea12{
   background-color: rgb(168, 169, 170);
+  color: black;
 }
 .feedback-content {
   display: flex;
@@ -78,4 +82,22 @@
   width: 100%;
   max-width: 400px;
   border-radius: 8px;
+}
+
+.inputbox {
+  background-color: #0a1924;
+  width: 300px;
+  padding: 10px;
+  color: white;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.light-theme .inputbox {
+  background-color: #babbbc;
+  width: 300px;
+  padding: 10px;
+  color: rgb(18, 17, 17);
+  border-radius: 10px;
+   margin-bottom: 10px;
 }
