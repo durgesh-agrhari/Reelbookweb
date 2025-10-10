@@ -160,6 +160,13 @@ const UserProfile = () => {
             >
               Upload Reel
             </button>
+            {/* <button
+              onClick={() => navigate("/ReelPostByLink")}
+              className="btn primary"
+              style={{ backgroundColor: 'gold' , color:'black'}}
+            >
+              Upload Reel By Link
+            </button> */}
             <button
               onClick={() => navigate("/PhotoPost")}
               className="btn secondary"
@@ -182,7 +189,7 @@ const UserProfile = () => {
 
           <div>
             <h3 style={{ alignSelf: 'center', marginTop: '10px' }}>For Access all features download app now</h3>
-            <p>(like update profile, change dp, change profile pick , change name , change password, like share comment ) </p>
+            <p>(like, update profile, change dp, change profile pick , change name , change password, like share comment ) </p>
           </div>
           <button className="btn logout" onClick={handleSetting}>
             Delete account
