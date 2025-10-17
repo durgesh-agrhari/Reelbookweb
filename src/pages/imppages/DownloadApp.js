@@ -42,7 +42,7 @@ const DownloadApp = () => {
             <h3 className='highlight1'>Download from play store and App Store</h3>
             <div className='hero__btns'>
               <button style={{ borderRadius: '10px' }}>
-                <Link to='https://play.google.com/store/apps/details?id=your.android.package' style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', color: 'inherit' }}>
+                <Link to='https://play.google.com/store/apps/details?id=com.reelbook' style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', color: 'inherit' }}>
                   <img
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/2560px-Google_Play_Store_badge_EN.svg.png"  // ← replace with your own image
                     alt="arrow"
@@ -51,7 +51,7 @@ const DownloadApp = () => {
                 </Link>
               </button>
               <button style={{ borderRadius: '10px' }}>
-                <Link to='https://apps.apple.com/us/app/your-ios-app-id' style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', color: 'inherit' }}>
+                <Link to='https://play.google.com/store/apps/details?id=com.reelbook' style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', color: 'inherit' }}>
                   <img
                     src="https://w7.pngwing.com/pngs/327/888/png-transparent-aivalable-on-the-app-store-hd-logo.png"  // ← replace with your own image
                     alt="arrow"

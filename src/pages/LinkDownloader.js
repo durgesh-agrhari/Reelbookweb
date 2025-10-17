@@ -13,7 +13,7 @@ function LinkDownloader() {
     setLoading(true);
     setVideoUrl("");
     try {
-      const res = await axios.post("http://localhost:3000/api/instagram", { url: link });
+      const res = await axios.post("http://localhost:8000/api/instagram", { url: link });
       if (res.data.success) {
         setVideoUrl(res.data.videoUrl);
       } else {

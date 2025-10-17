@@ -356,7 +356,7 @@ const Category = () => {
             <h2>{selectedCategory} Videos</h2>
             <p>To watch {selectedCategory} videos, please download our app from the Play Store.</p>
             <a
-              href="https://play.google.com/store"
+              href="https://play.google.com/store/apps/details?id=com.reelbook"
               className="popup-button"
               target="_blank"
               rel="noopener noreferrer"

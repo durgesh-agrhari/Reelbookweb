@@ -24,6 +24,7 @@ import ShowPosts from "../pages/postPage/ShowPosts";
 import DeleteUser from "../pages/profile/DeleteUser";
 import ReelPostByLink from "../pages/newpost/ReelPostByLink";
 import LinkDownloader from "../pages/LinkDownloader";
+import Activity from "../pages/activity/Activity";
 
 const Navigation = () => {
   const [theme, setTheme] = useState("");
@@ -59,6 +60,7 @@ const Navigation = () => {
         <Route path="/user/:id" element={<FriendUserProfile />} />
         <Route path="/ReelPostByLink" element={<ReelPostByLink />} />
         <Route path="/LinkDownloader" element={<LinkDownloader />} />
+        <Route path="/Activity" element={<Activity />} />
 
       </Routes>
     </Router>

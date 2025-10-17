@@ -1,7 +1,6 @@
-// AppContext.js
 import React, { createContext, useState, useEffect } from "react";
 import { auth, googleProvider } from "../firebaseConfig/Config";
-import { signInWithPopup, signOut, onAuthStateChanged } from "firebase/auth";
+import { signInWithPopup, signOut } from "firebase/auth";
 import backendURL from "../utils/String";
 
 export const AppContext = createContext();
@@ -11,8 +10,7 @@ export const AppProvider = ({ children }) => {
   const [token, setToken] = useState(null);
   const [theme, setTheme] = useState("light");
 
-
-  // ✅ Restore from localStorage on first load
+  // Restore user & token from localStorage on page load
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     const storedToken = localStorage.getItem("authToken");
@@ -23,7 +21,7 @@ export const AppProvider = ({ children }) => {
     }
   }, []);
 
-  // ✅ Email + Password login
+  // Email login
   const loginWithEmail = async (fdata) => {
     try {
       const res = await fetch(`${backendURL}/signin`, {
@@ -35,14 +33,13 @@ export const AppProvider = ({ children }) => {
       const data = await res.json();
       if (res.ok && !data.error) {
         const loggedInUser = data.user || { email: fdata.email };
-
         setUser(loggedInUser);
         setToken(data.data);
 
         localStorage.setItem("user", JSON.stringify(loggedInUser));
         localStorage.setItem("authToken", data.data);
 
-        return { success: true };
+        return { success: true, user: loggedInUser };
       } else {
         throw new Error(data.error || "Invalid credentials");
       }
@@ -52,35 +49,30 @@ export const AppProvider = ({ children }) => {
     }
   };
 
-  // ✅ Google login
+  // Google login
   const login = async () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
-      const loggedInUser = result.user;
+      const idToken = await result.user.getIdToken();
 
-      const idToken = await loggedInUser.getIdToken();
-
-      const payload = {
-        email: loggedInUser.email,
-        name: loggedInUser.displayName,
-        photoURL: loggedInUser.photoURL,
-        firebaseToken: idToken,
-      };
-
-      const res = await fetch(`${backendURL}/google-login`, {
+      // Send idToken to backend
+      const res = await fetch(`${backendURL}/google-loginweb`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        body: JSON.stringify({ idToken }),
       });
 
       const data = await res.json();
+
       if (res.ok && data.success) {
+        // ✅ Save backend user object, not Firebase currentUser
         setUser(data.user);
         setToken(data.token);
 
         localStorage.setItem("user", JSON.stringify(data.user));
         localStorage.setItem("authToken", data.token);
-        return { success: true };
+
+        return data.user;
       } else {
         throw new Error(data.message || "Google login failed");
       }
@@ -90,31 +82,16 @@ export const AppProvider = ({ children }) => {
     }
   };
 
-  // ✅ Logout
+  // Logout
   const logout = async () => {
     try {
       await signOut(auth);
-    } catch {}
+    } catch (err) {}
     setUser(null);
     setToken(null);
     localStorage.removeItem("user");
     localStorage.removeItem("authToken");
   };
-
-  // ✅ Keep Firebase sync (only for Google logins)
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-      if (currentUser) {
-        const idToken = await currentUser.getIdToken();
-        setUser(currentUser);
-        setToken(idToken);
-
-        localStorage.setItem("user", JSON.stringify(currentUser));
-        localStorage.setItem("authToken", idToken);
-      }
-    });
-    return () => unsubscribe();
-  }, []);
 
   return (
     <AppContext.Provider
@@ -124,6 +101,292 @@ export const AppProvider = ({ children }) => {
     </AppContext.Provider>
   );
 };
+
+
+// // src/context/AppContext.js
+// import React, { createContext, useState, useEffect } from "react";
+// import { auth, googleProvider } from "../firebaseConfig/Config";
+// import { signInWithPopup, signOut, onAuthStateChanged } from "firebase/auth";
+// import backendURL from "../utils/String";
+
+// export const AppContext = createContext();
+
+// export const AppProvider = ({ children }) => {
+//   const [user, setUser] = useState(null);
+//   const [token, setToken] = useState(null);
+//   const [theme, setTheme] = useState("light");
+
+//   useEffect(() => {
+//     const storedUser = localStorage.getItem("user");
+//     const storedToken = localStorage.getItem("authToken");
+
+//     if (storedUser && storedToken) {
+//       setUser(JSON.parse(storedUser));
+//       setToken(storedToken);
+//     }
+//   }, []);
+
+//   const loginWithEmail = async (fdata) => {
+//     try {
+//       const res = await fetch(`${backendURL}/signin`, {
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify(fdata),
+//       });
+
+//       const data = await res.json();
+//       if (res.ok && !data.error) {
+//         const loggedInUser = data.user || { email: fdata.email };
+//         setUser(loggedInUser);
+//         setToken(data.data);
+
+//         localStorage.setItem("user", JSON.stringify(loggedInUser));
+//         localStorage.setItem("authToken", data.data);
+
+//         return { success: true, user: loggedInUser };
+//       } else {
+//         throw new Error(data.error || "Invalid credentials");
+//       }
+//     } catch (err) {
+//       console.error("❌ Email login failed:", err);
+//       return { success: false, message: err.message };
+//     }
+//   };
+
+//   // ✅ Google login
+//   // const login = async () => {
+//   //   try {
+//   //     const result = await signInWithPopup(auth, googleProvider);
+//   //     const loggedInUser = result.user;
+
+//   //     const idToken = await loggedInUser.getIdToken();
+
+//   //     const payload = {
+//   //       email: loggedInUser.email,
+//   //       name: loggedInUser.displayName,
+//   //       photoURL: loggedInUser.photoURL,
+//   //       firebaseToken: idToken,
+//   //     };
+
+//   //     const res = await fetch(`${backendURL}/google-loginweb`, {
+//   //       method: "POST",
+//   //       headers: { "Content-Type": "application/json" },
+//   //       body: JSON.stringify(payload),
+//   //     });
+
+//   //     const data = await res.json();
+
+//   //     if (res.ok && data.success) {
+//   //       setUser(data.user);
+//   //       setToken(data.token);
+
+//   //       localStorage.setItem("user", JSON.stringify(data.user));
+//   //       localStorage.setItem("authToken", data.token);
+
+//   //       return data.user; // ✅ Return user object
+//   //     } else {
+//   //       throw new Error(data.message || "Google login failed");
+//   //     }
+//   //   } catch (error) {
+//   //     console.error("❌ Google login error:", error.message);
+//   //     return { success: false, message: error.message };
+//   //   }
+//   // };
+
+//   const login = async () => {
+//   try {
+//     const result = await signInWithPopup(auth, googleProvider);
+//     const loggedInUser = result.user;
+
+//     const idToken = await loggedInUser.getIdToken();
+
+//     const res = await fetch(`${backendURL}/google-loginweb`, {
+//       method: "POST",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify({ idToken }), // ✅ send exactly what backend expects
+//     });
+
+//     const data = await res.json();
+
+//     if (res.ok && data.success) {
+//       setUser(data.user);
+//       setToken(data.token);
+
+//       localStorage.setItem("user", JSON.stringify(data.user));
+//       localStorage.setItem("authToken", data.token);
+
+//       return data.user;
+//     } else {
+//       throw new Error(data.message || "Google login failed");
+//     }
+//   } catch (error) {
+//     console.error("❌ Google login error:", error.message);
+//     return { success: false, message: error.message };
+//   }
+// };
+
+
+//   const logout = async () => {
+//     try {
+//       await signOut(auth);
+//     } catch {}
+//     setUser(null);
+//     setToken(null);
+//     localStorage.removeItem("user");
+//     localStorage.removeItem("authToken");
+//   };
+
+//   // Keep Firebase user in sync
+//   useEffect(() => {
+//     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+//       if (currentUser) {
+//         const idToken = await currentUser.getIdToken();
+//         setUser(currentUser);
+//         setToken(idToken);
+
+//         localStorage.setItem("user", JSON.stringify(currentUser));
+//         localStorage.setItem("authToken", idToken);
+//       }
+//     });
+//     return () => unsubscribe();
+//   }, []);
+
+//   return (
+//     <AppContext.Provider
+//       value={{ user, token, theme, setTheme, loginWithEmail, login, logout }}
+//     >
+//       {children}
+//     </AppContext.Provider>
+//   );
+// };
+
+
+// // AppContext.js
+// import React, { createContext, useState, useEffect } from "react";
+// import { auth, googleProvider } from "../firebaseConfig/Config";
+// import { signInWithPopup, signOut, onAuthStateChanged } from "firebase/auth";
+// import backendURL from "../utils/String";
+
+// export const AppContext = createContext();
+
+// export const AppProvider = ({ children }) => {
+//   const [user, setUser] = useState(null);
+//   const [token, setToken] = useState(null);
+//   const [theme, setTheme] = useState("light");
+
+
+//   // ✅ Restore from localStorage on first load
+//   useEffect(() => {
+//     const storedUser = localStorage.getItem("user");
+//     const storedToken = localStorage.getItem("authToken");
+
+//     if (storedUser && storedToken) {
+//       setUser(JSON.parse(storedUser));
+//       setToken(storedToken);
+//     }
+//   }, []);
+
+//   // ✅ Email + Password login
+//   const loginWithEmail = async (fdata) => {
+//     try {
+//       const res = await fetch(`${backendURL}/signin`, {
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify(fdata),
+//       });
+
+//       const data = await res.json();
+//       if (res.ok && !data.error) {
+//         const loggedInUser = data.user || { email: fdata.email };
+
+//         setUser(loggedInUser);
+//         setToken(data.data);
+
+//         localStorage.setItem("user", JSON.stringify(loggedInUser));
+//         localStorage.setItem("authToken", data.data);
+
+//         return { success: true };
+//       } else {
+//         throw new Error(data.error || "Invalid credentials");
+//       }
+//     } catch (err) {
+//       console.error("❌ Email login failed:", err);
+//       return { success: false, message: err.message };
+//     }
+//   };
+
+//   // ✅ Google login
+//   const login = async () => {
+//     try {
+//       const result = await signInWithPopup(auth, googleProvider);
+//       const loggedInUser = result.user;
+
+//       const idToken = await loggedInUser.getIdToken();
+
+//       const payload = {
+//         email: loggedInUser.email,
+//         name: loggedInUser.displayName,
+//         photoURL: loggedInUser.photoURL,
+//         firebaseToken: idToken,
+//       };
+
+//       const res = await fetch(`${backendURL}/google-loginweb`, {
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify(payload),
+//       });
+
+//       const data = await res.json();
+//       if (res.ok && data.success) {
+//         setUser(data.user);
+//         setToken(data.token);
+
+//         localStorage.setItem("user", JSON.stringify(data.user));
+//         localStorage.setItem("authToken", data.token);
+//         return { success: true };
+//       } else {
+//         throw new Error(data.message || "Google login failed");
+//       }
+//     } catch (error) {
+//       console.error("❌ Google login error:", error.message);
+//       return { success: false, message: error.message };
+//     }
+//   };
+
+//   // ✅ Logout
+//   const logout = async () => {
+//     try {
+//       await signOut(auth);
+//     } catch {}
+//     setUser(null);
+//     setToken(null);
+//     localStorage.removeItem("user");
+//     localStorage.removeItem("authToken");
+//   };
+
+//   // ✅ Keep Firebase sync (only for Google logins)
+//   useEffect(() => {
+//     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+//       if (currentUser) {
+//         const idToken = await currentUser.getIdToken();
+//         setUser(currentUser);
+//         setToken(idToken);
+
+//         localStorage.setItem("user", JSON.stringify(currentUser));
+//         localStorage.setItem("authToken", idToken);
+//       }
+//     });
+//     return () => unsubscribe();
+//   }, []);
+
+//   return (
+//     <AppContext.Provider
+//       value={{ user, token, theme, setTheme, loginWithEmail, login, logout }}
+//     >
+//       {children}
+//     </AppContext.Provider>
+//   );
+// };
 
 
 

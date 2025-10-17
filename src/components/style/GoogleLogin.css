@@ -79,7 +79,6 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 30px;
     margin-left: 30px;
 }
 .hero__section{
@@ -148,6 +147,9 @@
     .left1{
         text-align: center;
     }
+     .right12{
+     margin-top: 200px;   
+    }
     .discription{
         text-align: center;
     }
@@ -172,6 +174,7 @@
     }
     .social-links {
     margin-left:38px;
+   
 }
 }
 
@@ -203,3 +206,4 @@
             margin-left: -20px;  
     }
 }
+

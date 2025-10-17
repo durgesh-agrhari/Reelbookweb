@@ -110,7 +110,7 @@ const AllCategory = () => {
         userId: userData._id,
         reelsScrolled: 1, // increment by 1 scroll
       });
-      console.log(`✅ Reel scroll logged for reel: ${item._id}`);
+      // console.log(`✅ Reel scroll logged for reel: ${item._id}`);
     } catch (activityErr) {
       console.error("❌ Error logging reel scroll:", activityErr.message);
     }

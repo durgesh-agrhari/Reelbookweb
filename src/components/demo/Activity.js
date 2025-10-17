@@ -144,7 +144,7 @@ const ActivityUser = () => {
     fetchActivity();
   }, [tab]);
 
-  console.log("📊 Activity Data:", activityData);
+  // console.log("📊 Activity Data:", activityData);
 
   // --- Render Each Item ---
   const renderItem = ({ item }) => (

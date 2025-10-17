@@ -22,7 +22,7 @@ const UserProfile = () => {
     async function loadStories() {
       try {
         const res = await fetch(`${backendURL}/story/getallStorys`);
-        console.log("story", res)
+        // console.log("story", res)
         if (!res.ok) throw new Error("Story fetch failed");
         const data = await res.json();
         // console.log("data story", data.data)
@@ -34,7 +34,7 @@ const UserProfile = () => {
     loadStories();
   }, []);
 
-  console.log("storyes ", stories)
+  // console.log("storyes ", stories)
 
 
   // ✅ Load token & user data into Redux
@@ -45,7 +45,7 @@ const UserProfile = () => {
     }
   }, [token, dispatch]);
 
-  console.log("reels", reels, "post", posts)
+  // console.log("reels", reels, "post", posts)
   // ✅ Get user data from Redux
   const { userData, loading } = useSelector((state) => state.auth);
   useEffect(() => {
@@ -326,9 +326,9 @@ const UserProfile = () => {
             <p style={{color:'red', margin:'15px'}}>Are you sure you want to delete this {deleteItem?.type}?</p>
             <button onClick={async () => {
               let url = '';
-              if (deleteItem.type === 'post') url = `http://localhost:3000/post/deletePost/${deleteItem.id}`;
-              else if (deleteItem.type === 'reel') url = `http://localhost:3000/reel/deleteReel/${deleteItem.id}`;
-              else if (deleteItem.type === 'story') url = `http://localhost:3000/story/deleteStory/${deleteItem.id}`;
+              if (deleteItem.type === 'post') url = `${backendURL}/post/deletePost/${deleteItem.id}`;
+              else if (deleteItem.type === 'reel') url = `${backendURL}/reel/deleteReel/${deleteItem.id}`;
+              else if (deleteItem.type === 'story') url = `${backendURL}/story/deleteStory/${deleteItem.id}`;
 
               try {
                 const res = await fetch(url, { method: 'DELETE' });
