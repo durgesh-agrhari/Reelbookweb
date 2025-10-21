@@ -134,7 +134,13 @@ const Header = ({ theme, toggleTheme }) => {
               {/* ===== More Dropdown (Desktop) ===== */}
               <li className="menu__item dropdown desktop-only">
                 <span className="menu__link">More ▾</span>
+                
                 <ul className="dropdown__menu">
+                  <li>
+                    <NavLink to="/EarningInfo" className="dropdown__link">
+                      Earning Guid
+                    </NavLink>
+                  </li>
                   <li>
                     <NavLink to="/PrivacyPolicy" className="dropdown__link">
                       Privacy & Policy
@@ -154,6 +160,11 @@ const Header = ({ theme, toggleTheme }) => {
               </li>
 
               {/* ===== Mobile-only Items ===== */}
+              <li className="menu__item mobile-only">
+                <NavLink to="/EarningInfo" className="menu__link">
+                  Earning Guid
+                </NavLink>
+              </li>
               <li className="menu__item mobile-only">
                 <NavLink to="/PrivacyPolicy" className="menu__link">
                   Privacy & Policy

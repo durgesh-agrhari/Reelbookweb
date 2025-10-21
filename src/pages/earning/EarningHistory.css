@@ -1,0 +1,130 @@
+.earning-container {
+  min-height: 100vh;
+  padding: 20px;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.light-theme .earning-container{
+  background: #e9e8e8;
+}
+.earning-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.left p{
+  color: #000;
+}
+.left h4{
+  color: #000;
+}
+.summary-box h3{
+  color: #000;
+}
+.summary-box {
+  background: #f0f0f0;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.summary-box .coins {
+  font-size: 18px;
+  color: #f9a825;
+  font-weight: 600;
+}
+
+.summary-box .rupees {
+  font-size: 16px;
+  color: #2ecc71;
+}
+
+.loading {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 18px;
+}
+
+.no-data {
+  text-align: center;
+  color: gray;
+  margin-top: 50px;
+}
+
+.earning-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.earning-card {
+  display: flex;
+  justify-content: space-between;
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+.left {
+  flex: 2;
+}
+
+.right {
+  flex: 1;
+  text-align: center;
+}
+
+.earning-label {
+  color: #666;
+  font-size: 14px;
+}
+
+.earning-amount {
+  color: #2ecc71;
+  font-size: 22px;
+  font-weight: 700;
+  margin: 6px 0;
+}
+
+.btn {
+  border: none;
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #fff;
+  margin-top: 5px;
+}
+
+.btn.withdraw {
+  background-color: #3498db;
+}
+
+.btn.pending {
+  background-color: #f1c40f;
+  color: #000;
+}
+
+.btn.completed {
+  background-color: #2ecc71;
+}
+
+.current-month {
+  font-size: 12px;
+  color: gray;
+  margin-top: 6px;
+}
+
+.note-box {
+  background: #c29a4c;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+}

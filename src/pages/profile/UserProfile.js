@@ -176,10 +176,32 @@ const UserProfile = () => {
             <button
               onClick={() => navigate("/StoryPost")}
               className="btn ternary"
+              style={{ color:'black'}}
             >
               Upload Story
             </button>
           </div>
+
+
+           {/* Action Buttons */}
+          <div className="profile-actions">
+            <button
+              onClick={() => navigate("/EarningDashboard")}
+              className="btn primary"
+              style={{ backgroundColor: '#9469c9' , color:'white'}}
+            >
+              💰 Your Content Earning
+            </button>
+            <button
+              onClick={() => navigate("/EarningActivity")}
+              className="btn secondary"
+              style={{ backgroundColor: '#69c0c9' , color:'black'}}
+            >
+              🤑 Your Activity Earning
+            </button>
+        
+          </div>
+
 
           <button className="btn logout" onClick={handleLogout}>
             Logout

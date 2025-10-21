@@ -1,0 +1,129 @@
+.earning-dashboard {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  color: #222;
+}
+.container-e{
+    background-color: #000000;
+}
+.light-theme .container-e{
+    background: #e9e8e8;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.title{
+    color: #e8eaf6;
+}
+
+.light-theme .title{
+    color: #202020;
+}
+.title2{
+    color: #bebec1;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.user-box {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 100%;
+  border: 2px solid gold;
+  margin-right: 15px;
+}
+
+.coin-summary {
+  background: #f3f3f3;
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+}
+
+.coin-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.coin-text {
+  color: #f9a825;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.rupee-text {
+  color: #555;
+}
+
+.btn-primary {
+  background: green;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.breakdown {
+  margin: 20px 0;
+}
+
+.reward-item {
+  background: #e8eaf6;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+
+.rules {
+  background: #2b303b;
+  color: white;
+  border-radius: 10px;
+  padding: 15px;
+  opacity: 0.9;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.earning-img{
+    width: 30;
+    height: 30;
+}
+.modal {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.rules p{
+    color: white;
+    padding: 5px;
+}
