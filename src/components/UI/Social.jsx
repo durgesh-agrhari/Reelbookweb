@@ -18,25 +18,25 @@ const Social = ({ theme }) => {
                         <div className='social-icons'>
                             <h3 className='highlight'>Follow Us</h3>
                             <div className='social-links'>
-                                <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">
+                                <a href="https://www.youtube.com/@reelbookapp" target="_blank" rel="noopener noreferrer">
                                     <i className="fab fa-youtube"></i>
                                 </a>
-                                <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+                                <a href="https://www.instagram.com/reelbookapp" target="_blank" rel="noopener noreferrer">
                                     <i className="fab fa-instagram"></i>
                                 </a>
-                                <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+                                <a href="https://www.facebook.com/profile.php?id=61581772550243" target="_blank" rel="noopener noreferrer">
                                     <i className="fab fa-facebook"></i>
                                 </a>
-                                <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
+                                <a href="https://x.com/reelbookapp" target="_blank" rel="noopener noreferrer">
                                     <i className="fab fa-twitter"></i>
                                 </a>
-                                <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
+                                <a href="https://www.linkedin.com/company/reelbook/?viewAsMember=true" target="_blank" rel="noopener noreferrer">
                                     <i className="fab fa-linkedin"></i>
                                 </a>
-                                <a href="https://www.reddit.com" target="_blank" rel="noopener noreferrer">
+                                {/* <a href="https://www.reddit.com/user/reelbookapp" target="_blank" rel="noopener noreferrer">
                                     <i className="fab fa-reddit"></i>
-                                </a>
-                                <a href="https://medium.com" target="_blank" rel="noopener noreferrer">
+                                </a> */}
+                                <a href="https://medium.com/@reelbookapp" target="_blank" rel="noopener noreferrer">
                                     <i className="fab fa-medium"></i>
                                 </a>
                             </div>
@@ -49,7 +49,7 @@ const Social = ({ theme }) => {
                             <h3 className='highlight1' style={{marginTop:'50px'}} >Download from Play Store and App Store</h3>
                             <div className='hero__btns'>
                                 <button style={{ borderRadius: '10px' }}>
-                                    <Link to='/' style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', color: 'inherit' }}>
+                                    <Link to='https://play.google.com/store/apps/details?id=com.reelbook' style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', color: 'inherit' }}>
                                         <img
                                             src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/2560px-Google_Play_Store_badge_EN.svg.png"
                                             alt="Google Play"
@@ -58,7 +58,7 @@ const Social = ({ theme }) => {
                                     </Link>
                                 </button>
                                 <button style={{ borderRadius: '10px' }}>
-                                    <Link to='/' style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', color: 'inherit' }}>
+                                    <Link to='https://play.google.com/store/apps/details?id=com.reelbook' style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', color: 'inherit' }}>
                                         <img
                                             src="https://w7.pngwing.com/pngs/327/888/png-transparent-aivalable-on-the-app-store-hd-logo.png"
                                             alt="App Store"

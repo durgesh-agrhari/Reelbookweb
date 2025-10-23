@@ -29,6 +29,7 @@ import EarningDashboard from "../pages/earning/EarningDashboard.js";
 import EarningHistory from "../pages/earning/EarningHistory.js";
 import EarningActivity from "../pages/earning/EarningActivity.js";
 import EarningInfo from "../pages/imppages/EarningInfo.js";
+import About from "../components/UI/About.jsx";
 
 const Navigation = () => {
   const [theme, setTheme] = useState("");
@@ -69,6 +70,7 @@ const Navigation = () => {
         <Route path="/EarningHistory" element={<EarningHistory />} />
         <Route path="/EarningActivity" element={<EarningActivity />} />
         <Route path="/EarningInfo" element={<EarningInfo />} />
+        <Route path="/About" element={<About />} />
 
       </Routes>
     </Router>

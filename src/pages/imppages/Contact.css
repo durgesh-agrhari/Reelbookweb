@@ -4,6 +4,8 @@
   padding: 60px 20px;
   min-height: 100vh;
   font-family: 'Segoe UI', sans-serif;
+        margin-top: -20px;
+    padding-top: 30px;
 }
 .light-theme .contact-container{
   background-color: #d2cdcd;

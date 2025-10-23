@@ -3,6 +3,8 @@
   text-align: center;
   background: #101010;
   min-height: 100vh;
+        margin-top: -20px;
+    /* padding-top: 30px; */
 }
 
 .light-theme .profile-container {

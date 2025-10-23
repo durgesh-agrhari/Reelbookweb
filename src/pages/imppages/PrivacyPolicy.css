@@ -12,6 +12,8 @@ body {
 .privacy-page {
   padding: 40px 20px;
   background-color: #000;
+        margin-top: -20px;
+    padding-top: 30px;
   
 }
 .light-theme .privacy-page{

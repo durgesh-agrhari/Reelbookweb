@@ -1,17 +1,21 @@
 
 .hight{
-    height: '10px';
+    height: '50px';
+    background-color: aliceblue;
 }
 
 .light-theme .hight{
-  background: #e9e8e8;
+  background: #c81111;
 }
 
-.hight1{
-    height: '20px';
+.homeheading{
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
+  padding-bottom: 20px;
 }
 
-.light-theme .hight1{
+.light-theme .homeheading{
   background: #e9e8e8;
 }
 .heading{

@@ -16,10 +16,8 @@ const Homepage = () => {
 
   return (
     <div>
-      <div className='hight' />
       <AutoCarousel />
-      <div className='hight1'/>
-      <h2 className='heading' style={{paddingTop:'20px'}}>Reelbook feed videos</h2>
+      <h2 className='homeheading' >Reelbook feed videos</h2>
       <HomeVideo />
       <Counter />
       <Social />

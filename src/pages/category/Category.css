@@ -4,6 +4,8 @@
   min-height: 100vh;
   text-align: center;
   box-sizing: border-box;
+      margin-top: -20px;
+    padding-top: 30px;
 }
 
 .light-theme .category-container {

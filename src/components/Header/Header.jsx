@@ -133,7 +133,7 @@ const Header = ({ theme, toggleTheme }) => {
 
               {/* ===== More Dropdown (Desktop) ===== */}
               <li className="menu__item dropdown desktop-only">
-                <span className="menu__link">More ▾</span>
+                <span className="menu__link" style={{color:'rgb(14, 107, 238)'}}>More ▾</span>
                 
                 <ul className="dropdown__menu">
                   <li>
@@ -156,6 +156,13 @@ const Header = ({ theme, toggleTheme }) => {
                       Feedback
                     </NavLink>
                   </li>
+                   <li>
+                    <NavLink to="/About" className="dropdown__link">
+                       About Us
+                    </NavLink>
+                  </li>
+
+                 
                 </ul>
               </li>
 
