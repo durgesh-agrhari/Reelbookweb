@@ -46,13 +46,15 @@ const EarningActivity = () => {
           <li>1 Reel Like = 1 Coin</li>
           <li>1 Photo Like = 1 Coin</li>
           <li>1 Active Hour = 1 Coin</li>
+          <li>1 Refered User = 1000 Coin</li>
+          <li>1 Referal code use  = 500 Coin</li>
         </ul>
       </section>
 
       {/* Conversion Info */}
       <section className="info-section">
         <h3>💰 Conversion Rate</h3>
-        <p>5000 Coins = ₹1</p>
+        <p>2000 Coins = ₹1</p>
       </section>
 
       {/* Withdraw Info */}
