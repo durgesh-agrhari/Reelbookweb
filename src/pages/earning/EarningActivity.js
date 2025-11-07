@@ -45,7 +45,7 @@ const EarningActivity = () => {
           <li>1 Reel Scroll = 1 Coin</li>
           <li>1 Reel Like = 1 Coin</li>
           <li>1 Photo Like = 1 Coin</li>
-          <li>1 Active Hour = 1 Coin</li>
+          <li>1 Active Hour = 10 Coin</li>
           <li>1 Refered User = 1000 Coin</li>
           <li>1 Referal code use  = 500 Coin</li>
         </ul>
