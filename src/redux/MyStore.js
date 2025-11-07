@@ -10,10 +10,12 @@ import AuthReducer from './AuthSlice';
 // import userPostReducer from './userProfileSlice/UserPostSlice';
 // import userReelReducer from './userProfileSlice/UserReelSlice';
 // import userStoryReducer from './userProfileSlice/UserStorySlice';
+import RandomReelReducer from './RandomReelSlice';
 
 const MyStore = configureStore({
   reducer: {
     auth: AuthReducer,
+     randomReel: RandomReelReducer,
     // post: PostReducer,
     // theme: ThemeSlice,
     // reel: ReelReducer,
