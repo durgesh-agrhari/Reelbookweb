@@ -187,6 +187,12 @@ const Header = ({ theme, toggleTheme }) => {
                   Feedback
                 </NavLink>
               </li>
+                 <li className="menu__item mobile-only">
+                <NavLink to="/About" className="menu__link">
+                  About Us
+                </NavLink>
+              </li>
+                 
 
               {/* ===== Conditional User Section ===== */}
               {!user ? (
