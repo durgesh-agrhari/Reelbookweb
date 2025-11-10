@@ -55,7 +55,7 @@ const VideoPlayer = () => {
   const incrementViewCount = async (videoId) => {
     try {
       await axios.post(`${backendURL}${REEL_VIEWS_POST}/${videoId}`);
-      console.log("✅ View count incremented:", videoId);
+      // console.log("✅ View count incremented:", videoId);
     } catch (err) {
       console.error("❌ Failed to increment view count:", err.message);
     }
