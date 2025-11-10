@@ -3,11 +3,11 @@ import '../style/about.css';
 import '../style/team.css';
 
 import aboutImg from "../../assets/reelbookbannerabout.png";
-// import teamImg1 from "../../assets/durgesh.jpeg";
-// import teamImg2 from "../../assets/ritik.jpeg";
-// import teamImg3 from "../../images/c1.png";
-// import teamImg4 from "../../assets/hament.png";
-// import teamImg5 from "../../images/varun.jpeg";
+import teamImg1 from "../../assets/durgesh.jpeg";
+import teamImg2 from "../../assets/ritik.jpeg";
+import teamImg3 from "../../images/c1.png";
+import teamImg4 from "../../assets/hament.png";
+import teamImg5 from "../../images/varun.jpeg";
 import Social from './Social';
 
 const chooseData = [
@@ -33,44 +33,44 @@ const chooseData = [
   },
 ];
 
-// const teamMembers = [
-//   {
-//     imgUrl: teamImg1,
-//     name: 'Durgesh Agrhari',
-//     position: 'Founder & CEO of Reelbook',
-//     working: 'Software Engineer',
-//     socal1: 'https://www.linkedin.com/in/durgesh-agrhari-b1a4341b4',
-//     socal2: 'https://x.com/durgeshzone',
-//     socal3: 'https://www.instagram.com/durgeshzone',
-//   },
-//   {
-//     imgUrl: teamImg2,
-//     name: 'Ritik Jain',
-//     position: 'Contributor',
-//     working: 'Software Engineer',
-//     socal1: 'https://www.linkedin.com/in/ravishingrj/',
-//     socal2: '',
-//     socal3: 'https://www.instagram.com/ravishing_ritik',
-//   },
-//   {
-//     imgUrl: teamImg5,
-//     name: 'Hemant Singh',
-//     position: 'Contributor',
-//     working: 'Google AdMob',
-//     socal1: '',
-//     socal2: '',
-//     socal3: 'https://www.instagram.com/varun2awesome?igsh=Z3dtc3E4NWI2dTBi',
-//   },
-//     {
-//     imgUrl: teamImg4,
-//     name: 'Hemant Singh',
-//     position: 'Contributor',
-//     working: 'Code Security',
-//     socal1: '',
-//     socal2: '',
-//     socal3: '',
-//   },
-// ];
+const teamMembers = [
+  {
+    imgUrl: teamImg1,
+    name: 'Durgesh Agrhari',
+    position: 'Founder & CEO of Reelbook',
+    working: 'Software Engineer',
+    socal1: 'https://www.linkedin.com/in/durgesh-agrhari-b1a4341b4',
+    socal2: 'https://x.com/durgeshzone',
+    socal3: 'https://www.instagram.com/durgeshzone',
+  },
+  {
+    imgUrl: teamImg2,
+    name: 'Ritik Jain',
+    position: 'Contributor',
+    working: 'Software Engineer',
+    socal1: 'https://www.linkedin.com/in/ravishingrj/',
+    socal2: '',
+    socal3: 'https://www.instagram.com/ravishing_ritik',
+  },
+  {
+    imgUrl: teamImg5,
+    name: 'Hemant Singh',
+    position: 'Contributor',
+    working: 'Google AdMob',
+    socal1: '',
+    socal2: '',
+    socal3: 'https://www.instagram.com/varun2awesome?igsh=Z3dtc3E4NWI2dTBi',
+  },
+    {
+    imgUrl: teamImg4,
+    name: 'Hemant Singh',
+    position: 'Contributor',
+    working: 'Code Security',
+    socal1: '',
+    socal2: '',
+    socal3: '',
+  },
+];
 
 const About = () => {
   useEffect(() => {
@@ -109,7 +109,7 @@ const About = () => {
         </div>
 
         {/* Team Section */}
-        {/* <div className='container'>
+        <div className='container'>
           <div className='team__content'>
             <h4 style={{color:'gray', margin:'5px'}}>Our Team</h4>
             <h2>Meet <span className='highlight'>Our Amazing Team</span></h2>
@@ -153,7 +153,7 @@ const About = () => {
               </div>
             ))}
           </div>
-        </div> */}
+        </div>
 
         {/* About Reelbook Section */}
         <div className='container about__bottom'>
