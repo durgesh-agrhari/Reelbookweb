@@ -102,7 +102,9 @@ const EarningHistory = () => {
   };
 
   useEffect(() => {
-    if (userData?._id) fetchData();
+    if (userData?._id) {
+      fetchData()
+    }
   }, [userData]);
 
   const isCurrentMonth = (month) => {
