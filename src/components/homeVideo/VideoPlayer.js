@@ -1,24 +1,24 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import './VideoPlayer.css';
-import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchRandomReels } from '../../redux/RandomReelSlice';
+import React, { useRef, useState, useEffect, useCallback } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import "./VideoPlayer.css";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchRandomReels } from "../../redux/RandomReelSlice";
 
-import like from '../../assets/likebtn.png';
+import like from "../../assets/likebtn.png";
 import liked from "../../assets/liked.png";
-import comment from '../../assets/comment.png';
-import share from '../../assets/share.png';
-import views from '../../assets/eye21.png';
-import logo from '../../assets/logo123.png';
-import backendURL, { REEL_VIEWS_POST } from '../../utils/String';
+import comment from "../../assets/comment.png";
+import share from "../../assets/share.png";
+import views from "../../assets/eye21.png";
+import logo from "../../assets/logo123.png";
+import backendURL, { REEL_VIEWS_POST } from "../../utils/String";
 
 const VideoPlayer = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
   const videoRef = useRef(null);
-
   const dispatch = useDispatch();
+
   const { reels, page, hasMore, loading } = useSelector(
     (state) => state.randomReel
   );
@@ -26,71 +26,76 @@ const VideoPlayer = () => {
   const [muted, setMuted] = useState(false);
   const [index, setIndex] = useState(state?.currentIndex || 0);
   const [videoList, setVideoList] = useState(state?.videoList || []);
-
   const [isLiked, setIsLiked] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
 
   const video = videoList[index];
 
-  // 🔁 When Redux reels update (after fetching next page), append to list
-  useEffect(() => {
-    if (reels && reels.length > videoList.length) {
-      setVideoList(reels);
-    }
-  }, [reels]);
-
-  // ✅ Fetch more videos automatically when near the end
-  useEffect(() => {
-    if (index >= videoList.length - 2 && hasMore && !loading) {
-      dispatch(fetchRandomReels(page));
-    }
-  }, [index, videoList.length, hasMore, loading, page, dispatch]);
-
-  // ✅ Increment view count when video changes
-  useEffect(() => {
-    if (video?._id) incrementViewCount(video._id);
-    if (videoRef.current) videoRef.current.load();
-  }, [index, video]);
-
-  const incrementViewCount = async (videoId) => {
+  // ✅ Safe function to increment video views
+  const incrementViewCount = useCallback(async (videoId) => {
+    if (!videoId) return;
     try {
       await axios.post(`${backendURL}${REEL_VIEWS_POST}/${videoId}`);
       console.log("✅ View count incremented:", videoId);
     } catch (err) {
       console.error("❌ Failed to increment view count:", err.message);
     }
-  };
+  }, []);
 
-  const handleVideoClick = () => {
+  // ✅ Load next batch of videos when near the end
+  useEffect(() => {
+    if (index >= videoList.length - 2 && hasMore && !loading) {
+      dispatch(fetchRandomReels(page));
+    }
+  }, [index, videoList, hasMore, loading, page, dispatch]);
+
+  // ✅ When Redux reels update, merge them if new ones arrive
+  useEffect(() => {
+    if (reels && reels.length > videoList.length) {
+      setVideoList(reels);
+    }
+  }, [reels, videoList.length]);
+
+  // ✅ Auto-load and count view on index change
+  useEffect(() => {
+    if (video?._id) incrementViewCount(video._id);
+    if (videoRef.current) videoRef.current.load();
+  }, [index, video, incrementViewCount]);
+
+  // ✅ Toggle mute/unmute
+  const handleVideoClick = useCallback(() => {
     if (!videoRef.current) return;
-    videoRef.current.muted = !videoRef.current.muted;
-    setMuted(videoRef.current.muted);
-  };
+    const newMuteState = !videoRef.current.muted;
+    videoRef.current.muted = newMuteState;
+    setMuted(newMuteState);
+  }, []);
 
-  const handleNext = () => {
+  // ✅ Go to next video
+  const handleNext = useCallback(() => {
     if (index < videoList.length - 1) {
-      setIndex(index + 1);
+      setIndex((prev) => prev + 1);
     } else if (hasMore && !loading) {
-      // Load next batch automatically
       dispatch(fetchRandomReels(page));
     } else {
       console.log("🎬 End of list");
     }
-  };
+  }, [index, videoList.length, hasMore, loading, page, dispatch]);
 
-  const handlePrev = () => {
-    if (index > 0) setIndex(index - 1);
-  };
+  // ✅ Go to previous video
+  const handlePrev = useCallback(() => {
+    if (index > 0) setIndex((prev) => prev - 1);
+  }, [index]);
 
   const toggleLike = () => {
-    setIsLiked(!isLiked);
-    setShowPopup(true); // simulate action popup
+    setIsLiked((prev) => !prev);
+    setShowPopup(true);
   };
 
   if (!video) return <div>No video data found. Please go back.</div>;
 
   return (
     <div className="video-player-container">
+      {/* 🔙 Back Button */}
       <button onClick={() => navigate(-1)} className="back-button">
         <img
           src="https://cdn-icons-png.flaticon.com/512/93/93634.png"
@@ -100,8 +105,10 @@ const VideoPlayer = () => {
         Back
       </button>
 
+      {/* ⏳ Loader */}
       {loading && <div className="loader"></div>}
 
+      {/* 🎥 Video */}
       <video
         ref={videoRef}
         src={video.videourl}
@@ -110,13 +117,15 @@ const VideoPlayer = () => {
         playsInline
         className="video-fullscreen"
         onClick={handleVideoClick}
-        onLoadStart={() => console.log("Loading...")}
-        onCanPlay={() => console.log("Ready")}
       />
 
+      {/* 👤 Video Info */}
       <div className="video-info">
         <img
-          src={video.userProfilePic || "https://cdn-icons-png.flaticon.com/512/6858/6858504.png"}
+          src={
+            video.userProfilePic ||
+            "https://cdn-icons-png.flaticon.com/512/6858/6858504.png"
+          }
           alt="profile"
           className="profile-img"
         />
@@ -127,6 +136,7 @@ const VideoPlayer = () => {
         </div>
       </div>
 
+      {/* ❤️ Like / 💬 Comment / 📤 Share / 👁 View */}
       <div className="action-buttons">
         <button className="like-btn" onClick={toggleLike}>
           <img src={isLiked ? liked : like} alt="Like" className="likeicon" />
@@ -143,8 +153,13 @@ const VideoPlayer = () => {
           <h6>{video.shareviews || 0}</h6>
         </button>
 
-        <button title="View" onClick={() => setShowPopup(true)}>
-          <img src={views} alt="View" className="likeicon" style={{ width: '100%', height: 20 }} />
+        <button title="View">
+          <img
+            src={views}
+            alt="View"
+            className="likeicon"
+            style={{ width: "100%", height: 20 }}
+          />
           <h6>{video.views || 0}</h6>
         </button>
 
@@ -165,6 +180,7 @@ const VideoPlayer = () => {
         </button>
       </div>
 
+      {/* ⬆️⬇️ Navigation */}
       <div className="action-buttons-upanddown">
         <button onClick={handlePrev}>
           <img
@@ -182,6 +198,7 @@ const VideoPlayer = () => {
         </button>
       </div>
 
+      {/* 📲 Download Popup */}
       {showPopup && (
         <div className="popup-overlay">
           <div className="popup-content">
@@ -189,16 +206,16 @@ const VideoPlayer = () => {
               ✕
             </button>
             <img src={logo} alt="Reelbook" className="popup-logo" />
-            <h3 style={{ color: 'black' }}>Get the Full Experience!</h3>
-            <p style={{ color: 'black' }}>
+            <h3 style={{ color: "black" }}>Get the Full Experience!</h3>
+            <p style={{ color: "black" }}>
               Download the Reelbook App to Like, Comment & Share videos instantly.
             </p>
             <button
               className="download-btn"
               onClick={() =>
                 window.open(
-                  'https://play.google.com/store/apps/details?id=com.reelbook',
-                  '_blank'
+                  "https://play.google.com/store/apps/details?id=com.reelbook",
+                  "_blank"
                 )
               }
             >
@@ -212,6 +229,222 @@ const VideoPlayer = () => {
 };
 
 export default VideoPlayer;
+
+
+// import React, { useRef, useState, useEffect } from 'react';
+// import { useLocation, useNavigate } from 'react-router-dom';
+// import './VideoPlayer.css';
+// import axios from 'axios';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { fetchRandomReels } from '../../redux/RandomReelSlice';
+
+// import like from '../../assets/likebtn.png';
+// import liked from "../../assets/liked.png";
+// import comment from '../../assets/comment.png';
+// import share from '../../assets/share.png';
+// import views from '../../assets/eye21.png';
+// import logo from '../../assets/logo123.png';
+// import backendURL, { REEL_VIEWS_POST } from '../../utils/String';
+
+// const VideoPlayer = () => {
+//   const { state } = useLocation();
+//   const navigate = useNavigate();
+//   const videoRef = useRef(null);
+
+//   const dispatch = useDispatch();
+//   const { reels, page, hasMore, loading } = useSelector(
+//     (state) => state.randomReel
+//   );
+
+//   const [muted, setMuted] = useState(false);
+//   const [index, setIndex] = useState(state?.currentIndex || 0);
+//   const [videoList, setVideoList] = useState(state?.videoList || []);
+
+//   const [isLiked, setIsLiked] = useState(false);
+//   const [showPopup, setShowPopup] = useState(false);
+
+//   const video = videoList[index];
+
+//   // 🔁 When Redux reels update (after fetching next page), append to list
+//   useEffect(() => {
+//     if (reels && reels.length > videoList.length) {
+//       setVideoList(reels);
+//     }
+//   }, [reels]);
+
+//   // ✅ Fetch more videos automatically when near the end
+//   useEffect(() => {
+//     if (index >= videoList.length - 2 && hasMore && !loading) {
+//       dispatch(fetchRandomReels(page));
+//     }
+//   }, [index, videoList.length, hasMore, loading, page, dispatch]);
+
+//   // ✅ Increment view count when video changes
+//   useEffect(() => {
+//     if (video?._id) incrementViewCount(video._id);
+//     if (videoRef.current) videoRef.current.load();
+//   }, [index, video]);
+
+//   const incrementViewCount = async (videoId) => {
+//     try {
+//       await axios.post(`${backendURL}${REEL_VIEWS_POST}/${videoId}`);
+//       console.log("✅ View count incremented:", videoId);
+//     } catch (err) {
+//       console.error("❌ Failed to increment view count:", err.message);
+//     }
+//   };
+
+//   const handleVideoClick = () => {
+//     if (!videoRef.current) return;
+//     videoRef.current.muted = !videoRef.current.muted;
+//     setMuted(videoRef.current.muted);
+//   };
+
+//   const handleNext = () => {
+//     if (index < videoList.length - 1) {
+//       setIndex(index + 1);
+//     } else if (hasMore && !loading) {
+//       // Load next batch automatically
+//       dispatch(fetchRandomReels(page));
+//     } else {
+//       console.log("🎬 End of list");
+//     }
+//   };
+
+//   const handlePrev = () => {
+//     if (index > 0) setIndex(index - 1);
+//   };
+
+//   const toggleLike = () => {
+//     setIsLiked(!isLiked);
+//     setShowPopup(true); // simulate action popup
+//   };
+
+//   if (!video) return <div>No video data found. Please go back.</div>;
+
+//   return (
+//     <div className="video-player-container">
+//       <button onClick={() => navigate(-1)} className="back-button">
+//         <img
+//           src="https://cdn-icons-png.flaticon.com/512/93/93634.png"
+//           alt="Back"
+//           className="back-icon"
+//         />
+//         Back
+//       </button>
+
+//       {loading && <div className="loader"></div>}
+
+//       <video
+//         ref={videoRef}
+//         src={video.videourl}
+//         autoPlay
+//         muted={muted}
+//         playsInline
+//         className="video-fullscreen"
+//         onClick={handleVideoClick}
+//         onLoadStart={() => console.log("Loading...")}
+//         onCanPlay={() => console.log("Ready")}
+//       />
+
+//       <div className="video-info">
+//         <img
+//           src={video.userProfilePic || "https://cdn-icons-png.flaticon.com/512/6858/6858504.png"}
+//           alt="profile"
+//           className="profile-img"
+//         />
+//         <div className="text-info">
+//           <div className="name">{video.username}</div>
+//           <div className="caption">{video.caption}</div>
+//           <div className="views">{(video.views || 0) + 1} views</div>
+//         </div>
+//       </div>
+
+//       <div className="action-buttons">
+//         <button className="like-btn" onClick={toggleLike}>
+//           <img src={isLiked ? liked : like} alt="Like" className="likeicon" />
+//           <h6>{video.likes?.length || 0}</h6>
+//         </button>
+
+//         <button title="Comment" onClick={() => setShowPopup(true)}>
+//           <img src={comment} alt="Comment" className="likeicon" />
+//           <h6>{video.comments?.length || 0}</h6>
+//         </button>
+
+//         <button title="Share" onClick={() => setShowPopup(true)}>
+//           <img src={share} alt="Share" className="likeicon" />
+//           <h6>{video.shareviews || 0}</h6>
+//         </button>
+
+//         <button title="View" onClick={() => setShowPopup(true)}>
+//           <img src={views} alt="View" className="likeicon" style={{ width: '100%', height: 20 }} />
+//           <h6>{video.views || 0}</h6>
+//         </button>
+
+//         <button onClick={handleVideoClick}>
+//           {muted ? (
+//             <img
+//               src="https://cdn-icons-png.flaticon.com/512/5949/5949045.png"
+//               alt="Muted"
+//               className="arrow-icon-sound"
+//             />
+//           ) : (
+//             <img
+//               src="https://cdn.iconscout.com/icon/free/png-256/free-unmute-icon-download-in-svg-png-gif-file-formats--octicons-by-github-vol-1-pack-miscellaneous-icons-433180.png?f=webp"
+//               alt="Unmuted"
+//               className="arrow-icon-sound"
+//             />
+//           )}
+//         </button>
+//       </div>
+
+//       <div className="action-buttons-upanddown">
+//         <button onClick={handlePrev}>
+//           <img
+//             src="https://cdn-icons-png.flaticon.com/512/25/25637.png"
+//             alt="Up"
+//             className="arrow-icon"
+//           />
+//         </button>
+//         <button onClick={handleNext}>
+//           <img
+//             src="https://cdn-icons-png.freepik.com/512/61/61932.png"
+//             alt="Down"
+//             className="arrow-icon"
+//           />
+//         </button>
+//       </div>
+
+//       {showPopup && (
+//         <div className="popup-overlay">
+//           <div className="popup-content">
+//             <button className="close-popup" onClick={() => setShowPopup(false)}>
+//               ✕
+//             </button>
+//             <img src={logo} alt="Reelbook" className="popup-logo" />
+//             <h3 style={{ color: 'black' }}>Get the Full Experience!</h3>
+//             <p style={{ color: 'black' }}>
+//               Download the Reelbook App to Like, Comment & Share videos instantly.
+//             </p>
+//             <button
+//               className="download-btn"
+//               onClick={() =>
+//                 window.open(
+//                   'https://play.google.com/store/apps/details?id=com.reelbook',
+//                   '_blank'
+//                 )
+//               }
+//             >
+//               📲 Download Reelbook App
+//             </button>
+//           </div>
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default VideoPlayer;
 
 
 // import React, { useRef, useState, useEffect } from 'react';
