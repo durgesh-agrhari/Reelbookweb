@@ -7,7 +7,7 @@ import backendURL, { GET_All_Users, Notification } from "../../utils/String";
 const Activity = () => {
   const [loading, setLoading] = useState(true);
   const [users, setUsers] = useState([]);
-  // console.log(users)
+  console.log(users)
   const [notifications, setNotifications] = useState([]);
   const navigate = useNavigate();
   const { userData } = useSelector((state) => state.auth);

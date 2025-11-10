@@ -5,7 +5,6 @@ import '../style/team.css';
 import aboutImg from "../../assets/reelbookbannerabout.png";
 import teamImg1 from "../../assets/durgesh.jpeg";
 import teamImg2 from "../../assets/ritik.jpeg";
-import teamImg3 from "../../images/c1.png";
 import teamImg4 from "../../assets/hament.png";
 import teamImg5 from "../../images/varun.jpeg";
 import Social from './Social';
