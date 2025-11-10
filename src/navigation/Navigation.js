@@ -24,9 +24,9 @@ import ShowPosts from "../pages/postPage/ShowPosts";
 import DeleteUser from "../pages/profile/DeleteUser";
 import ReelPostByLink from "../pages/newpost/ReelPostByLink";
 import LinkDownloader from "../pages/LinkDownloader";
-import Activity from "../pages/activity/Activity";
+// import Activity from "../pages/activity/Activity";
 import EarningDashboard from "../pages/earning/EarningDashboard.js";
-import EarningHistory from "../pages/earning/EarningHistory.js";
+// import EarningHistory from "../pages/earning/EarningHistory.js";
 import EarningActivity from "../pages/earning/EarningActivity.js";
 import EarningInfo from "../pages/imppages/EarningInfo.js";
 import About from "../components/UI/About.jsx";
@@ -65,9 +65,9 @@ const Navigation = () => {
         <Route path="/user/:id" element={<FriendUserProfile />} />
         <Route path="/ReelPostByLink" element={<ReelPostByLink />} />
         <Route path="/LinkDownloader" element={<LinkDownloader />} />
-        <Route path="/Activity" element={<Activity />} />
+        {/* <Route path="/Activity" element={<Activity />} /> */}
         <Route path="/EarningDashboard" element={<EarningDashboard />} />
-        <Route path="/EarningHistory" element={<EarningHistory />} />
+        {/* <Route path="/EarningHistory" element={<EarningHistory />} /> */}
         <Route path="/EarningActivity" element={<EarningActivity />} />
         <Route path="/EarningInfo" element={<EarningInfo />} />
         <Route path="/About" element={<About />} />
