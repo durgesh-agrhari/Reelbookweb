@@ -6,7 +6,6 @@ import aboutImg from "../../assets/reelbookbannerabout.png";
 import teamImg1 from "../../assets/durgesh.jpeg";
 import teamImg2 from "../../assets/ritik.jpeg";
 import teamImg4 from "../../assets/hament.png";
-import teamImg5 from "../../images/varun.jpeg";
 import Social from './Social';
 
 const chooseData = [
@@ -52,22 +51,13 @@ const teamMembers = [
     socal3: 'https://www.instagram.com/ravishing_ritik',
   },
   {
-    imgUrl: teamImg5,
+    imgUrl: teamImg4,
     name: 'Hemant Singh',
     position: 'Contributor',
     working: 'Google AdMob',
     socal1: '',
     socal2: '',
     socal3: 'https://www.instagram.com/varun2awesome?igsh=Z3dtc3E4NWI2dTBi',
-  },
-    {
-    imgUrl: teamImg4,
-    name: 'Hemant Singh',
-    position: 'Contributor',
-    working: 'Code Security',
-    socal1: '',
-    socal2: '',
-    socal3: '',
   },
 ];
 
