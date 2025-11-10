@@ -3,11 +3,11 @@ import '../style/about.css';
 import '../style/team.css';
 
 import aboutImg from "../../assets/reelbookbannerabout.png";
-import teamImg1 from "../../assets/durgesh.jpeg";
-import teamImg2 from "../../assets/ritik.jpeg";
-import teamImg3 from "../../images/c1.png";
-import teamImg4 from "../../assets/hament.png";
-import teamImg5 from "../../images/varun.jpeg";
+// import teamImg1 from "../../assets/durgesh.jpeg";
+// import teamImg2 from "../../assets/ritik.jpeg";
+// import teamImg3 from "../../images/c1.png";
+// import teamImg4 from "../../assets/hament.png";
+// import teamImg5 from "../../images/varun.jpeg";
 import Social from './Social';
 
 const chooseData = [
@@ -33,44 +33,44 @@ const chooseData = [
   },
 ];
 
-const teamMembers = [
-  {
-    imgUrl: teamImg1,
-    name: 'Durgesh Agrhari',
-    position: 'Founder & CEO of Reelbook',
-    working: 'Software Engineer',
-    socal1: 'https://www.linkedin.com/in/durgesh-agrhari-b1a4341b4',
-    socal2: 'https://x.com/durgeshzone',
-    socal3: 'https://www.instagram.com/durgeshzone',
-  },
-  {
-    imgUrl: teamImg2,
-    name: 'Ritik Jain',
-    position: 'Contributor',
-    working: 'Software Engineer',
-    socal1: 'https://www.linkedin.com/in/ravishingrj/',
-    socal2: '',
-    socal3: 'https://www.instagram.com/ravishing_ritik',
-  },
-  {
-    imgUrl: teamImg5,
-    name: 'Hemant Singh',
-    position: 'Contributor',
-    working: 'Google AdMob',
-    socal1: '',
-    socal2: '',
-    socal3: 'https://www.instagram.com/varun2awesome?igsh=Z3dtc3E4NWI2dTBi',
-  },
-    {
-    imgUrl: teamImg4,
-    name: 'Hemant Singh',
-    position: 'Contributor',
-    working: 'Code Security',
-    socal1: '',
-    socal2: '',
-    socal3: '',
-  },
-];
+// const teamMembers = [
+//   {
+//     imgUrl: teamImg1,
+//     name: 'Durgesh Agrhari',
+//     position: 'Founder & CEO of Reelbook',
+//     working: 'Software Engineer',
+//     socal1: 'https://www.linkedin.com/in/durgesh-agrhari-b1a4341b4',
+//     socal2: 'https://x.com/durgeshzone',
+//     socal3: 'https://www.instagram.com/durgeshzone',
+//   },
+//   {
+//     imgUrl: teamImg2,
+//     name: 'Ritik Jain',
+//     position: 'Contributor',
+//     working: 'Software Engineer',
+//     socal1: 'https://www.linkedin.com/in/ravishingrj/',
+//     socal2: '',
+//     socal3: 'https://www.instagram.com/ravishing_ritik',
+//   },
+//   {
+//     imgUrl: teamImg5,
+//     name: 'Hemant Singh',
+//     position: 'Contributor',
+//     working: 'Google AdMob',
+//     socal1: '',
+//     socal2: '',
+//     socal3: 'https://www.instagram.com/varun2awesome?igsh=Z3dtc3E4NWI2dTBi',
+//   },
+//     {
+//     imgUrl: teamImg4,
+//     name: 'Hemant Singh',
+//     position: 'Contributor',
+//     working: 'Code Security',
+//     socal1: '',
+//     socal2: '',
+//     socal3: '',
+//   },
+// ];
 
 const About = () => {
   useEffect(() => {
