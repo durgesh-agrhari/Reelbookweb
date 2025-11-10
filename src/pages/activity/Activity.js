@@ -6,8 +6,8 @@ import backendURL, { GET_All_Users, Notification } from "../../utils/String";
 
 const Activity = () => {
   const [loading, setLoading] = useState(true);
-  // const [users, setUsers] = useState([]);
-  // console.log(users)
+  const [users, setUsers] = useState([]);
+  console.log(users)
   const [notifications, setNotifications] = useState([]);
   const navigate = useNavigate();
   const { userData } = useSelector((state) => state.auth);
@@ -17,13 +17,13 @@ const Activity = () => {
     const savedUsers = localStorage.getItem("all_users");
     const savedNotifications = localStorage.getItem("user_notifications");
 
-    // if (savedUsers) setUsers(JSON.parse(savedUsers));
+    if (savedUsers) setUsers(JSON.parse(savedUsers));
     if (savedNotifications) setNotifications(JSON.parse(savedNotifications));
 
     // ✅ Fetch latest data
     fetchUsers();
     fetchNotifications();
-  }, [fetchNotifications]);
+  }, []);
 
   const fetchUsers = async () => {
     setLoading(true);
@@ -31,7 +31,7 @@ const Activity = () => {
       const res = await fetch(`${backendURL}${GET_All_Users}`);
       const data = await res.json();
       const reversed = (data?.data || []).reverse();
-      // setUsers(reversed);
+      setUsers(reversed);
 
       // ✅ Save to localStorage
       localStorage.setItem("all_users", JSON.stringify(reversed));

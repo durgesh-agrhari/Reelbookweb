@@ -34,17 +34,17 @@ const VideoPlayer = () => {
 
   // 🔁 When Redux reels update (after fetching next page), append to list
   useEffect(() => {
-    if (reels && reels.length > videoList?.length) {
+    if (reels && reels.length > videoList.length) {
       setVideoList(reels);
     }
-  }, [videoList.length]);
+  }, [reels]);
 
   // ✅ Fetch more videos automatically when near the end
   useEffect(() => {
-    if (index >= videoList?.length - 2 && hasMore && !loading) {
+    if (index >= videoList.length - 2 && hasMore && !loading) {
       dispatch(fetchRandomReels(page));
     }
-  }, [index, videoList?.length, hasMore, loading, page, dispatch]);
+  }, [index, videoList.length, hasMore, loading, page, dispatch]);
 
   // ✅ Increment view count when video changes
   useEffect(() => {
@@ -55,7 +55,7 @@ const VideoPlayer = () => {
   const incrementViewCount = async (videoId) => {
     try {
       await axios.post(`${backendURL}${REEL_VIEWS_POST}/${videoId}`);
-      // console.log("✅ View count incremented:", videoId);
+      console.log("✅ View count incremented:", videoId);
     } catch (err) {
       console.error("❌ Failed to increment view count:", err.message);
     }
@@ -68,7 +68,7 @@ const VideoPlayer = () => {
   };
 
   const handleNext = () => {
-    if (index < videoList?.length - 1) {
+    if (index < videoList.length - 1) {
       setIndex(index + 1);
     } else if (hasMore && !loading) {
       // Load next batch automatically

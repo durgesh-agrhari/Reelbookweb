@@ -27,9 +27,7 @@ const Header = ({ theme, toggleTheme }) => {
 
   // ✅ Fetch Notifications
   useEffect(() => {
-    if (userData?._id) {
-      fetchNotifications()
-    }
+    if (userData?._id) fetchNotifications();
   }, [userData]);
 
   const fetchNotifications = async () => {
