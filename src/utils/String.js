@@ -1,8 +1,8 @@
 // export const BASE_URL = 'http://192.168.188.154:3000';
 
-const backendURL = 'http://localhost:8000';
+// const backendURL = 'http://localhost:8000';
 // const backendURL = 'https://reelbookapi.onrender.com';
-// const backendURL = 'https://reelbookapi.site';
+const backendURL = 'https://reelbookapi.site';
 
 // export const backendURL_IO = 'http://172.20.10.14:3000'; 
 export const ADD_POST = '/post/add';
