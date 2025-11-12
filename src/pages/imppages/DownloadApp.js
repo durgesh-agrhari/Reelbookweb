@@ -10,6 +10,7 @@ import screen5 from '../../assets/ScreenShots/5.png';          // App screen pre
 import screen6 from '../../assets/ScreenShots/6.png';          // App screen preview
 import screen7 from '../../assets/ScreenShots/7.png';          // App screen preview
 import screen8 from '../../assets/ScreenShots/8.png';          // App screen preview
+import screen9 from '../../assets/ScreenShots/9.png';          // App screen preview
 import { Link } from 'react-router-dom';
 
 const DownloadApp = () => {
@@ -77,6 +78,7 @@ const DownloadApp = () => {
           <img src={screen6} alt="App Screenshot 6" />
           <img src={screen7} alt="App Screenshot 7" />
           <img src={screen8} alt="App Screenshot 8" />
+          <img src={screen9} alt="App Screenshot 9" />
 
         </div>
       </div>
