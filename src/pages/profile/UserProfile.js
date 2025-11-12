@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserData, setAuthData } from "../../redux/AuthSlice";
 import backendURL from "../../utils/String";
-
+import logo from '../../assets/logo123.png';
 const UserProfile = () => {
   const { logout, token } = useContext(AppContext);
   const [activeTab, setActiveTab] = useState("reels");
@@ -17,7 +17,7 @@ const UserProfile = () => {
   const [stories, setStories] = useState([]);
   const [showDeletePopup, setShowDeletePopup] = useState(false);
   const [deleteItem, setDeleteItem] = useState(null); // to know which item to delete
-
+  const [showPopup, setShowPopup] = useState(false);
   useEffect(() => {
     async function loadStories() {
       try {
@@ -186,18 +186,29 @@ const UserProfile = () => {
            {/* Action Buttons */}
           <div className="profile-actions">
             <button
-              onClick={() => navigate("/EarningDashboard")}
+            onClick={() => setShowPopup(true)}
+              // onClick={() => navigate("/EarningDashboard")}
               className="btn primary"
               style={{ backgroundColor: '#9469c9' , color:'white'}}
             >
               💰 Your Content Earning
             </button>
             <button
-              onClick={() => navigate("/EarningActivity")}
+            onClick={() => setShowPopup(true)}
+              // onClick={() => navigate("/EarningActivity")}
               className="btn secondary"
               style={{ backgroundColor: '#69c0c9' , color:'black'}}
             >
               🤑 Your Activity Earning
+            </button>
+
+             <button
+             onClick={() => setShowPopup(true)}
+              // onClick={() => navigate("/EarningActivity")}
+              className="btn secondary"
+              style={{ backgroundColor: '#d2c352ff' , color:'black'}}
+            >
+              💵 Refer And Earn
             </button>
         
           </div>
@@ -373,7 +384,31 @@ const UserProfile = () => {
           </div>
         </div>
       )}
-
+      {showPopup && (
+        <div className="popup-overlay">
+          <div className="popup-content">
+            <button className="close-popup" onClick={() => setShowPopup(false)}>
+              ✕
+            </button>
+            <img src={logo} alt="Reelbook" className="popup-logo" />
+            <h3 style={{ color: 'black' }}>Get the Full Experience!</h3>
+            <p style={{ color: 'black' }}>
+              Download the Reelbook App to Like, Comment & Share videos instantly.
+            </p>
+            <button
+              className="download-btn"
+              onClick={() =>
+                window.open(
+                  'https://play.google.com/store/apps/details?id=com.reelbook',
+                  '_blank'
+                )
+              }
+            >
+              📲 Download Reelbook App
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
