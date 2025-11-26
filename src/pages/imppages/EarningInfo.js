@@ -48,7 +48,7 @@ const EarningInfo = () => {
           <li>1 Reel Scroll = 1 Coin</li>
           <li>1 Reel Like = 1 Coin</li>
           <li>1 Photo Like = 1 Coin</li>
-          <li>1 Active Hour = 10 Coin</li>
+          <li>1 Active Hour = 100 Coin</li>
           <li>1 Refered User = 1000 Coin</li>
           <li>1 Referal code use  = 500 Coin</li>
         </ul>
@@ -56,7 +56,9 @@ const EarningInfo = () => {
          <h3>💵 Activity Coin Conversion</h3>
         <p>Convert your coins into real money and withdraw easily.</p>
         <ul className="lititle">
-          <li>2000 Coins = ₹1</li>
+          <li>1000 Coins = ₹1</li>
+           <li>5000 Coins = ₹5</li>
+            <li>10000 Coins = ₹10</li>
           <li>Minimum withdrawal amount: ₹1</li>
           <li>You can withdraw after completing 1 full month of activity.</li>
         </ul>

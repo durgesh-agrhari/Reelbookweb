@@ -52,7 +52,7 @@ const DownloadApp = () => {
                 </Link>
               </button>
               <button style={{ borderRadius: '10px' }}>
-                <Link to='https://play.google.com/store/apps/details?id=com.reelbook' style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', color: 'inherit' }}>
+                <Link to='https://apps.apple.com/in/app/reelbook-app/id6755233312' style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', color: 'inherit' }}>
                   <img
                     src="https://w7.pngwing.com/pngs/327/888/png-transparent-aivalable-on-the-app-store-hd-logo.png"  // ← replace with your own image
                     alt="arrow"
