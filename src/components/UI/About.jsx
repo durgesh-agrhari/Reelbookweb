@@ -6,6 +6,7 @@ import aboutImg from "../../assets/reelbookbannerabout.png";
 import teamImg1 from "../../assets/durgesh.jpeg";
 import teamImg2 from "../../assets/ritik.jpeg";
 import teamImg4 from "../../assets/hament.png";
+import teamImg5 from "../../assets/varun.jpeg";
 import Social from './Social';
 
 const chooseData = [
@@ -35,7 +36,7 @@ const teamMembers = [
   {
     imgUrl: teamImg1,
     name: 'Durgesh Agrhari',
-    position: 'Founder & CEO of Reelbook',
+    position: 'Founder of Reelbook',
     working: 'Software Engineer',
     socal1: 'https://www.linkedin.com/in/durgesh-agrhari-b1a4341b4',
     socal2: 'https://x.com/durgeshzone',
@@ -46,18 +47,27 @@ const teamMembers = [
     name: 'Ritik Jain',
     position: 'Contributor',
     working: 'Software Engineer',
-    socal1: 'https://www.linkedin.com/in/ravishingrj/',
+    socal1: 'https://www.linkedin.com/in/ravishingrj',
     socal2: '',
     socal3: 'https://www.instagram.com/ravishing_ritik',
   },
   {
+    imgUrl: teamImg5,
+    name: 'Varun Verma',
+    position: 'Contributor',
+    working: 'Cyber Security',
+    socal1: 'https://www.linkedin.com/in/varun-verma-/',
+    socal2: '',
+    socal3: 'https://www.instagram.com/varun2awesome?igsh=Z3dtc3E4NWI2dTBi',
+  },
+    {
     imgUrl: teamImg4,
     name: 'Hemant Singh',
     position: 'Contributor',
     working: 'Google AdMob',
     socal1: '',
     socal2: '',
-    socal3: 'https://www.instagram.com/varun2awesome?igsh=Z3dtc3E4NWI2dTBi',
+    socal3: '',
   },
 ];
 

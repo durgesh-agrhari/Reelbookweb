@@ -45,12 +45,9 @@ const EarningInfo = () => {
         <h3>🎯 Activity Earnings</h3>
         <p>Earn coins while consuming content! Scroll, watch, and interact with videos and photos to increase your earnings.</p>
         <ul className="lititle">
-          <li>1 Reel Scroll = 1 Coin</li>
-          <li>1 Reel Like = 1 Coin</li>
-          <li>1 Photo Like = 1 Coin</li>
-          <li>1 Active Hour = 100 Coin</li>
+          <li>1 Active Hour = 1000 Coin and more (Variable)</li>
           <li>1 Refered User = 1000 Coin</li>
-          <li>1 Referal code use  = 500 Coin</li>
+          <li>1 Referal code use  = 1000 Coin</li>
         </ul>
         <FaVideo size={40} style={{ color: "#28a745", marginTop: 10 }} />
          <h3>💵 Activity Coin Conversion</h3>
