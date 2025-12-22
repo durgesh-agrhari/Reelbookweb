@@ -32,6 +32,7 @@ import EarningInfo from "../pages/imppages/EarningInfo.js";
 import About from "../components/UI/About.jsx";
 import Blogs from "../pages/blog/blogs.js";
 import BlogDetails from "../pages/blog/BlogDetails.js";
+import QrCode from "../utils/QrCode.js";
 
 const Navigation = () => {
   const [theme, setTheme] = useState("");
@@ -75,6 +76,7 @@ const Navigation = () => {
         <Route path="/About" element={<About />} />
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/blog/:id" element={<BlogDetails />} />
+        <Route path="/qr" element={<QrCode />} />
 
       </Routes>
     </Router>
