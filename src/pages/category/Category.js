@@ -370,7 +370,7 @@ const Category = () => {
         <div className="category-card" onClick={() => handleCardClick('Ai Modal')}>
           <img src="https://static.vecteezy.com/system/resources/previews/033/504/750/non_2x/sexy-girl-generative-ai-free-photo.jpg" alt="Ai Modal" className="category-image" />
           <div className="category-info">
-            <div className="category-title">Ai Modal</div>
+            <div className="category-title">Ai Model</div>
             <div className="category-count">({getVideoCount('Ai Modal')})  ▶</div>
           </div>
         </div>
