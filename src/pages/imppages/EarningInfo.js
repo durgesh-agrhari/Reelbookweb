@@ -35,9 +35,9 @@ const EarningInfo = () => {
          <h3>💵 Content Coin Conversion</h3>
         <p>Convert your coins into real money and withdraw easily.</p>
         <ul className="lititle">
-          <li>500 Coins = ₹1</li>
-          <li>Minimum withdrawal amount: ₹1</li>
-          <li>You can withdraw after completing 1 full month of activity.</li>
+          <li>500 Coins = ₹1 and more (Variable)</li>
+          <li>Minimum withdrawal amount: ₹10</li>
+          <li>You can withdraw anytime.</li>
         </ul>
       </section>
 
@@ -46,19 +46,20 @@ const EarningInfo = () => {
         <p>Earn coins while consuming content! Scroll, watch, and interact with videos and photos to increase your earnings.</p>
         <ul className="lititle">
           <li>1 Active Hour = 1000 Coin and more (Variable)</li>
+          <li>1000 Coins = ₹2 and more (Variable)</li>
           <li>1 Refered User = 1000 Coin</li>
+           <li>1000 Coins = ₹1</li>
           <li>1 Referal code use  = 1000 Coin</li>
+           <li>1000 Coins = ₹1</li>
         </ul>
-        <FaVideo size={40} style={{ color: "#28a745", marginTop: 10 }} />
+        {/* <FaVideo size={40} style={{ color: "#28a745", marginTop: 10 }} />
          <h3>💵 Activity Coin Conversion</h3>
         <p>Convert your coins into real money and withdraw easily.</p>
         <ul className="lititle">
-          <li>1000 Coins = ₹1</li>
-           <li>5000 Coins = ₹5</li>
-            <li>10000 Coins = ₹10</li>
-          <li>Minimum withdrawal amount: ₹1</li>
+          <li>1000 Coins = ₹2</li>
+          <li>Minimum withdrawal amount: ₹10</li>
           <li>You can withdraw after completing 1 full month of activity.</li>
-        </ul>
+        </ul> */}
       </section>
 
       {/* <section className="section">

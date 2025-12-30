@@ -201,7 +201,18 @@ const VideoPlayer = () => {
                 )
               }
             >
-              📲 Download Reelbook App
+              📲 Download Android App
+            </button>
+                        <button
+              className="download-btn"
+              onClick={() =>
+                window.open(
+                  'https://apps.apple.com/in/app/reelbook/id6755233312',
+                  '_blank'
+                )
+              }
+            >
+              📲 Download Ios App
             </button>
           </div>
         </div>
