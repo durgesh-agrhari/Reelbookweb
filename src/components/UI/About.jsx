@@ -45,7 +45,7 @@ const teamMembers = [
     {
     imgUrl: teamImg5,
     name: 'Varun Verma',
-    position: 'Co-founder & Director of Cybersecurity',
+    position: 'Director of Cybersecurity',
     // working: 'Cyber Security',
     // socal1: 'https://www.linkedin.com/in/varun-verma-/',
     socal2: '',
