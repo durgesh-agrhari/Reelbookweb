@@ -15,7 +15,7 @@ const Category = () => {
   // };
 
 
-   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const [categoryCounts, setCategoryCounts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -53,12 +53,16 @@ const Category = () => {
   };
 
   // console.log("count", getVideoCount('Motivation'))
-  if (loading) return <div className="loading">Loading categories...</div>;
+  if (loading) return (
+    <div className="loading">
+      <h3 style={{ textAlign:'center' }} >Loading categories...</h3>
+    </div>);
+
   return (
     <div className="category-container">
-      <h1 className="category-heading">Choose Video Category</h1>
+      <h1 className="category-heading">Choose Video Categories</h1>
 
-      <div className="category-subheading">👦 For Boys Category</div>
+      {/* <div className="category-subheading">👦 For Boys Category</div> */}
       <div className="category-row">
         <div className="category-card" onClick={() => handleCardClick('Motivation')}>
           <img src="https://i.pinimg.com/originals/fa/46/fa/fa46fabeafa02cd231b6c75a0a3a2d11.jpg" alt="Motivation" className="category-image" />
@@ -86,14 +90,14 @@ const Category = () => {
         <div className="category-card" onClick={() => handleCardClick('Girls-Video')}>
           <img src="https://photosnow.org/wp-content/uploads/2024/04/cute-girl-pic-cartoon_17.jpg" alt="girls" className="category-image" />
           <div className="category-info">
-            <div className="category-title">Girls</div>
+            <div className="category-title">Diva</div>
             {/* <div className="category-count">({getVideoCount('Girls-Video')}) ▶</div> */}
           </div>
         </div>
         <div className="category-card" onClick={() => handleCardClick('Boy Attitude')}>
           <img src="https://cdn.lazyshop.com/files/9cf1cce8-c416-4a69-89ba-327f54c3c5a0/product/166f296a084c378a004d21fcf78d04f9.jpeg" alt="Attitude" className="category-image" />
           <div className="category-info">
-            <div className="category-title">Boy Attitude</div>
+            <div className="category-title">Peak Content</div>
             {/* <div className="category-count">({getVideoCount('Boy-Atitude')}) ▶</div> */}
           </div>
         </div>
@@ -109,7 +113,7 @@ const Category = () => {
         <div className="category-card" onClick={() => handleCardClick('Shayari')}>
           <img src="https://sc0.blr1.cdn.digitaloceanspaces.com/article/153856-eamvrlxriu-1611577633.jpeg" alt="Sayari" className="category-image" />
           <div className="category-info">
-            <div className="category-title">Sayari</div>
+            <div className="category-title">Shayari</div>
             {/* <div className="category-count">({getVideoCount('Shayari')}) ▶</div> */}
           </div>
         </div>
@@ -129,26 +133,26 @@ const Category = () => {
         </div>
       </div>
 
-      <div className="category-subheading">👧 For Girls Category</div>
+      <div className="category-subheading">OSM Categories</div>
       <div className="category-row">
         <div className="category-card" onClick={() => handleCardClick('Parlour')}>
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxWMlgfivmUvNK4Ro0IG4T-KtYWuNJbhkzZQ&s" alt="Parlour" className="category-image" />
           <div className="category-info">
-            <div className="category-title">Parlour</div>
+            <div className="category-title">MakeYUP</div>
             {/* <div className="category-count">({getVideoCount('Parlour')}) ▶</div> */}
           </div>
         </div>
         <div className="category-card" onClick={() => handleCardClick('Mehadi')}>
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfOEBJMjpR7cUI5dDRCQTbC0vfDM2jYEu3rA&s" alt="Mehadi" className="category-image" />
           <div className="category-info">
-            <div className="category-title">Mehadi</div>
+            <div className="category-title">Mehendi</div>
             {/* <div className="category-count">({getVideoCount('Mehadi')}) ▶</div> */}
           </div>
         </div>
         <div className="category-card" onClick={() => handleCardClick('Sweet Selfy Girls')}>
           <img src="https://img.fixthephoto.com/blog/images/gallery/news_preview_mob_image__preview_883.jpg" alt="SweetSelfie" className="category-image" />
           <div className="category-info">
-            <div className="category-title">SweetSelfie</div>
+            <div className="category-title">Selfie Poses</div>
             {/* <div className="category-count">({getVideoCount('Sweet Selfy Girls')})  ▶</div> */}
           </div>
         </div>
@@ -164,14 +168,14 @@ const Category = () => {
         <div className="category-card" onClick={() => handleCardClick('Hair Style')}>
           <img src="https://i.pinimg.com/236x/82/a2/40/82a240dd15dcfd5bc84c2542662e0f75.jpg" alt="HairStyle" className="category-image" />
           <div className="category-info">
-            <div className="category-title">HairStyle</div>
+            <div className="category-title">HairStyles</div>
             {/* <div className="category-count">({getVideoCount('Hair Style')})  ▶</div> */}
           </div>
         </div>
-         <div className="category-card" onClick={() => handleCardClick('Art Sketch')}>
+        <div className="category-card" onClick={() => handleCardClick('Art Sketch')}>
           <img src="https://www.kokuyocamlin.com/camel/image/catalog/artists/ak5zS2ZTeUhvWnV2NEFtaXg1QXUxQT098435/1684607773file5_org.jpg" alt="Art-Sketch" className="category-image" />
           <div className="category-info">
-            <div className="category-title">Art Sketch</div>
+            <div className="category-title">Sketch</div>
             {/* <div className="category-count">({getVideoCount('Art Sketch')})  ▶</div> */}
           </div>
         </div>
@@ -212,14 +216,14 @@ const Category = () => {
         <div className="category-card" onClick={() => handleCardClick('Byke Lover')}>
           <img src="https://i.pinimg.com/236x/45/fb/f5/45fbf5364558bc1f3a155122279d8ad3.jpg" alt="BykeLover" className="category-image" />
           <div className="category-info">
-            <div className="category-title">BykeLover</div>
+            <div className="category-title">BikeLover</div>
             {/* <div className="category-count">({getVideoCount('Byke Lover')})  ▶</div> */}
           </div>
         </div>
         <div className="category-card" onClick={() => handleCardClick('Salfie Poas Boy')}>
           <img src="https://i.pinimg.com/originals/ca/3c/6b/ca3c6b76a0f2d3708e06330354b5fae8.jpg" alt="Selfie Pose" className="category-image" />
           <div className="category-info">
-            <div className="category-title">Selfie Pose</div>
+            <div className="category-title">Selfie Poses</div>
             {/* <div className="category-count">({getVideoCount('Salfie Poas Boy')})  ▶</div> */}
           </div>
         </div>
@@ -228,7 +232,7 @@ const Category = () => {
         <div className="category-card" onClick={() => handleCardClick('Singing')}>
           <img src="https://thumbs.dreamstime.com/b/sexy-young-girl-singer-singing-contrast-silhouette-sexy-singer-girl-singing-dancing-sexy-female-red-concert-dress-dancing-173265918.jpg" alt="Singing" className="category-image" />
           <div className="category-info">
-            <div className="category-title">Singing</div>
+            <div className="category-title">Melodies</div>
             {/* <div className="category-count">({getVideoCount('Singing')})  ▶</div> */}
           </div>
         </div>
@@ -258,7 +262,7 @@ const Category = () => {
         <div className="category-card" onClick={() => handleCardClick('Bajan Video')}>
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcGIlItZm69HFnFKh_ROr8biTG2xQu9lTWXSDK4_a6IwLqcT8f7AE9QuTXo5iR1XSUcoo&usqp=CAU" alt="Bajan" className="category-image" />
           <div className="category-info">
-            <div className="category-title">Bajan</div>
+            <div className="category-title">Bhajan</div>
             {/* <div className="category-count">({getVideoCount('Bajan Video')})  ▶</div> */}
           </div>
         </div>
@@ -272,18 +276,18 @@ const Category = () => {
       </div>
 
       <div className="category-subheading">🤑 Trips, Learning & Enjoy</div>
-       <div className="category-row">
+      <div className="category-row">
         <div className="category-card" onClick={() => handleCardClick('GF Talk Convesation')}>
           <img src="https://t4.ftcdn.net/jpg/04/59/82/89/360_F_459828924_ANMZD5IqA4io5iAKWbK7bsPwnTmjYABC.jpg" alt="GF Talk" className="category-image" />
           <div className="category-info">
-            <div className="category-title">GF Talk</div>
+            <div className="category-title">BabeZilla</div>
             {/* <div className="category-count">({getVideoCount('GF Talk Convesation')})  ▶</div> */}
           </div>
         </div>
         <div className="category-card" onClick={() => handleCardClick('Speeking')}>
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXstrZVD0Z1qtnrlhDJyFkCSE4VksAp81TpA&s" alt="Speeking" className="category-image" />
           <div className="category-info">
-            <div className="category-title">Speeking</div>
+            <div className="category-title">Speaking</div>
             {/* <div className="category-count">({getVideoCount('Speeking')})  ▶</div> */}
           </div>
         </div>
@@ -295,7 +299,7 @@ const Category = () => {
           </div>
         </div>
       </div>
-       <div className="category-row">
+      <div className="category-row">
         <div className="category-card" onClick={() => handleCardClick('Trading')}>
           <img src="https://img.freepik.com/premium-vector/trading-logo-with-chart-concept_11481-675.jpg?semt=ais_hybrid" alt="Trading" className="category-image" />
           <div className="category-info">
@@ -306,7 +310,7 @@ const Category = () => {
         <div className="category-card" onClick={() => handleCardClick('Bussines Idea')}>
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-bdCOESyvHbw9KspkGSrnxFW_CTA6eOPDkQ&s" alt="Bussines" className="category-image" />
           <div className="category-info">
-            <div className="category-title">Bussines</div>
+            <div className="category-title">Business</div>
             {/* <div className="category-count">({getVideoCount('Bussines Idea')})  ▶</div> */}
           </div>
         </div>
@@ -318,7 +322,7 @@ const Category = () => {
           </div>
         </div>
       </div>
-       <div className="category-row">
+      <div className="category-row">
         <div className="category-card" onClick={() => handleCardClick('Video or photo Editing')}>
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB8_FwanhrD1gZtyj7dE5sBy1mWqz9t_vEdw&s" alt="V-Editing" className="category-image" />
           <div className="category-info">
@@ -336,14 +340,14 @@ const Category = () => {
         <div className="category-card" onClick={() => handleCardClick('Animay')}>
           <img src="https://i.pinimg.com/236x/62/48/03/624803bee204bc2b7761449dcc502821.jpg" alt="Animay" className="category-image" />
           <div className="category-info">
-            <div className="category-title">Animay</div>
+            <div className="category-title">Anime</div>
             {/* <div className="category-count">({getVideoCount('Animay')})  ▶</div> */}
           </div>
         </div>
       </div>
 
-       <div className="category-subheading">🌐 Reel Category Update</div>
-       <div className="category-row">
+      <div className="category-subheading">🌐 Reel Category Update</div>
+      <div className="category-row">
         <div className="category-card" onClick={() => handleCardClick('Youtuber')}>
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAXdgfVxpAQfJLpRo9WBmPZKoq3WYaDW27chTAHpqSAcN-to4v5ILwLl3Xwd8rSj69uuY&usqp=CAU" alt="Youtuber" className="category-image" />
           <div className="category-info">
@@ -354,7 +358,7 @@ const Category = () => {
         <div className="category-card" onClick={() => handleCardClick('FlimWord')}>
           <img src="https://inc42.com/cdn-cgi/image/quality=75/https://asset.inc42.com/2022/03/Bollywood-celebs-investing-ft-1-1-150x150.jpg" alt="FlimWorld" className="category-image" />
           <div className="category-info">
-            <div className="category-title">FlimWorld</div>
+            <div className="category-title">Movies</div>
             {/* <div className="category-count">({getVideoCount('FlimWord')})  ▶</div> */}
           </div>
         </div>
@@ -366,11 +370,11 @@ const Category = () => {
           </div>
         </div>
       </div>
-       <div className="category-row">
+      <div className="category-row">
         <div className="category-card" onClick={() => handleCardClick('Ai Modal')}>
           <img src="https://static.vecteezy.com/system/resources/previews/033/504/750/non_2x/sexy-girl-generative-ai-free-photo.jpg" alt="Ai Modal" className="category-image" />
           <div className="category-info">
-            <div className="category-title">Ai Model</div>
+            <div className="category-title">AI Model</div>
             {/* <div className="category-count">({getVideoCount('Ai Modal')})  ▶</div> */}
           </div>
         </div>
@@ -402,11 +406,11 @@ const Category = () => {
               className="popup-button"
               target="_blank"
               rel="noopener noreferrer"
-              style={{marginRight:20}}
+              style={{ marginRight: 20 }}
             >
               Download Android App
             </a>
-                 <a
+            <a
               href="https://apps.apple.com/in/app/reelbook/id6755233312"
               className="popup-button"
               target="_blank"
