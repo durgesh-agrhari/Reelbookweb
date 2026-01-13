@@ -113,7 +113,13 @@ const VideoPlayer = () => {
         onCanPlay={() => console.log("Ready")}
       />
 
-      <div className="video-info">
+      <div className="video-info"
+       onClick={() =>
+                      navigate(`/user/${video.userId}`, {
+                        state: { uname: video.username },
+                      })
+                    }
+      >
         <img
           src={video.userProfilePic || "https://cdn-icons-png.flaticon.com/512/6858/6858504.png"}
           alt="profile"

@@ -144,7 +144,7 @@ const Header = ({ theme, toggleTheme }) => {
               </li>
 
               {/* ===== Mobile-only Items ===== */}
-              {["EarningInfo", "PrivacyPolicy", "Contact", "Feedback", "About"].map((route) => (
+              {/* {["EarningInfo", "PrivacyPolicy", "Contact", "Feedback", "About"].map((route) => (
                 <li key={route} className="menu__item mobile-only">
                   <NavLink to={`/${route}`} className="menu__link">
                     {route === "EarningInfo"
@@ -158,10 +158,10 @@ const Header = ({ theme, toggleTheme }) => {
                       : "About Us"}
                   </NavLink>
                 </li>
-              ))}
+              ))} */}
 
               {/* ===== Conditional User Section ===== */}
-              {!user ? (
+              {/* {!user ? (
                 <li className="menu__item">
                   <NavLink
                     to="/LoginGoogle"
@@ -173,9 +173,9 @@ const Header = ({ theme, toggleTheme }) => {
                   </NavLink>
                 </li>
               ) : (
-                <>
+                <> */}
                   {/* ✅ Notification Tab with Badge */}
-                  <li className="menu__item">
+                  {/* <li className="menu__item">
                     <NavLink
                       to="/Activity"
                       className={({ isActive }) =>
@@ -210,10 +210,10 @@ const Header = ({ theme, toggleTheme }) => {
                         )}
                       </div>
                     </NavLink>
-                  </li>
+                  </li> */}
 
                   {/* ✅ Profile Tab */}
-                  <li className="menu__item">
+                  {/* <li className="menu__item">
                     <NavLink
                       to="/UserProfile"
                       className={({ isActive }) =>
@@ -246,8 +246,8 @@ const Header = ({ theme, toggleTheme }) => {
                     </NavLink>
                   </li>
                 </>
-              )}
-            </ul>
+              )}*/}
+            </ul> 
           </div>
 
           {/* ===== Light/Dark Toggle ===== */}

@@ -35,7 +35,7 @@ const EarningInfo = () => {
          <h3>💵 Content Coin Conversion</h3>
         <p>Convert your coins into real money and withdraw easily.</p>
         <ul className="lititle">
-          <li>500 Coins = ₹1 and more (Variable)</li>
+          <li>500 Coins will be converted in to rupee which is Variable</li>
           <li>Minimum withdrawal amount: ₹10</li>
           <li>You can withdraw anytime.</li>
         </ul>
@@ -46,7 +46,7 @@ const EarningInfo = () => {
         <p>Earn coins while consuming content! Scroll, watch, and interact with videos and photos to increase your earnings.</p>
         <ul className="lititle">
           <li>1 Active Hour = 1000 Coin and more (Variable)</li>
-          <li>1000 Coins = ₹2 and more (Variable)</li>
+          <li>1000 Coins will be converted in to rupee which is Variable</li>
           <li>1 Refered User = 1000 Coin</li>
            <li>1000 Coins = ₹1</li>
           <li>1 Referal code use  = 1000 Coin</li>
