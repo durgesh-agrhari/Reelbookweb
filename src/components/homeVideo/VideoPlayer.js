@@ -149,7 +149,7 @@ const VideoPlayer = () => {
         </button>
 
         <button title="View" onClick={() => setShowPopup(true)}>
-          <img src={views} alt="View" className="likeicon"/>
+          <img src={views} alt="View" className="likeicon" style={{ width: 30, height: 20 }} />
           <h6>{video.views || 0}</h6>
         </button>
 
@@ -229,7 +229,7 @@ const VideoPlayer = () => {
 
 export default VideoPlayer;
 
-// no wirking
+
 // import React, { useRef, useState, useEffect } from 'react';
 // import { useLocation, useNavigate } from 'react-router-dom';
 // import './VideoPlayer.css';
