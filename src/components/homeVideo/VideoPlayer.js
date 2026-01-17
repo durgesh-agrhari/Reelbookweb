@@ -149,7 +149,7 @@ const VideoPlayer = () => {
         </button>
 
         <button title="View" onClick={() => setShowPopup(true)}>
-          <img src={views} alt="View" className="likeicon" style={{ width: 30, height: 20 }} />
+          <img src={views} alt="View" className="likeicon" style={{ width: '100%', height: 20 }} />
           <h6>{video.views || 0}</h6>
         </button>
 

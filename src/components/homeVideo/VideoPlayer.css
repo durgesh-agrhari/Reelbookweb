@@ -1,6 +1,6 @@
 .video-player-container {
   position: relative;
-  height: 85vh;
+  height: 100vh;
   background-color: #000;
   display: flex;
   justify-content: center;
