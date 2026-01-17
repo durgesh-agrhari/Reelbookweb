@@ -229,7 +229,7 @@ const VideoPlayer = () => {
 
 export default VideoPlayer;
 
-
+// no wirking
 // import React, { useRef, useState, useEffect } from 'react';
 // import { useLocation, useNavigate } from 'react-router-dom';
 // import './VideoPlayer.css';
