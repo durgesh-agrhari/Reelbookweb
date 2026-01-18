@@ -33,6 +33,7 @@ import About from "../components/UI/About.jsx";
 import Blogs from "../pages/blog/blogs.js";
 import BlogDetails from "../pages/blog/BlogDetails.js";
 import QrCode from "../utils/QrCode.js";
+import AudioPost from "../pages/newpost/AudioPost.js";
 
 const Navigation = () => {
   const [theme, setTheme] = useState("");
@@ -77,6 +78,7 @@ const Navigation = () => {
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/blog/:id" element={<BlogDetails />} />
         <Route path="/qr" element={<QrCode />} />
+        <Route path="/AudioPost" element={<AudioPost />} />
 
       </Routes>
     </Router>

@@ -180,6 +180,13 @@ const UserProfile = () => {
             >
               Upload Story
             </button>
+            <button
+              onClick={() => navigate("/AudioPost")}
+              className="btn secondary"
+              style={{ color:'black'}}
+            >
+              Upload Audio
+            </button>
           </div>
 
 

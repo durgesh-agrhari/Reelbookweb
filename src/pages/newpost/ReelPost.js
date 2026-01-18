@@ -310,6 +310,24 @@ const ReelPost = () => {
 export default ReelPost;
 
 
+
+// const categories = [
+//   { id: '1', name: 'Said Song', image: 'https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da84b9428dd5c6c60d961868f6d1' },
+//   { id: '2', name: 'Happy song', image: "https://cdn.pixabay.com/photo/2023/10/30/14/23/ai-generated-8352992_640.jpg" },
+//   { id: '3', name: 'brakeup Song', image: "https://media.timeout.com/images/106189304/750/562/image.jpg" },
+//   { id: '4', name: 'Love song', image: "https://media.timeout.com/images/106189304/750/562/image.jpg"  },
+//   { id: '5', name: 'Rap song', image: "https://media.timeout.com/images/106189304/750/562/image.jpg"  },
+//   { id: '6', name: 'English song', image: "https://media.timeout.com/images/106189304/750/562/image.jpg"  },
+//   { id: '7', name: 'Nature song', image: "https://media.timeout.com/images/106189304/750/562/image.jpg"  },
+//   { id: '8', name: 'Wibe song', image: "https://media.timeout.com/images/106189304/750/562/image.jpg" },
+//   { id: '9', name: 'Cool song', image: "https://media.timeout.com/images/106189304/750/562/image.jpg" },
+//   { id: '10', name: 'Lofi song', image: "https://media.timeout.com/images/106189304/750/562/image.jpg"  },
+//   { id: '11', name: 'Panjabi song', image: "https://media.timeout.com/images/106189304/750/562/image.jpg" },
+//   { id: '12', name: 'Dj song', image: "https://media.timeout.com/images/106189304/750/562/image.jpg"  },
+//   // Add more categories as needed
+// ];
+
+
 // // ReelPost.js
 // import React, { useState, useRef, useEffect } from "react";
 // import axios from "axios";
