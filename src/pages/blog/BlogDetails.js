@@ -30,9 +30,10 @@ const BlogDetails = () => {
     }
   };
 
-  useEffect(() => {
-    setBlog(sampleBlogs[id]);
-  }, [id]);
+useEffect(() => {
+  setBlog(sampleBlogs[id]);
+}, [id, sampleBlogs]);
+
 
   if (!blog) return <h2 style={{ textAlign: "center" }}>Loading...</h2>;
 
