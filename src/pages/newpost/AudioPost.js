@@ -1,5 +1,5 @@
 // ReelPost.js
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import backendURL, { UPLOAD_AUDIO, ADD_AUDIO, UPLOAD_AUDIO_IMAGE } from "../../utils/String"; // same constants as mobile
 import { useSelector } from "react-redux";
@@ -152,7 +152,6 @@ const AudioPost = () => {
                 title: title,
                 artist: artist,
                 songCaption: caption,
-                username: userData.username,
                 audioUrl: audioData.fileUrl,
                 audioKey: audioData.fileName,
                 isPopular: isPopular,
