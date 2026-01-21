@@ -3,7 +3,6 @@ import "../style/team.css"
 import teamImg1 from "../../images/team-1.jpeg"
 import teamImg2 from "../../images/team-2.jpeg"
 import teamImg3 from "../../images/c1.png"
-import teamImg4 from "../../images/c2.jpg"
 import { useEffect } from 'react'
 
 const teamMembers = [
@@ -19,7 +18,7 @@ const teamMembers = [
     },
     {
         imgUrl: teamImg2,
-        imgUrlc: teamImg4,
+        imgUrlc: '',
         name: 'Himanshu Shingh',
         position: 'Manager Director at Reelbook',
         working: 'Work in @Amazon (SDE1)',
