@@ -48,9 +48,9 @@ const Category = () => {
 
   console.log("cont v", categoryCounts)
   // Helper to get count for a category by title
-  const getVideoCount = (title) => {
-    return categoryCounts.find((cat) => cat.name === title)?.count || 0;
-  };
+  // const getVideoCount = (title) => {
+  //   return categoryCounts.find((cat) => cat.name === title)?.count || 0;
+  // };
 
   // console.log("count", getVideoCount('Motivation'))
   if (loading) return (

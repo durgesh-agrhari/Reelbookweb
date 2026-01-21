@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { FaArrowLeft, FaCoins, FaVideo, FaUsers, FaUpload } from "react-icons/fa";
+import { FaArrowLeft, FaCoins, FaUsers, FaUpload } from "react-icons/fa";
 import "./EarningInfo.css";
 
 const EarningInfo = () => {

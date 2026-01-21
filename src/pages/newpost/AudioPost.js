@@ -1,7 +1,7 @@
 // ReelPost.js
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
-import backendURL, { UPLOAD_REEL, ADD_REEL, UPLOAD_AUDIO, ADD_AUDIO, UPLOAD_AUDIO_IMAGE } from "../../utils/String"; // same constants as mobile
+import backendURL, { UPLOAD_AUDIO, ADD_AUDIO, UPLOAD_AUDIO_IMAGE } from "../../utils/String"; // same constants as mobile
 import { useSelector } from "react-redux";
 import "./ReelPost.css";
 
@@ -28,8 +28,8 @@ const bgColors = [
 ];
 
 const AudioPost = () => {
-    const [videoFile, setVideoFile] = useState(null);
-    const [thumbnail, setThumbnail] = useState(null);
+    // const [videoFile, setVideoFile] = useState(null);
+    // const [thumbnail, setThumbnail] = useState(null);
     const [caption, setCaption] = useState("");
     const [artist, setArtist] = useState("");
     const [title, setTitle] = useState("");
@@ -66,8 +66,6 @@ const AudioPost = () => {
         setImagePreview(imageURL);
     };
 
-
-    const videoRef = useRef();
     const token = useSelector((state) => state.auth.userReduxToken);
 
     // ✅ Load saved categories from localStorage
@@ -94,23 +92,6 @@ const AudioPost = () => {
             .catch(err => console.error("Error fetching user:", err));
     }, [token]);
 
-    const handleVideoUpload = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            setVideoFile(file);
-            const videoEl = document.createElement("video");
-            videoEl.src = URL.createObjectURL(file);
-            videoEl.currentTime = 1;
-            videoEl.onloadeddata = () => {
-                const canvas = document.createElement("canvas");
-                canvas.width = 300;
-                canvas.height = 533;
-                const ctx = canvas.getContext("2d");
-                ctx.drawImage(videoEl, 0, 0, canvas.width, canvas.height);
-                setThumbnail(canvas.toDataURL("image/png"));
-            };
-        }
-    };
 
     const toggleCategory = (cat) => {
         let updated;
