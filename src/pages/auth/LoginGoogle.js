@@ -5,23 +5,24 @@ import { AppContext } from "../../context/AppContext";
 import "../../components/style/GoogleLogin.css";
 
 const LoginGoogle = () => {
-  const { login, user } = useContext(AppContext);
+  // const { login, user } = useContext(AppContext);
+  const {user } = useContext(AppContext);
   const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleLogin = async () => {
-    try {
-      const loggedInUser = await login(); // ✅ get user
-      console.log("✅ Logged in user:", loggedInUser);
-      if (loggedInUser) navigate("/UserProfile");
-    } catch (error) {
-      console.error("❌ Login failed:", error);
-      alert("Login failed. Please try again.");
-    }
-  };
+  // const handleLogin = async () => {
+  //   try {
+  //     const loggedInUser = await login(); // ✅ get user
+  //     console.log("✅ Logged in user:", loggedInUser);
+  //     if (loggedInUser) navigate("/UserProfile");
+  //   } catch (error) {
+  //     console.error("❌ Login failed:", error);
+  //     alert("Login failed. Please try again.");
+  //   }
+  // };
 
   return (
     <section className="hero__section">
