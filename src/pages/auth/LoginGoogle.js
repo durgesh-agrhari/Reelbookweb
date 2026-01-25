@@ -42,7 +42,7 @@ const LoginGoogle = () => {
                 <h3 className="highlight1">Login Options</h3>
 
                 {/* Google Login Button */}
-                <div className="hero__btns">
+                {/* <div className="hero__btns">
                  <button style={{ borderRadius: "10px" }}  onClick={handleLogin}>
                   <div
                       style={{
@@ -60,7 +60,7 @@ const LoginGoogle = () => {
                       />
                     </div>
                   </button>
-                </div>
+                </div> */}
 
                   {/* Email Login */}
                 <div className="hero__btns">

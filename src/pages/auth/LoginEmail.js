@@ -101,12 +101,12 @@ const LoginEmail = () => {
               </form>
 
               <p style={{ marginTop: "15px", color: "white" }}>
-                Don’t have an account?{"  "}
+                Don’t have an account?... Create account on reelbook app{"  "}
               </p>
 
-              <button type="submit" onClick={() => navigate("/SignupForm")} style={{ borderRadius: "10px", padding: "10px 20px",width: '100%', backgroundColor:'gray' , color:'white', fontSize:'16px', alignSelf:'center', marginTop:'10px'}}>
+              {/* <button type="submit" onClick={() => navigate("/SignupForm")} style={{ borderRadius: "10px", padding: "10px 20px",width: '100%', backgroundColor:'gray' , color:'white', fontSize:'16px', alignSelf:'center', marginTop:'10px'}}>
                   Signup
-                </button>
+                </button> */}
 
                  <p style={{ marginTop: "15px", color: "white" }}>
                 Forget Password ? {" "}
