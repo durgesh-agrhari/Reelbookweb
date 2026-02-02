@@ -230,3 +230,33 @@
     overflow-y: hidden;
   }
 }
+
+.download-app-banner {
+  text-align: center;
+  padding: 30px 16px;
+  margin-top: 20px;
+  background: linear-gradient(135deg, #000, #222);
+  color: #fff;
+  border-radius: 12px;
+}
+
+.download-app-banner h3 {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.download-app-banner p {
+  font-size: 14px;
+  opacity: 0.8;
+  margin-bottom: 16px;
+}
+
+.download-btn {
+  background: #ff004f;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 25px;
+  font-size: 14px;
+  cursor: pointer;
+}

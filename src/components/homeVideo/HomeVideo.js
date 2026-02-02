@@ -1,41 +1,23 @@
-import React, { useEffect, useRef, useCallback } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './HomeVideo.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchRandomReels, resetReels } from '../../redux/RandomReelSlice';
+import { Link } from 'react-router-dom';
 
 const HomeVideo = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { reels, page, loading, hasMore } = useSelector(
+  const { reels, loading } = useSelector(
     (state) => state.randomReel
   );
 
-  const observer = useRef();
-
-  // ✅ Load first page on mount
+  // ✅ Load ONLY first page
   useEffect(() => {
     dispatch(resetReels());
     dispatch(fetchRandomReels(1));
   }, [dispatch]);
-
-  // ✅ Infinite scroll logic
-  const lastVideoRef = useCallback(
-    (node) => {
-      if (loading) return;
-      if (observer.current) observer.current.disconnect();
-
-      observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && hasMore) {
-          dispatch(fetchRandomReels(page));
-        }
-      });
-
-      if (node) observer.current.observe(node);
-    },
-    [loading, hasMore, dispatch, page]
-  );
 
   const goToPlayer = (index) => {
     navigate('/videoplayer', {
@@ -46,94 +28,226 @@ const HomeVideo = () => {
   return (
     <div className="home-video-container">
       {reels.length === 0 && loading ? (
-        // 🌀 Show shimmer while loading first batch
+        // 🌀 Shimmer loader
         Array(6)
           .fill(0)
           .map((_, index) => (
             <div key={index} className="video-wrapper shimmer-wrapper">
               <div className="video-shimmer" />
-              <div className="video-overlay shimmer-overlay">
-                <div className="profile-pic shimmer-circle" />
-                <div className="user-info shimmer-lines">
-                  <div className="line short" />
-                  <div className="line medium" />
-                </div>
-              </div>
             </div>
           ))
       ) : (
-        reels.map((video, index) => {
-          // 🧩 Attach observer to the last video
-          if (index === reels.length - 1) {
-            return (
-              <div
-                ref={lastVideoRef}
-                key={video._id}
-                className="video-wrapper"
-                onClick={() => goToPlayer(index)}
-              >
-                <video
-                  src={video.videourl}
-                  muted
-                  autoPlay
-                  loop
-                  poster={video.thumbnillurl}
-                  className="video-element"
-                />
-                <div className="video-overlay">
-                  <img
-                    src={video.thumbnillurl}
-                    alt="profile"
-                    className="profile-pic"
-                  />
-                  <div className="user-info">
-                    <span className="name">{video.caption}</span>
-                    <span className="username"> | @{video.username}</span>
-                    <h5 className="views">{video.views} views</h5>
-                  </div>
-                </div>
+        reels.map((video, index) => (
+          <div
+            key={video._id}
+            className="video-wrapper"
+            onClick={() => goToPlayer(index)}
+          >
+            <img
+              src={video.thumbnillurl}
+              className="video-element"
+              alt="thumbnail"
+            />
+
+            <div className="video-overlay">
+              <img
+                src={video.thumbnillurl}
+                alt="profile"
+                className="profile-pic"
+              />
+              <div className="user-info">
+                <span className="name">{video.caption}</span>
+                <span className="username"> | @{video.username}</span>
+                <h5 className="views">{video.views} views</h5>
               </div>
-            );
-          } else {
-            return (
-              <div
-                key={video._id}
-                className="video-wrapper"
-                onClick={() => goToPlayer(index)}
-              >
-                <video
-                  src={video.videourl}
-                  muted
-                  autoPlay
-                  loop
-                  poster={video.thumbnillurl}
-                  className="video-element"
-                />
-                <div className="video-overlay">
-                  <img
-                    src={video.thumbnillurl}
-                    alt="profile"
-                    className="profile-pic"
-                  />
-                  <div className="user-info">
-                    <span className="name">{video.caption}</span>
-                    <span className="username"> | @{video.username}</span>
-                    <h5 className="views">{video.views} views</h5>
-                  </div>
-                </div>
-              </div>
-            );
-          }
-        })
+            </div>
+          </div>
+        ))
       )}
 
-      {loading && reels.length > 0 && <p className="loading-text">Loading more...</p>}
-      {!hasMore && !loading && <p className="end-text">No more videos</p>}
+      {/* ✅ STOP MESSAGE */}
+      {!loading && reels.length > 0 && (
+        <div className="download-app-banner">
+          <h3>📱 Get the full experience</h3>
+          <p>Download our mobile app to watch unlimited videos</p>
+          <div>
+                  <h3 className='highlight1'>Download from play store and App Store</h3>
+                  <div className='hero__btns'>
+                    <button style={{ borderRadius: '10px' }}>
+                      <Link to='https://play.google.com/store/apps/details?id=com.reelbook' style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', color: 'inherit' }}>
+                        <img
+                          src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/2560px-Google_Play_Store_badge_EN.svg.png"  // ← replace with your own image
+                          alt="arrow"
+                          style={{ width: '160px', height: '50px' }}
+                        />
+                      </Link>
+                    </button>
+                    <button style={{ borderRadius: '10px' }}>
+                      <Link to='https://apps.apple.com/in/app/reelbook-app/id6755233312' style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', color: 'inherit' }}>
+                        <img
+                          src="https://w7.pngwing.com/pngs/327/888/png-transparent-aivalable-on-the-app-store-hd-logo.png"  // ← replace with your own image
+                          alt="arrow"
+                          style={{ width: '160px', height: '50px', borderRadius: '10px' }}
+                        />
+                      </Link>
+                    </button>
+      
+      
+                  </div>
+                </div>
+        </div>
+      )}
     </div>
   );
 };
 
 export default HomeVideo;
+
+
+// import React, { useEffect, useRef, useCallback } from 'react';
+// import { useNavigate } from 'react-router-dom';
+// import './HomeVideo.css';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { fetchRandomReels, resetReels } from '../../redux/RandomReelSlice';
+
+// const HomeVideo = () => {
+//   const navigate = useNavigate();
+//   const dispatch = useDispatch();
+
+//   const { reels, page, loading, hasMore } = useSelector(
+//     (state) => state.randomReel
+//   );
+
+//   const observer = useRef();
+
+//   // ✅ Load first page on mount
+//   useEffect(() => {
+//     dispatch(resetReels());
+//     dispatch(fetchRandomReels(1));
+//   }, [dispatch]);
+
+//   // ✅ Infinite scroll logic
+//   const lastVideoRef = useCallback(
+//     (node) => {
+//       if (loading) return;
+//       if (observer.current) observer.current.disconnect();
+
+//       observer.current = new IntersectionObserver((entries) => {
+//         if (entries[0].isIntersecting && hasMore) {
+//           dispatch(fetchRandomReels(page));
+//         }
+//       });
+
+//       if (node) observer.current.observe(node);
+//     },
+//     [loading, hasMore, dispatch, page]
+//   );
+
+//   const goToPlayer = (index) => {
+//     navigate('/videoplayer', {
+//       state: { videoList: reels, currentIndex: index },
+//     });
+//   };
+
+//   return (
+//     <div className="home-video-container">
+//       {reels.length === 0 && loading ? (
+//         // 🌀 Show shimmer while loading first batch
+//         Array(6)
+//           .fill(0)
+//           .map((_, index) => (
+//             <div key={index} className="video-wrapper shimmer-wrapper">
+//               <div className="video-shimmer" />
+//               <div className="video-overlay shimmer-overlay">
+//                 <div className="profile-pic shimmer-circle" />
+//                 <div className="user-info shimmer-lines">
+//                   <div className="line short" />
+//                   <div className="line medium" />
+//                 </div>
+//               </div>
+//             </div>
+//           ))
+//       ) : (
+//         reels.map((video, index) => {
+//           // 🧩 Attach observer to the last video
+//           if (index === reels.length - 1) {
+//             return (
+//               <div
+//                 ref={lastVideoRef}
+//                 key={video._id}
+//                 className="video-wrapper"
+//                 onClick={() => goToPlayer(index)}
+//               >
+//                 <video
+//                   src={video.videourl}
+//                   muted
+//                   autoPlay
+//                   loop
+//                   poster={video.thumbnillurl}
+//                   className="video-element"
+//                 />
+//                 <div className="video-overlay">
+//                   <img
+//                     src={video.thumbnillurl}
+//                     alt="profile"
+//                     className="profile-pic"
+//                   />
+//                   <div className="user-info">
+//                     <span className="name">{video.caption}</span>
+//                     <span className="username"> | @{video.username}</span>
+//                     <h5 className="views">{video.views} views</h5>
+//                   </div>
+//                 </div>
+//               </div>
+//             );
+//           } else {
+//             return (
+//               <div
+//                 key={video._id}
+//                 className="video-wrapper"
+//                 onClick={() => goToPlayer(index)}
+//               >
+//                 {/* <video
+//                   src={video.videourl}
+//                   muted
+//                   autoPlay
+//                   loop
+//                   poster={video.thumbnillurl}
+//                   className="video-element"
+//                 /> */}
+//                 <img
+//                   src={video.thumbnillurl}
+//                   // muted
+//                   // autoPlay
+//                   // loop
+//                   // poster={video.thumbnillurl}
+//                   className="video-element"
+//                 />
+//                 <div className="video-overlay">
+//                   <img
+//                     src={video.thumbnillurl}
+//                     alt="profile"
+//                     className="profile-pic"
+//                   />
+//                   <div className="user-info">
+//                     <span className="name">{video.caption}</span>
+//                     <span className="username"> | @{video.username}</span>
+//                     <h5 className="views">{video.views} views</h5>
+//                   </div>
+//                 </div>
+//               </div>
+//             );
+//           }
+//         })
+//       )}
+
+//       {loading && reels.length > 0 && <p className="loading-text">Loading more...</p>}
+//       {!hasMore && !loading && <p className="end-text">No more videos</p>}
+//     </div>
+//   );
+// };
+
+// export default HomeVideo;
 
 
 // import React, { useEffect, useState } from 'react';
