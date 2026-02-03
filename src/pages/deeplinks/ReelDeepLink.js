@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 
-const ReelDeepLink = ({ reelId }) => {
+const ReelDeepLink = () => {
+  const { reelId } = useParams();
+
   useEffect(() => {
     // Try to open the app immediately
     const appUrl = `reelbook://reel/${reelId}`;
@@ -42,6 +45,7 @@ const ReelDeepLink = ({ reelId }) => {
       }}>
         <div style={{ marginBottom: '20px' }}>
           <h1>🎬 Opening Reelbook App...</h1>
+          <p>Loading reel: {reelId}</p>
           <p>If the app doesn't open automatically, you'll be redirected to the Play Store.</p>
         </div>
         
