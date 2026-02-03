@@ -34,6 +34,10 @@ import Blogs from "../pages/blog/blogs.js";
 import BlogDetails from "../pages/blog/BlogDetails.js";
 import QrCode from "../utils/QrCode.js";
 import AudioPost from "../pages/newpost/AudioPost.js";
+// Deep Link Components
+import ReelDeepLink from "../pages/deeplinks/ReelDeepLink.js";
+import PostDeepLink from "../pages/deeplinks/PostDeepLink.js";
+import ProfileDeepLink from "../pages/deeplinks/ProfileDeepLink.js";
 
 const Navigation = () => {
   const [theme, setTheme] = useState("");
@@ -79,6 +83,11 @@ const Navigation = () => {
         <Route path="/blog/:id" element={<BlogDetails />} />
         <Route path="/qr" element={<QrCode />} />
         <Route path="/AudioPost" element={<AudioPost />} />
+        
+        {/* Deep Link Routes */}
+        <Route path="/reel/:reelId" element={<ReelDeepLink />} />
+        <Route path="/post/:postId" element={<PostDeepLink />} />
+        <Route path="/:username" element={<ProfileDeepLink />} />
 
       </Routes>
     </Router>
