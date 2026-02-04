@@ -27,8 +27,8 @@ const ProfileDeepLink = () => {
         <title>{username} on Reelbook</title>
         <meta property="og:title" content={`Check out ${username} on Reelbook`} />
         <meta property="og:description" content={`Follow ${username} on Reelbook for amazing content`} />
-        <meta property="og:image" content="https://reelbook.com/logo.png" />
-        <meta property="og:url" content={`https://reelbook.com/${username}`} />
+        <meta property="og:image" content="http://reelbookapp.com/logo.png" />
+        <meta property="og:url" content={`http://reelbookapp.com/${username}`} />
         <meta property="og:type" content="profile" />
         <meta http-equiv="refresh" content="3; url=https://play.google.com/store/apps/details?id=com.reelbook" />
       </Helmet>

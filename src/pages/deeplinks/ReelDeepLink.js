@@ -27,8 +27,8 @@ const ReelDeepLink = () => {
         <title>Reel on Reelbook</title>
         <meta property="og:title" content="Check out this Reel on Reelbook" />
         <meta property="og:description" content="Watch amazing content on Reelbook" />
-        <meta property="og:image" content="https://reelbook.com/logo.png" />
-        <meta property="og:url" content={`https://reelbook.com/reel/${reelId}`} />
+        <meta property="og:image" content="http://reelbookapp.com/logo.png" />
+        <meta property="og:url" content={`http://reelbookapp.com/reel/${reelId}`} />
         <meta property="og:type" content="video.other" />
         <meta http-equiv="refresh" content="3; url=https://play.google.com/store/apps/details?id=com.reelbook" />
       </Helmet>

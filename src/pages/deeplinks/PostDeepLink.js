@@ -27,8 +27,8 @@ const PostDeepLink = () => {
         <title>Post on Reelbook</title>
         <meta property="og:title" content="Check out this Post on Reelbook" />
         <meta property="og:description" content="View amazing content on Reelbook" />
-        <meta property="og:image" content="https://reelbook.com/logo.png" />
-        <meta property="og:url" content={`https://reelbook.com/post/${postId}`} />
+        <meta property="og:image" content="http://reelbookapp.com/logo.png" />
+        <meta property="og:url" content={`http://reelbookapp.com/post/${postId}`} />
         <meta property="og:type" content="website" />
         <meta http-equiv="refresh" content="3; url=https://play.google.com/store/apps/details?id=com.reelbook" />
       </Helmet>
