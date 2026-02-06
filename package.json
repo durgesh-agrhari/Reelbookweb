@@ -12,6 +12,7 @@
     "axios": "^1.12.2",
     "browser-router": "^0.2.0",
     "firebase": "^12.2.1",
+    "http-proxy-middleware": "^2.0.6",
     "markdown-to-jsx": "^7.2.0",
     "react": "^18.2.0",
     "react-copy-to-clipboard": "^5.1.0",
@@ -41,7 +42,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "server": "node server.js",
+    "prod": "npm run build && npm run server"
   },
   "eslintConfig": {
     "extends": [
