@@ -66,7 +66,7 @@ const ReelDeepLink = () => {
         <meta property="og:title" content={`${reel?.username || 'Reelbook User'} on Reelbook`} />
         <meta property="og:description" content={reel?.caption || 'Watch this reel on Reelbook'} />
         <meta property="og:url" content={`https://reelbookapp.com/reel/${reelId}`} />
-        <meta property="og:image" content={reel?.thumbnailurl} />
+        <meta property="og:image" content={reel?.thumbnillurl} />
         <meta property="og:video" content={reel?.videourl || reel?.hlsUrl} />
         <meta property="og:video:type" content="video/mp4" />
         <meta property="og:video:width" content="720" />
@@ -77,7 +77,7 @@ const ReelDeepLink = () => {
         <meta name="twitter:card" content="player" />
         <meta name="twitter:title" content={`${reel?.username || 'Reelbook User'} on Reelbook`} />
         <meta name="twitter:description" content={reel?.caption || 'Watch this reel on Reelbook'} />
-        <meta name="twitter:image" content={reel?.thumbnailurl} />
+        <meta name="twitter:image" content={reel?.thumbnillurl} />
         <meta name="twitter:site" content="@reelbook" />
         
         {/* Additional SEO meta tags */}
