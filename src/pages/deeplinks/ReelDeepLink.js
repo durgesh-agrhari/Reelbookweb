@@ -1,12 +1,35 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 
 const ReelDeepLink = () => {
   const { reelId } = useParams();
+  const [reel, setReel] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Try to open the app immediately
+    const fetchReelData = async () => {
+      try {
+        const response = await fetch(`https://reelbookapi.site/reel/getReel/${reelId}`);
+        const data = await response.json();
+        
+        if (data.status && data.data) {
+          setReel(data.data);
+        }
+      } catch (error) {
+        console.error('Error fetching reel data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (reelId) {
+      fetchReelData();
+    }
+  }, [reelId]);
+
+  useEffect(() => {
+    // Try to open app immediately
     const appUrl = `reelbook://reel/${reelId}`;
     const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.reelbook';
     
@@ -21,15 +44,46 @@ const ReelDeepLink = () => {
     }, 2000);
   }, [reelId]);
 
+  if (loading) {
+    return (
+      <div style={{ 
+        display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'center', 
+        minHeight: '100vh',
+        fontFamily: 'Arial, sans-serif'
+      }}>
+        <div>Loading reel data...</div>
+      </div>
+    );
+  }
+
   return (
     <>
       <Helmet>
-        <title>Reel on Reelbook</title>
-        <meta property="og:title" content="Check out this Reel on Reelbook" />
-        <meta property="og:description" content="Watch amazing content on Reelbook" />
-        <meta property="og:image" content="http://reelbookapp.com/logo.png" />
-        <meta property="og:url" content={`http://reelbookapp.com/reel/${reelId}`} />
+        <title>{reel?.caption || 'Reelbook Reel'}</title>
         <meta property="og:type" content="video.other" />
+        <meta property="og:title" content={`${reel?.username || 'Reelbook User'} on Reelbook`} />
+        <meta property="og:description" content={reel?.caption || 'Watch this reel on Reelbook'} />
+        <meta property="og:url" content={`https://reelbookapp.com/reel/${reelId}`} />
+        <meta property="og:image" content={reel?.thumbnailurl} />
+        <meta property="og:video" content={reel?.videourl || reel?.hlsUrl} />
+        <meta property="og:video:type" content="video/mp4" />
+        <meta property="og:video:width" content="720" />
+        <meta property="og:video:height" content="1280" />
+        <meta property="og:site_name" content="Reelbook" />
+        
+        {/* Twitter Card meta tags */}
+        <meta name="twitter:card" content="player" />
+        <meta name="twitter:title" content={`${reel?.username || 'Reelbook User'} on Reelbook`} />
+        <meta name="twitter:description" content={reel?.caption || 'Watch this reel on Reelbook'} />
+        <meta name="twitter:image" content={reel?.thumbnailurl} />
+        <meta name="twitter:site" content="@reelbook" />
+        
+        {/* Additional SEO meta tags */}
+        <meta name="description" content={reel?.caption || `Watch this reel by ${reel?.username || 'Reelbook User'} on Reelbook`} />
+        <meta name="keywords" content={`reel, video, social, reelbook, ${reel?.username || ''}`} />
+        
         <meta http-equiv="refresh" content="3; url=https://play.google.com/store/apps/details?id=com.reelbook" />
       </Helmet>
       
@@ -46,7 +100,9 @@ const ReelDeepLink = () => {
         <div style={{ marginBottom: '20px' }}>
           <h1>🎬 Opening Reelbook App...</h1>
           <p>Loading reel: {reelId}</p>
-          <p>If the app doesn't open automatically, you'll be redirected to the Play Store.</p>
+          {reel?.username && <p>By: {reel.username}</p>}
+          {reel?.caption && <p>"{reel.caption}"</p>}
+          <p>If app doesn't open automatically, you'll be redirected to Play Store.</p>
         </div>
         
         <div style={{ marginTop: '20px' }}>
