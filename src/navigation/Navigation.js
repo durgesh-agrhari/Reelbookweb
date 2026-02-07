@@ -54,7 +54,8 @@ const Navigation = () => {
       <Header theme={theme} toggleTheme={toggleTheme} />
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/videoplayer" element={<VideoPlayer />} />
+        {/* <Route path="/reel" element={<VideoPlayer />} /> */}
+        <Route path="/reel/:reelId" element={<VideoPlayer />} />
         <Route path="/Category" element={<Category />} />
         <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
         <Route path="/Contact" element={<Contact />} />

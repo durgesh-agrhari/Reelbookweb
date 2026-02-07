@@ -19,11 +19,18 @@ const HomeVideo = () => {
     dispatch(fetchRandomReels(1));
   }, [dispatch]);
 
-  const goToPlayer = (index) => {
-    navigate('/videoplayer', {
-      state: { videoList: reels, currentIndex: index },
-    });
-  };
+  // const goToPlayer = (index) => {
+  //   navigate('/reel', {
+  //     state: { videoList: reels, currentIndex: index },
+  //   });
+  // };
+
+//   const goToPlayer = (index) => {
+//     navigate(`/reel/${video._id}`, {
+//   state: { videoList: reels, currentIndex: index },
+// });
+
+  // };
 
   return (
     <div className="home-video-container">
@@ -41,7 +48,13 @@ const HomeVideo = () => {
           <div
             key={video._id}
             className="video-wrapper"
-            onClick={() => goToPlayer(index)}
+            // onClick={() => goToPlayer(index)}
+            onClick={() =>
+              navigate(`/reel/${video._id}`, {
+                state: { videoList: reels, currentIndex: index },
+              })
+            }
+
           >
             <img
               src={video.thumbnillurl}
